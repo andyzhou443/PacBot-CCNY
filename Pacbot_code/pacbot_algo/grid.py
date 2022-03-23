@@ -98,7 +98,7 @@ def backtrack(stack, travelled):
                 if(stack[s_end][0] == travelled[pos][0]) and (stack[s_end][1] == travelled[pos][1] - 1):
                         back_path.append(travelled.pop())
                         for i in range(0, len(back_path)):
-                                print(back_path[i],stack)
+                                print(back_path[i])
 
                         travelled.append(back_path[len(back_path) - 1])
                         print("Parent!!")
@@ -120,7 +120,7 @@ def back_path_dir(back_path,stack):
 #4 CASES
         print('initial backtrack path:',back_path)
         back_path.reverse()                      #reversing the backtracking path to make it convenient to pop
-        last_cell = dfs_traversal_output[-1]     #last cell explored (aka the deadend)
+        last_cell = dfs_traversal_output[-1]     #last cell explored (aka the deadend)  
         back = back_path.pop()
 
 #CASE 1: comparing the first element in back_path to the last visited cell (deadend)
