@@ -1,5 +1,4 @@
 (sym_lib_table
-  (lib (name "library")(type "KiCad")(uri "${KIPRJMOD}/library.kicad_sym")(options "")(descr ""))
   (lib (name "Pololu")(type "KiCad")(uri "${KIPRJMOD}/Pololu.kicad_sym")(options "")(descr ""))
   (lib (name "Adafruit")(type "KiCad")(uri "${KIPRJMOD}/Adafruit.kicad_sym")(options "")(descr ""))
 )
