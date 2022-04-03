@@ -212,23 +212,23 @@ def dfs(x, y, direction):
                 y = current[1]
                 dfs_traversal_output.append(current)
                 value = grid[x][y]
-                grid[x][y]="X"
-                if((x+1<row or y<col) and grid[x+1][y] not in [n, I] and grid[x+1][y] !="X"):   #right = 0
+                grid[x][y]=8
+                if((x+1<row or y<col) and grid[x+1][y] not in [n, I] and grid[x+1][y] !=8):   #right = 0
                         value = grid[x+1][y]
                         stack.append([x+1,y, right])
                         legal_moves = 1         # If a legal move is found, legal move is set to 1, otherwise legal move is 0
 
-                if((x<row or y+1<col) and grid[x][y+1] not in [n, I] and grid[x][y+1] !="X"):   #up = 2
+                if((x<row or y+1<col) and grid[x][y+1] not in [n, I] and grid[x][y+1] !=8):   #up = 2
                         value = grid[x][y+1]
                         stack.append([x,y+1, up])
                         legal_moves = 1
 
-                if((x-1>=1 or y>=1) and grid[x-1][y] not in [n, I] and grid[x-1][y] !="X"):     #left = 1
+                if((x-1>=1 or y>=1) and grid[x-1][y] not in [n, I] and grid[x-1][y] !=8):     #left = 1
                         value = grid[x-1][y]
                         stack.append([x-1,y,left])
                         legal_moves = 1
 
-                if((x>=1 or y-1>=1) and grid[x][y-1] not in [n, I] and grid[x][y-1] !="X"):     #down = 3
+                if((x>=1 or y-1>=1) and grid[x][y-1] not in [n, I] and grid[x][y-1] !=8):     #down = 3
                         value = grid[x][y-1]
                         stack.append([x,y-1,down])
                         legal_moves = 1
