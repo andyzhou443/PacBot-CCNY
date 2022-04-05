@@ -73,21 +73,20 @@ stack.append([x,y,direction])
 
 # allows us to add the surrounding nodes to the stack when either going one path or backtracking
 def addnodes(x, y):
-        if((x+1<row or y<col) and grid[x+1][y] not in [n, I] and grid[x+1][y] !=8):   #right = 0
-                stack.append([x+1,y, right])
-                parents[(x+1, y)] = (x, y, left)
-
-        if((x<row or y+1<col) and grid[x][y+1] not in [n, I] and grid[x][y+1] !=8):   #up = 2
-                stack.append([x,y+1, up])
-                parents[(x, y+1)] = (x, y, down)
-
+       
         if((x-1>=1 or y>=1) and grid[x-1][y] not in [n, I] and grid[x-1][y] !=8):     #left = 1
                 stack.append([x-1,y,left])
-                parents[(x-1, y)] = (x, y, right)
+                parents[(x-1, y)] = (x, y, left)
 
         if((x>=1 or y-1>=1) and grid[x][y-1] not in [n, I] and grid[x][y-1] !=8):     #down = 3
                 stack.append([x,y-1,down])
-                parents[(x, y-1)] = (x, y, up)
+                parents[(x, y-1)] = (x, y, down)
+        if((x<row or y+1<col) and grid[x][y+1] not in [n, I] and grid[x][y+1] !=8):   #up = 2
+                stack.append([x,y+1, up])
+                parents[(x, y+1)] = (x, y, up)       
+        if((x+1<row or y<col) and grid[x+1][y] not in [n, I] and grid[x+1][y] !=8):   #right = 0
+                stack.append([x+1,y, right])
+                parents[(x+1, y)] = (x, y, right)
         
 
 
@@ -170,9 +169,11 @@ def main():
        
 
         f = open("road.txt", "w")
-        f.write(str(dfs_traversal_output).replace('],','],\n'))
+        f.write(str(dfs_traversal_output))#.replace('],','],\n'))
         f.close()
-        
+        freadable = open("road_readable.txt", "w")
+        freadable.write(str(dfs_traversal_output).replace('],','],\n'))
+        freadable.close()
 
 
 if __name__ == "__main__":
