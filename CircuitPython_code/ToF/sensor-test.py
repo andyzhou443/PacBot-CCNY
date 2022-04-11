@@ -7,12 +7,15 @@
 # Demo of reading the range and lux from the VL6180x distance sensor and
 # printing it every second.
 
-from re import I
 import time
 import board
 import busio
 import adafruit_vl6180x
 import adafruit_tca9548a
+
+print("===============")
+print("ToF Sensor Test")
+print("===============\n")
 
 # BEGIN MUX SETUP
 # This example shows using TCA9548A to perform a simple scan for connected devices
@@ -23,12 +26,12 @@ i2c = busio.I2C(board.D16,board.D17)
 # Create the TCA9548A object and give it the I2C bus
 tca = adafruit_tca9548a.TCA9548A(i2c)
 
-for channel in range(8):
-    if tca[channel].try_lock():
-        print("Channel {}:".format(channel), end="")
-        addresses = tca[channel].scan()
-        print([hex(address) for address in addresses if address != 0x70])
-        tca[channel].unlock()
+# for channel in range(8):
+#     if tca[channel].try_lock():
+#         print("Channel {}:".format(channel), end="")
+#         addresses = tca[channel].scan()
+#         print([hex(address) for address in addresses if address != 0x70])
+#         tca[channel].unlock()
 
 
 # CONTINUE SENSOR SETUP
@@ -46,7 +49,7 @@ sensor[3] = adafruit_vl6180x.VL6180X(tca[3])
 while True:
     # Read the range in millimeters and print it.
     for i in range(4):
-        range_mm = I.range
+        range_mm = i.range
         print("S{1}: {0}mm".format(range_mm,i))
         # Read the light, note this requires specifying a gain value:
         adafruit_vl6180x.ALS_GAIN_1
