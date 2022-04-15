@@ -28,9 +28,12 @@ void loop() {
   int i = 0;
   char command_buffer[15];
   int temp_buffer;
+
+  // Check if serial buffer has data to read
   if (Serial.available() > 0)
   {
     i = 0;
+    // Store the data into a string
     temp_buffer = Serial.read();
     while(temp_buffer != -1 && i < 15 && temp_buffer != '\n')
     {
@@ -43,7 +46,10 @@ void loop() {
     if (Serial.peek() == '\n' || Serial.peek() == '\r')
       Serial.read();
     
-    Serial.println(command_buffer);    
+    // Output test
+    Serial.println(command_buffer);
+    
+        
     // Parse Code
     if (strcmp(command_buffer,"TE1") == 0)
     {
