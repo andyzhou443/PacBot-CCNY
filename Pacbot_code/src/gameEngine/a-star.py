@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import os, sys, curses
+from sysconfig import get_path
 import robomodules as rm
 from messages import *
 from pacbot.variables import *
@@ -45,10 +46,12 @@ class InputModule(rm.ProtoModule):
         self.frontier = PriorityQueue()
         self.frontier.put((self.pacbot_pos[0], self.pacbot_pos[1], pacbot_starting_dir),0)
         self.discovered = set()
-        self.came_from = dict()
-        self.cost_so_far = dict()
-        self.came_from[self.pacbot_pos] = None
-        self.cost_so_far[self.pacbot_pos] = 0
+        self.came_from = {}
+        self.cost_so_far = {}
+        self.path = []
+        self.came_from[(self.pacbot_pos[0], self.pacbot_pos[1], pacbot_starting_dir)] = None
+        self.cost_so_far[(self.pacbot_pos[0], self.pacbot_pos[1], pacbot_starting_dir)] = 0
+        self.goal_reached = False
 
 
 
@@ -94,7 +97,8 @@ class InputModule(rm.ProtoModule):
             # if not self._move_if_valid_dir(self.next_dir, self.pacbot_pos[0], self.pacbot_pos[1]):
                 # self._move_if_valid_dir(self.cur_dir, self.pacbot_pos[0], self.pacbot_pos[1])
                 # self.dfs()
-                self.a_star()
+                # self.a_star()
+                self.make_move()
         pos_buf = PacmanState.AgentState()
         pos_buf.x = self.pacbot_pos[0]
         pos_buf.y = self.pacbot_pos[1]
@@ -150,23 +154,50 @@ class InputModule(rm.ProtoModule):
         return neighbors
 
     def a_star(self):
+
+    
         current = self.frontier.get()
         print(current)
-        self._move_if_valid_dir(current[2],current[0],current[1])
-        
+
         if current[0] == goal[0] and current[1] == goal[1]:
-            return
+            self.goal_reached = True
+            self.get_path(current)
+            # if len(self.path) == 0:   
+            #     self.get_path(current)
+            # else: 
+            #     next_move = self.path.pop()
+            #     self._move_if_valid_dir(next_move[2],next_move[0],next_move[1])
+            # return
 
         for next in self.neighbors(current):
             new_cost = self.cost_so_far[current] + self.manhattan_distance(next,current) #computes the total steps travelled if we go to next cell 
-            
+
             if next not in self.cost_so_far or new_cost < self.cost_so_far[next]:
                 self.cost_so_far[next] = new_cost                            #add neighbor cell to dictionary along with its associated cost or replace a previous cost entry with a lesser one
                 self.came_from[next]=current                                 #adds the neighbor as key with current cell as the parent of neighbor. If a parent alerady exists, it will be replaced with one which gives lesser cost.
                 priority = new_cost + self.heuristic_function(next, goal)    #computes the estimated cost to get to the goal if we go to the neighbor cell "next".
                 self.frontier.put(next,priority)  
+        
+    def get_path(self,remote_node):
 
+        self.path.append(remote_node)#append the remote_node (aka goal node) we want to go to to the end of the list   
+        while self.came_from[remote_node] is not None:   #loop will stop once we reach the source node (aka node with no parent)
+            self.path.append(self.came_from[remote_node])     #append the parent of "remote_node" to the path since thats where the remote node came from
+            remote_node = self.came_from[remote_node]    #we increment the remote node by overwriting it with its parent
+        
+        #reverse path since we started from the goal to the source
 
+    def make_move(self):
+        if self.goal_reached == False:
+            self.a_star()
+        elif len(self.path) != 0 and self.goal_reached==True:
+            next_move = self.path.pop()
+            self._move_if_valid_dir(next_move[2],next_move[0],next_move[1])
+        else:
+            self.goal_reached = False
+
+        
+        
 
     def dfs(self):
         # stack = []
