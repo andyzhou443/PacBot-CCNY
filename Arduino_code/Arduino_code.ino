@@ -24,6 +24,7 @@ void setup() {
 }
 
 void loop() {
+  // put your main code here, to run repeatedly:
 
   //  Read serial
   int i = 0;
@@ -45,28 +46,29 @@ void loop() {
       Serial.read();
     
     Serial.println(command_buffer);    
-
-    // Using serial to determine robotmovement
-    switch (command_buffer){
-      case '0':
-        void motorMovement(int pinOne, int pinTwo, int pinThree, int pinFour);
-      break;
-
-      case '1':
-        void motorMovement(int pinOne, int pinTwo, int pinThree, int pinFour);
-      break;
-
-      case '2':
-        void motorMovement(int pinOne, int pinTwo, int pinThree, int pinFour);
-      break;
-
-      case '3':
-        void motorMovement(int pinOne, int pinTwo, int pinThree, int pinFour);
-      break;
+    
+    // Parse Code
+    
+    // Movement commands
+    if (strcmp(command_buffer,"0") == 0)
+    {
+      void motorMovement(int pinOne, int pinTwo, int pinThree, int pinFour);
+    }
+    else if (strcmp(command_buffer,"1") == 0)
+    {
+      void motorMovement(int pinOne, int pinTwo, int pinThree, int pinFour);
+    }
+    else if (strcmp(command_buffer,"2") == 0)
+    {
+      void motorMovement(int pinOne, int pinTwo, int pinThree, int pinFour);
+    }
+    else if (strcmp(command_buffer,"3" == 0)
+    {
+      void motorMovement(int pinOne, int pinTwo, int pinThree, int pinFour);
     }
 
-    // Parse Code
-    if (strcmp(command_buffer,"T1") == 0)
+    // Test commands
+    else if (strcmp(command_buffer,"T1") == 0)
     {
       Serial.println("Motor TEST");
     }
