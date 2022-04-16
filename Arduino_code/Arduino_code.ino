@@ -2,6 +2,7 @@
 #include "pins.h"
 #define PINS
 #endif
+#include <string.h> 
 
 #include "motor.cpp"
 // Pacbot code
@@ -23,17 +24,14 @@ void setup() {
 }
 
 void loop() {
-    // put your main code here, to run repeatedly:
+
   //  Read serial
   int i = 0;
   char command_buffer[15];
   int temp_buffer;
-
-  // Check if serial buffer has data to read
   if (Serial.available() > 0)
   {
     i = 0;
-    // Store the data into a string
     temp_buffer = Serial.read();
     while(temp_buffer != -1 && i < 15 && temp_buffer != '\n')
     {
@@ -46,24 +44,21 @@ void loop() {
     if (Serial.peek() == '\n' || Serial.peek() == '\r')
       Serial.read();
     
-    // Output test
-    Serial.println(command_buffer);
-    
-        
+    Serial.println(command_buffer);    
     // Parse Code
-    if (strcmp(command_buffer,"TE1") == 0)
+    if (strcmp(command_buffer,"T1") == 0)
     {
       Serial.println("Motor TEST");
     }
-    else if (strcmp(command_buffer,"TE2") == 0)
+    else if (strcmp(command_buffer,"T2") == 0)
     {
       Serial.println("Encoder TEST");
     }
-    else if (strcmp(command_buffer,"TE3") == 0)
+    else if (strcmp(command_buffer,"T3") == 0)
     {
       Serial.println("ToF TEST");
     }
-    else if(strcmp(command_buffer,"TE4") == 0)
+    else if(strcmp(command_buffer,"T4") == 0)
     {
       Serial.println("IMU TEST");
     }
