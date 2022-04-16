@@ -45,6 +45,26 @@ void loop() {
       Serial.read();
     
     Serial.println(command_buffer);    
+
+    // Using serial to determine robotmovement
+    switch (command_buffer){
+      case '0':
+        void motorMovement(int pinOne, int pinTwo, int pinThree, int pinFour);
+      break;
+
+      case '1':
+        void motorMovement(int pinOne, int pinTwo, int pinThree, int pinFour);
+      break;
+
+      case '2':
+        void motorMovement(int pinOne, int pinTwo, int pinThree, int pinFour);
+      break;
+
+      case '3':
+        void motorMovement(int pinOne, int pinTwo, int pinThree, int pinFour);
+      break;
+    }
+
     // Parse Code
     if (strcmp(command_buffer,"T1") == 0)
     {
