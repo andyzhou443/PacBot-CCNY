@@ -132,7 +132,7 @@ class HighLevel(rm.ProtoModule):
         ser = serial.Serial('/dev/ttyACM0')  # open serial port
         # print(ser.name)         # check which port was really used
         print(to_Serial)
-        # ser.write(to_Serial)     # write a string
+        ser.write(str.encode(to_Serial))     # write a string
         # ser.close()       # close port
 
     def gameRun(self):
