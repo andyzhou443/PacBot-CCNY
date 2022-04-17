@@ -38,5 +38,3 @@ grid = [[I,I,I,I,I,I,I,I,I,I,I,I,e,e,e,e,e,e,e,e,e,I,I,I,I,I,I,I,I,I,I], # 0
 
 
 starting = grid[14][7]
-
-dfs(curx, cur):
