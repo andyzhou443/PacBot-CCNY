@@ -90,7 +90,7 @@ class HighLevel(rm.ProtoModule):
         # this function will get called in a loop with FREQUENCY frequency
 
         if self.state and self.state.mode != PacmanState.PAUSED:
-                self.gameTests()
+                self.gameRun()
         pos_buf = PacmanState.AgentState()
         # fil.close()
         pos_buf.x = self.pacbot_pos[0]
@@ -123,13 +123,14 @@ class HighLevel(rm.ProtoModule):
 
     def getPath_to_powerPellet(self, starting):
         
-        # self.i = 0
-        return bfs(self.grid,starting, [o,O])
+        self.i = 0
+        self.path = bfs(self.grid,starting, [o,O])
+        # return 
 
     # to talk via the serial port from rpi to mcu
     def talkToSerial(self, dir, x, y):
         to_Serial = str(dir) + "X" + "{0:0=2d}".format(x) + "Y" + "{0:0=2d}".format(y) # string format for instructions
-        ser = serial.Serial('/dev/ttyUSB0')  # open serial port
+        # ser = serial.Serial('/dev/ttyUSB0')  # open serial port
         # print(ser.name)         # check which port was really used
         print(to_Serial)
         # ser.write(to_Serial)     # write a string
@@ -148,11 +149,12 @@ class HighLevel(rm.ProtoModule):
 
         if self.path is None:
             print("new path")
-            self.path = copy.deepcopy(self.getPath_to_powerPellet((self.cur_dir, self.pacbot_pos[0], self.pacbot_pos[1])))
+            self.getPath_to_powerPellet((self.cur_dir, self.pacbot_pos[0], self.pacbot_pos[1]))
             print(self.path)
-            self.i=0
+            # self.i=0
+            return
 
-        else:
+        if(self.path is not None):
             # print(self.path[self.i])
             dir = self.path[self.i][0]
             x = self.pacbot_pos[0]
@@ -160,13 +162,15 @@ class HighLevel(rm.ProtoModule):
             if self._check_if_valid_dir(dir, x, y):
                 self._move_if_valid_dir(dir , x, y)
             else:
-                self._move_if_valid_dir(self.cur_dir, self.pacbot_pos[0], self.pacbot_pos[1])
+                self._move_if_valid_dir(self.cur_dir, x,y)
 
             self.i+=1
-            self.talkToSerial(self.cur_dir, self.pacbot_pos[0], self.pacbot_pos[1])
+            self.talkToSerial(dir, x, y)
             if(self.i >= len(self.path)):
+                # if self._check_if_valid_dir(self.cur_dir, x, y):
+                    # self._move_if_valid_dir(self.cur_dir, x,y)
                 self.path = None
-                return
+                # return
             
         
         

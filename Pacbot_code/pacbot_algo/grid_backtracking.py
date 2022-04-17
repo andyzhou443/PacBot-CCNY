@@ -1,5 +1,6 @@
 
 from cmath import sqrt
+from collections import deque
 
 # Grid enums
 # o = normal pellet, e = empty space, O = power pellet, c = cherry position
@@ -25,7 +26,7 @@ down = 3
 # GLOBAL VARS
 row = 27
 col = 30
-dfs_traversal_output = [] # to see the road we've walked
+traversal_output = [] # to see the road we've walked
 x = 14
 y = 7
 direction = right
@@ -68,34 +69,34 @@ grid = [[I,I,I,I,I,I,I,I,I,I,I,I,e,e,e,e,e,e,e,e,e,I,I,I,I,I,I,I,I,I,I], # 0
 f = open("aftergrid.txt", "w")
 f.write(str(grid).replace('],','],\n'))
 f.close() 
-stack = []
-stack.append([x,y,direction])
+queue = deque()
+queue.append([x,y,direction])
 
-# allows us to add the surrounding nodes to the stack when either going one path or backtracking
+# allows us to add the surrounding nodes to the queue when either going one path or backtracking
 def addnodes(x, y):
        
         if((x-1>=1 or y>=1) and grid[x-1][y] not in [n, I] and grid[x-1][y] !=8):     #left = 1
-                stack.append([x-1,y,left])
+                queue.append([x-1,y,left])
                 parents[(x-1, y)] = (x, y, left)
 
         if((x>=1 or y-1>=1) and grid[x][y-1] not in [n, I] and grid[x][y-1] !=8):     #down = 3
-                stack.append([x,y-1,down])
+                queue.append([x,y-1,down])
                 parents[(x, y-1)] = (x, y, down)
         if((x<row or y+1<col) and grid[x][y+1] not in [n, I] and grid[x][y+1] !=8):   #up = 2
-                stack.append([x,y+1, up])
+                queue.append([x,y+1, up])
                 parents[(x, y+1)] = (x, y, up)       
         if((x+1<row or y<col) and grid[x+1][y] not in [n, I] and grid[x+1][y] !=8):   #right = 0
-                stack.append([x+1,y, right])
+                queue.append([x+1,y, right])
                 parents[(x+1, y)] = (x, y, right)
         
 
 
-def dfs(x, y, direction):
+def bfs(x, y, direction):
         current = 0
         previous = [14,8,0] # adding a dummy var that way our first check for distance is true
-        while(len(stack) != 0):
-                current = stack.pop()
-                print(f"current: {current}\tprevious: {previous}")                  # Moved print of "current" after pop of "stack" for better readability in the terminal
+        while(len(queue) != 0):
+                current = queue.popleft()
+                print(f"current: {current}\tprevious: {previous}")                  # Moved print of "current" after pop of "queue" for better readability in the terminal
                 x = current[0]
                 y = current[1]
                 # updating grid real time
@@ -104,7 +105,7 @@ def dfs(x, y, direction):
                 f.close()
                 # if the distance is greater than 1 we have to backtrack 
                 if (sqrt((previous[0] - x) **2 + (previous[1] - y )**2) == 1 ): # distance formula
-                        dfs_traversal_output.append(current)
+                        traversal_output.append(current)
                         grid[x][y]=8
                         addnodes(x,y)
                         previous = [x, y, direction]
@@ -118,61 +119,62 @@ def dfs(x, y, direction):
                                 # get the parent of the current node 
                                current = list(parents[(previous[0], previous[1])])
                                # add it to the path list
-                               dfs_traversal_output.append(current)
+                               traversal_output.append(current)
                                # update the previous node
                                previous = current
                                # search for neighbors while backtracking
                                addnodes(current[0], current[1])
 
                 
-def old_dfs(x, y, direction):
+def old_bfs(x, y, direction):
         current = 0
         previous = [14,8,0] # adding a dummy var that way our first xor is true
-        while(len(stack) != 0):
-                current = stack.pop()
+        while(len(queue) != 0):
+                current = queue.popleft()
                 print(f"current: {current}\tprevious: {previous}")                  # Moved print of "current" after pop of "stack" for better readability in the terminal
                 x = current[0]
                 y = current[1]
-                # dfs_traversal_output.append(current)
                 grid[x][y]=8
                 f = open("aftergrid.txt", "w")
                 f.write(str(grid).replace('],','],\n'))
                 f.close()
                 if((x+1<row or y<col) and grid[x+1][y] not in [n, I] and grid[x+1][y] != 8):   #right = 0
-                        dfs_traversal_output.append(current)
-                        stack.append([x+1,y, right])
+                        traversal_output.append(current)
+                        queue.append([x+1,y, right])
                         parents[(x+1, y)] = (x, y, left)
 
                 if((x<row or y+1<col) and grid[x][y+1] not in [n, I] and grid[x][y+1] != 8):   #up = 2
-                        dfs_traversal_output.append(current)
-
-                        stack.append([x,y+1, up])
+                        traversal_output.append(current)
+                        queue.append([x,y+1, up])
                         parents[(x, y+1)] = (x, y, down)
 
-                if((x-1>=1 or y>=1) and grid[x-1][y] not in [n, I] and grid[x-1][y] != 8):     #left = 1
-                        dfs_traversal_output.append(current)
-
-                        stack.append([x-1,y,left])
-                        parents[(x-1, y)] = (x, y, right)
-
+                
                 if((x>=1 or y-1>=1) and grid[x][y-1] not in [n, I] and grid[x][y-1] != 8):     #down = 3
-                        dfs_traversal_output.append(current)
+                        traversal_output.append(current)
 
-                        stack.append([x,y-1,down])
+                        queue.append([x,y-1,down])
                         parents[(x, y-1)] = (x, y, up)
+
+                if((x-1>=1 or y>=1) and grid[x-1][y] not in [n, I] and grid[x-1][y] != 8):     #left = 1
+                        traversal_output.append(current)
+
+                        queue.append([x-1,y,left])
+                        parents[(x-1, y)] = (x, y, right)
         
 def main():               
         
-        dfs(x, y, right)
-        # print('Order of traversal + back tracking:\n', dfs_traversal_output)
+        old_bfs(x, y, right)
 
        
-
+        directions = [i[2] for i in traversal_output]
+        dir_commands = open("dir.txt", "w")
+        dir_commands.write(str(directions))
+        dir_commands.close()
         f = open("road.txt", "w")
-        f.write(str(dfs_traversal_output))#.replace('],','],\n'))
+        f.write(str(traversal_output))#.replace('],','],\n'))
         f.close()
         freadable = open("road_readable.txt", "w")
-        freadable.write(str(dfs_traversal_output).replace('],','],\n'))
+        freadable.write(str(traversal_output).replace('],','],\n'))
         freadable.close()
 
 
