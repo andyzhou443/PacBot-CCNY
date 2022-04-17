@@ -1,0 +1,1280 @@
+INFO:root:
+Queue: deque([[0, 15, 7]])
+
+INFO:root:
+Queue: deque([[0, 16, 7]])
+
+INFO:root:
+Queue: deque([[0, 17, 7]])
+
+INFO:root:
+Queue: deque([[0, 18, 7]])
+
+INFO:root:
+Queue: deque([[0, 19, 7]])
+
+INFO:root:
+Queue: deque([[0, 20, 7]])
+
+INFO:root:
+Queue: deque([[0, 21, 7]])
+
+INFO:root:
+Queue: deque([])
+
+INFO:root:Set: {(16, 7), (17, 7), (18, 7), (19, 7), (14, 7), (20, 7), (21, 7)}
+
+INFO:root:
+Queue: deque([[0, 15, 7]])
+
+INFO:root:
+Queue: deque([[0, 16, 7]])
+
+INFO:root:
+Queue: deque([[0, 17, 7]])
+
+INFO:root:
+Queue: deque([[0, 18, 7]])
+
+INFO:root:
+Queue: deque([[0, 19, 7]])
+
+INFO:root:
+Queue: deque([[0, 20, 7]])
+
+INFO:root:
+Queue: deque([[0, 21, 7]])
+
+INFO:root:
+Queue: deque([])
+
+INFO:root:Set: {(16, 7), (17, 7), (18, 7), (19, 7), (14, 7), (20, 7), (21, 7)}
+
+INFO:root:
+Queue: deque([[0, 15, 7]])
+
+INFO:root:
+Queue: deque([[0, 16, 7]])
+
+INFO:root:
+Queue: deque([[0, 17, 7]])
+
+INFO:root:
+Queue: deque([[0, 18, 7]])
+
+INFO:root:
+Queue: deque([[0, 19, 7]])
+
+INFO:root:
+Queue: deque([[0, 20, 7]])
+
+INFO:root:
+Queue: deque([[0, 21, 7]])
+
+INFO:root:
+Queue: deque([])
+
+INFO:root:Set: {(16, 7), (17, 7), (18, 7), (19, 7), (14, 7), (20, 7), (21, 7)}
+
+INFO:root:
+Queue: deque([[0, 15, 7]])
+
+INFO:root:
+Queue: deque([[0, 16, 7]])
+
+INFO:root:
+Queue: deque([[0, 17, 7]])
+
+INFO:root:
+Queue: deque([[0, 18, 7]])
+
+INFO:root:
+Queue: deque([[0, 19, 7]])
+
+INFO:root:
+Queue: deque([[0, 20, 7]])
+
+INFO:root:
+Queue: deque([[0, 21, 7]])
+
+INFO:root:
+Queue: deque([])
+
+INFO:root:Set: {(16, 7), (17, 7), (18, 7), (19, 7), (14, 7), (20, 7), (21, 7)}
+
+INFO:root:
+Queue: deque([[0, 15, 7]])
+
+INFO:root:
+Queue: deque([[0, 16, 7]])
+
+INFO:root:
+Queue: deque([[0, 17, 7]])
+
+INFO:root:
+Queue: deque([[0, 18, 7]])
+
+INFO:root:
+Queue: deque([[0, 19, 7]])
+
+INFO:root:
+Queue: deque([[0, 20, 7]])
+
+INFO:root:
+Queue: deque([[0, 21, 7]])
+
+INFO:root:
+Queue: deque([[0, 21, 7]])
+
+INFO:root:
+Queue: deque([[0, 21, 7]])
+
+INFO:root:
+Queue: deque([[0, 21, 7]])
+
+INFO:root:
+Queue: deque([[0, 21, 7]])
+
+INFO:root:
+Queue: deque([[0, 21, 7]])
+
+INFO:root:
+Queue: deque([[0, 21, 7]])
+
+INFO:root:
+Queue: deque([[0, 21, 7]])
+
+INFO:root:
+Queue: deque([[0, 21, 7]])
+
+INFO:root:
+Queue: deque([[0, 21, 7]])
+
+INFO:root:
+Queue: deque([[0, 21, 7]])
+
+INFO:root:
+Queue: deque([[0, 21, 7]])
+
+INFO:root:
+Queue: deque([[0, 15, 7]])
+
+INFO:root:Set: {(16, 7), (14, 7)}
+
+INFO:root:
+Queue: deque([[0, 16, 7]])
+
+INFO:root:Set: {(16, 7), (14, 7), (17, 7)}
+
+INFO:root:
+Queue: deque([[0, 17, 7]])
+
+INFO:root:Set: {(16, 7), (14, 7), (17, 7), (18, 7)}
+
+INFO:root:
+Queue: deque([[0, 18, 7]])
+
+INFO:root:Set: {(16, 7), (17, 7), (18, 7), (19, 7), (14, 7)}
+
+INFO:root:
+Queue: deque([[0, 19, 7]])
+
+INFO:root:Set: {(16, 7), (17, 7), (18, 7), (19, 7), (14, 7), (20, 7)}
+
+INFO:root:
+Queue: deque([[0, 20, 7]])
+
+INFO:root:Set: {(16, 7), (17, 7), (18, 7), (19, 7), (14, 7), (20, 7), (21, 7)}
+
+INFO:root:
+Queue: deque([[0, 21, 7]])
+
+INFO:root:Set: {(16, 7), (17, 7), (18, 7), (19, 7), (14, 7), (20, 7), (21, 7)}
+
+INFO:root:
+Queue: deque([[1, 21, 7]])
+
+INFO:root:Set: {(16, 7), (17, 7), (18, 7), (19, 7), (14, 7), (20, 7), (21, 7)}
+
+INFO:root:
+Queue: deque([[1, 20, 7]])
+
+INFO:root:Set: {(16, 7), (17, 7), (18, 7), (19, 7), (14, 7), (20, 7), (21, 7)}
+
+INFO:root:
+Queue: deque([[1, 19, 7]])
+
+INFO:root:Set: {(16, 7), (17, 7), (18, 7), (19, 7), (14, 7), (20, 7), (21, 7)}
+
+INFO:root:
+Queue: deque([[1, 18, 7]])
+
+INFO:root:Set: {(16, 7), (17, 7), (18, 7), (19, 7), (14, 7), (20, 7), (21, 7)}
+
+INFO:root:
+Queue: deque([[1, 17, 7]])
+
+INFO:root:Set: {(16, 7), (17, 7), (18, 7), (19, 7), (14, 7), (20, 7), (21, 7)}
+
+INFO:root:
+Queue: deque([[1, 16, 7]])
+
+INFO:root:Set: {(16, 7), (17, 7), (18, 7), (19, 7), (14, 7), (20, 7), (15, 7), (21, 7)}
+
+INFO:root:
+Queue: deque([[1, 15, 7]])
+
+INFO:root:Set: {(16, 7), (17, 7), (18, 7), (19, 7), (14, 7), (20, 7), (15, 7), (21, 7)}
+
+INFO:root:
+Queue: deque([[1, 14, 7]])
+
+INFO:root:Set: {(16, 7), (17, 7), (18, 7), (13, 7), (19, 7), (14, 7), (20, 7), (15, 7), (21, 7)}
+
+INFO:root:
+Queue: deque([[1, 13, 7]])
+
+INFO:root:Set: {(16, 7), (17, 7), (12, 7), (18, 7), (13, 7), (19, 7), (14, 7), (20, 7), (15, 7), (21, 7)}
+
+INFO:root:
+Queue: deque([[1, 12, 7]])
+
+INFO:root:Set: {(16, 7), (11, 7), (17, 7), (12, 7), (18, 7), (13, 7), (19, 7), (14, 7), (20, 7), (15, 7), (21, 7)}
+
+INFO:root:
+Queue: deque([[1, 11, 7]])
+
+INFO:root:Set: {(16, 7), (11, 7), (17, 7), (12, 7), (18, 7), (13, 7), (19, 7), (14, 7), (20, 7), (15, 7), (10, 7), (21, 7)}
+
+INFO:root:
+Queue: deque([[1, 10, 7]])
+
+INFO:root:Set: {(16, 7), (11, 7), (17, 7), (12, 7), (18, 7), (13, 7), (19, 7), (14, 7), (20, 7), (15, 7), (10, 7), (9, 7), (21, 7)}
+
+INFO:root:
+Queue: deque([[1, 9, 7]])
+
+INFO:root:Set: {(16, 7), (11, 7), (17, 7), (12, 7), (18, 7), (13, 7), (19, 7), (14, 7), (8, 7), (20, 7), (15, 7), (10, 7), (9, 7), (21, 7)}
+
+INFO:root:
+Queue: deque([[1, 8, 7]])
+
+INFO:root:Set: {(16, 7), (11, 7), (17, 7), (12, 7), (18, 7), (7, 7), (13, 7), (19, 7), (14, 7), (8, 7), (20, 7), (15, 7), (10, 7), (9, 7), (21, 7)}
+
+INFO:root:
+Queue: deque([[1, 7, 7]])
+
+INFO:root:Set: {(16, 7), (11, 7), (17, 7), (12, 7), (18, 7), (7, 7), (13, 7), (19, 7), (14, 7), (8, 7), (20, 7), (15, 7), (10, 7), (6, 7), (9, 7), (21, 7)}
+
+INFO:root:
+Queue: deque([[1, 6, 7]])
+
+INFO:root:Set: {(16, 7), (11, 7), (17, 7), (12, 7), (18, 7), (7, 7), (13, 7), (19, 7), (14, 7), (8, 7), (20, 7), (15, 7), (10, 7), (6, 7), (9, 7), (21, 7)}
+
+INFO:root:
+Queue: deque([[2, 6, 7]])
+
+INFO:root:Set: {(16, 7), (11, 7), (17, 7), (12, 7), (18, 7), (7, 7), (13, 7), (19, 7), (14, 7), (8, 7), (20, 7), (15, 7), (10, 7), (6, 7), (9, 7), (21, 7)}
+
+INFO:root:
+Queue: deque([[2, 6, 8]])
+
+INFO:root:Set: {(16, 7), (11, 7), (17, 7), (12, 7), (18, 7), (7, 7), (13, 7), (19, 7), (14, 7), (8, 7), (20, 7), (15, 7), (10, 7), (6, 9), (6, 7), (9, 7), (21, 7)}
+
+INFO:root:
+Queue: deque([[2, 6, 9]])
+
+INFO:root:Set: {(16, 7), (11, 7), (17, 7), (12, 7), (18, 7), (7, 7), (13, 7), (19, 7), (14, 7), (8, 7), (20, 7), (15, 7), (10, 7), (6, 9), (6, 7), (6, 10), (9, 7), (21, 7)}
+
+INFO:root:
+Queue: deque([[2, 6, 10]])
+
+INFO:root:Set: {(12, 7), (14, 7), (16, 7), (18, 7), (7, 7), (6, 11), (20, 7), (9, 7), (11, 7), (13, 7), (15, 7), (6, 7), (6, 10), (17, 7), (19, 7), (8, 7), (10, 7), (6, 9), (21, 7)}
+
+INFO:root:
+Queue: deque([[2, 6, 11]])
+
+INFO:root:Set: {(6, 12), (12, 7), (14, 7), (16, 7), (18, 7), (7, 7), (6, 11), (20, 7), (9, 7), (11, 7), (13, 7), (15, 7), (6, 7), (6, 10), (17, 7), (19, 7), (8, 7), (10, 7), (6, 9), (21, 7)}
+
+INFO:root:
+Queue: deque([[2, 6, 12]])
+
+INFO:root:Set: {(6, 12), (12, 7), (14, 7), (16, 7), (18, 7), (7, 7), (6, 11), (20, 7), (9, 7), (11, 7), (13, 7), (15, 7), (6, 7), (6, 13), (6, 10), (17, 7), (19, 7), (8, 7), (10, 7), (6, 9), (21, 7)}
+
+INFO:root:
+Queue: deque([[2, 6, 13]])
+
+INFO:root:Set: {(6, 12), (12, 7), (14, 7), (16, 7), (18, 7), (7, 7), (6, 11), (20, 7), (6, 14), (9, 7), (11, 7), (13, 7), (15, 7), (6, 7), (6, 13), (6, 10), (17, 7), (19, 7), (8, 7), (10, 7), (6, 9), (21, 7)}
+
+INFO:root:
+Queue: deque([[2, 6, 14]])
+
+INFO:root:Set: {(6, 12), (12, 7), (6, 15), (14, 7), (16, 7), (18, 7), (7, 7), (6, 11), (20, 7), (6, 14), (9, 7), (11, 7), (13, 7), (15, 7), (6, 7), (6, 13), (6, 10), (17, 7), (19, 7), (8, 7), (10, 7), (6, 9), (21, 7)}
+
+INFO:root:
+Queue: deque([[2, 6, 15]])
+
+INFO:root:Set: {(6, 12), (12, 7), (6, 15), (14, 7), (16, 7), (18, 7), (7, 7), (6, 11), (20, 7), (6, 14), (9, 7), (11, 7), (13, 7), (15, 7), (6, 7), (6, 13), (6, 10), (6, 16), (17, 7), (19, 7), (8, 7), (10, 7), (6, 9), (21, 7)}
+
+INFO:root:
+Queue: deque([[2, 6, 16]])
+
+INFO:root:Set: {(6, 12), (12, 7), (6, 15), (14, 7), (16, 7), (18, 7), (7, 7), (6, 11), (20, 7), (6, 14), (6, 17), (9, 7), (11, 7), (13, 7), (15, 7), (6, 7), (6, 13), (6, 10), (6, 16), (17, 7), (19, 7), (8, 7), (10, 7), (6, 9), (21, 7)}
+
+INFO:root:
+Queue: deque([[2, 6, 17]])
+
+INFO:root:Set: {(6, 12), (6, 18), (12, 7), (6, 15), (14, 7), (16, 7), (18, 7), (7, 7), (6, 11), (20, 7), (6, 14), (6, 17), (9, 7), (11, 7), (13, 7), (15, 7), (6, 7), (6, 13), (6, 10), (6, 16), (17, 7), (19, 7), (8, 7), (10, 7), (6, 9), (21, 7)}
+
+INFO:root:
+Queue: deque([[2, 6, 18]])
+
+INFO:root:Set: {(6, 12), (6, 18), (12, 7), (6, 15), (14, 7), (16, 7), (18, 7), (7, 7), (6, 11), (20, 7), (6, 14), (6, 17), (9, 7), (11, 7), (13, 7), (15, 7), (6, 7), (6, 13), (6, 10), (6, 16), (6, 19), (17, 7), (19, 7), (8, 7), (10, 7), (6, 9), (21, 7)}
+
+INFO:root:
+Queue: deque([[2, 6, 19]])
+
+INFO:root:Set: {(6, 12), (6, 18), (12, 7), (6, 15), (14, 7), (16, 7), (18, 7), (7, 7), (6, 11), (20, 7), (6, 14), (6, 20), (6, 17), (9, 7), (11, 7), (13, 7), (15, 7), (6, 7), (6, 13), (6, 10), (6, 16), (6, 19), (17, 7), (19, 7), (8, 7), (10, 7), (6, 9), (21, 7)}
+
+INFO:root:
+Queue: deque([[2, 6, 20]])
+
+INFO:root:Set: {(6, 12), (6, 18), (12, 7), (6, 15), (6, 21), (14, 7), (16, 7), (18, 7), (7, 7), (6, 11), (20, 7), (6, 14), (6, 20), (6, 17), (9, 7), (11, 7), (13, 7), (15, 7), (6, 7), (6, 13), (6, 10), (6, 16), (6, 19), (17, 7), (19, 7), (8, 7), (10, 7), (6, 9), (21, 7)}
+
+INFO:root:
+Queue: deque([[2, 6, 21]])
+
+INFO:root:Set: {(6, 12), (6, 18), (12, 7), (6, 15), (6, 21), (14, 7), (16, 7), (18, 7), (7, 7), (6, 11), (20, 7), (6, 14), (6, 20), (6, 17), (9, 7), (11, 7), (13, 7), (15, 7), (6, 7), (6, 13), (6, 10), (6, 16), (6, 19), (6, 22), (17, 7), (19, 7), (8, 7), (10, 7), (6, 9), (21, 7)}
+
+INFO:root:
+Queue: deque([[2, 6, 22]])
+
+INFO:root:Set: {(6, 12), (6, 18), (12, 7), (6, 15), (6, 21), (14, 7), (16, 7), (18, 7), (7, 7), (6, 11), (20, 7), (6, 14), (6, 20), (6, 17), (6, 23), (9, 7), (11, 7), (13, 7), (15, 7), (6, 7), (6, 13), (6, 10), (6, 16), (6, 19), (6, 22), (17, 7), (19, 7), (8, 7), (10, 7), (6, 9), (21, 7)}
+
+INFO:root:
+Queue: deque([[2, 6, 23]])
+
+INFO:root:Set: {(6, 12), (6, 18), (12, 7), (6, 15), (6, 21), (14, 7), (6, 24), (16, 7), (18, 7), (7, 7), (6, 11), (20, 7), (6, 14), (6, 20), (6, 17), (6, 23), (9, 7), (11, 7), (13, 7), (15, 7), (6, 7), (6, 13), (6, 10), (6, 16), (6, 19), (6, 22), (17, 7), (19, 7), (8, 7), (10, 7), (6, 9), (21, 7)}
+
+INFO:root:
+Queue: deque([[2, 6, 24]])
+
+INFO:root:Set: {(6, 12), (6, 18), (12, 7), (6, 15), (6, 21), (14, 7), (6, 24), (16, 7), (18, 7), (7, 7), (6, 11), (20, 7), (6, 14), (6, 20), (6, 17), (6, 23), (9, 7), (11, 7), (13, 7), (15, 7), (6, 7), (6, 13), (6, 10), (6, 16), (6, 19), (6, 25), (6, 22), (17, 7), (19, 7), (8, 7), (10, 7), (6, 9), (21, 7)}
+
+INFO:root:
+Queue: deque([[2, 6, 25]])
+
+INFO:root:Set: {(6, 12), (6, 18), (12, 7), (6, 15), (6, 21), (14, 7), (6, 24), (16, 7), (18, 7), (7, 7), (6, 11), (20, 7), (6, 14), (6, 20), (6, 17), (6, 23), (6, 26), (9, 7), (11, 7), (13, 7), (15, 7), (6, 7), (6, 13), (6, 10), (6, 16), (6, 19), (6, 25), (6, 22), (17, 7), (19, 7), (8, 7), (10, 7), (6, 9), (21, 7)}
+
+INFO:root:
+Queue: deque([[2, 14, 8]])
+
+INFO:root:Set: {(6, 12), (6, 18), (12, 7), (6, 15), (6, 21), (14, 7), (6, 24), (16, 7), (18, 7), (7, 7), (6, 11), (20, 7), (6, 14), (6, 20), (6, 17), (6, 23), (6, 26), (9, 7), (11, 7), (13, 7), (15, 7), (6, 7), (6, 13), (6, 10), (6, 16), (6, 19), (6, 25), (6, 22), (14, 8), (17, 7), (19, 7), (8, 7), (10, 7), (6, 9), (21, 7)}
+
+INFO:root:
+Queue: deque([[3, 14, 8]])
+
+INFO:root:Set: {(6, 12), (6, 18), (12, 7), (6, 15), (6, 21), (14, 7), (6, 24), (16, 7), (18, 7), (7, 7), (6, 11), (20, 7), (6, 14), (6, 20), (6, 17), (6, 23), (6, 26), (9, 7), (11, 7), (13, 7), (15, 7), (6, 7), (6, 13), (6, 10), (6, 16), (6, 19), (6, 25), (6, 22), (14, 8), (17, 7), (19, 7), (8, 7), (10, 7), (6, 9), (21, 7)}
+
+INFO:root:
+Queue: deque([[3, 14, 7]])
+
+INFO:root:Set: {(6, 12), (6, 18), (12, 7), (6, 15), (6, 21), (14, 7), (6, 24), (16, 7), (18, 7), (7, 7), (6, 11), (20, 7), (6, 14), (6, 20), (6, 17), (6, 23), (6, 26), (9, 7), (11, 7), (13, 7), (15, 7), (6, 7), (6, 13), (6, 10), (6, 16), (6, 19), (6, 25), (6, 22), (14, 8), (17, 7), (19, 7), (8, 7), (10, 7), (6, 9), (21, 7)}
+
+INFO:root:
+Queue: deque([])
+
+INFO:root:Set: {(6, 12), (6, 18), (12, 7), (6, 15), (6, 21), (14, 7), (6, 24), (16, 7), (18, 7), (7, 7), (6, 11), (20, 7), (6, 14), (6, 20), (6, 17), (6, 23), (6, 26), (9, 7), (11, 7), (13, 7), (15, 7), (6, 7), (6, 13), (6, 10), (6, 16), (6, 19), (6, 25), (6, 22), (14, 8), (17, 7), (19, 7), (8, 7), (10, 7), (6, 9), (21, 7)}
+
+INFO:root:
+Queue: deque([[0, 15, 7]])
+
+INFO:root:Set: {(16, 7), (14, 7)}
+
+INFO:root:
+Queue: deque([[0, 16, 7]])
+
+INFO:root:Set: {(16, 7), (14, 7), (17, 7)}
+
+INFO:root:
+Queue: deque([[0, 17, 7]])
+
+INFO:root:Set: {(16, 7), (14, 7), (17, 7), (18, 7)}
+
+INFO:root:
+Queue: deque([[0, 18, 7]])
+
+INFO:root:Set: {(16, 7), (17, 7), (18, 7), (19, 7), (14, 7)}
+
+INFO:root:
+Queue: deque([[0, 19, 7]])
+
+INFO:root:Set: {(16, 7), (17, 7), (18, 7), (19, 7), (14, 7), (20, 7)}
+
+INFO:root:
+Queue: deque([[0, 20, 7]])
+
+INFO:root:Set: {(16, 7), (17, 7), (18, 7), (19, 7), (14, 7), (20, 7), (21, 7)}
+
+INFO:root:
+Queue: deque([[0, 21, 7]])
+
+INFO:root:Set: {(16, 7), (17, 7), (18, 7), (19, 7), (14, 7), (20, 7), (21, 7)}
+
+INFO:root:
+Queue: deque([[1, 21, 7]])
+
+INFO:root:Set: {(16, 7), (17, 7), (18, 7), (19, 7), (14, 7), (20, 7), (21, 7)}
+
+INFO:root:
+Queue: deque([[1, 20, 7]])
+
+INFO:root:Set: {(16, 7), (17, 7), (18, 7), (19, 7), (14, 7), (20, 7), (21, 7)}
+
+INFO:root:
+Queue: deque([[1, 19, 7]])
+
+INFO:root:Set: {(16, 7), (17, 7), (18, 7), (19, 7), (14, 7), (20, 7), (21, 7)}
+
+INFO:root:
+Queue: deque([[1, 18, 7]])
+
+INFO:root:Set: {(16, 7), (17, 7), (18, 7), (19, 7), (14, 7), (20, 7), (21, 7)}
+
+INFO:root:
+Queue: deque([[1, 17, 7]])
+
+INFO:root:Set: {(16, 7), (17, 7), (18, 7), (19, 7), (14, 7), (20, 7), (21, 7)}
+
+INFO:root:
+Queue: deque([[1, 16, 7]])
+
+INFO:root:Set: {(16, 7), (17, 7), (18, 7), (19, 7), (14, 7), (20, 7), (15, 7), (21, 7)}
+
+INFO:root:
+Queue: deque([[1, 15, 7]])
+
+INFO:root:Set: {(16, 7), (17, 7), (18, 7), (19, 7), (14, 7), (20, 7), (15, 7), (21, 7)}
+
+INFO:root:
+Queue: deque([[1, 14, 7]])
+
+INFO:root:Set: {(16, 7), (17, 7), (18, 7), (13, 7), (19, 7), (14, 7), (20, 7), (15, 7), (21, 7)}
+
+INFO:root:
+Queue: deque([[1, 13, 7]])
+
+INFO:root:Set: {(16, 7), (17, 7), (12, 7), (18, 7), (13, 7), (19, 7), (14, 7), (20, 7), (15, 7), (21, 7)}
+
+INFO:root:
+Queue: deque([[1, 12, 7]])
+
+INFO:root:Set: {(16, 7), (11, 7), (17, 7), (12, 7), (18, 7), (13, 7), (19, 7), (14, 7), (20, 7), (15, 7), (21, 7)}
+
+INFO:root:
+Queue: deque([[1, 11, 7]])
+
+INFO:root:Set: {(16, 7), (11, 7), (17, 7), (12, 7), (18, 7), (13, 7), (19, 7), (14, 7), (20, 7), (15, 7), (10, 7), (21, 7)}
+
+INFO:root:
+Queue: deque([[1, 10, 7]])
+
+INFO:root:Set: {(16, 7), (11, 7), (17, 7), (12, 7), (18, 7), (13, 7), (19, 7), (14, 7), (20, 7), (15, 7), (10, 7), (9, 7), (21, 7)}
+
+INFO:root:
+Queue: deque([[1, 9, 7]])
+
+INFO:root:Set: {(16, 7), (11, 7), (17, 7), (12, 7), (18, 7), (13, 7), (19, 7), (14, 7), (8, 7), (20, 7), (15, 7), (10, 7), (9, 7), (21, 7)}
+
+INFO:root:
+Queue: deque([[1, 8, 7]])
+
+INFO:root:Set: {(16, 7), (11, 7), (17, 7), (12, 7), (18, 7), (7, 7), (13, 7), (19, 7), (14, 7), (8, 7), (20, 7), (15, 7), (10, 7), (9, 7), (21, 7)}
+
+INFO:root:
+Queue: deque([[1, 7, 7]])
+
+INFO:root:Set: {(16, 7), (11, 7), (17, 7), (12, 7), (18, 7), (7, 7), (13, 7), (19, 7), (14, 7), (8, 7), (20, 7), (15, 7), (10, 7), (6, 7), (9, 7), (21, 7)}
+
+INFO:root:
+Queue: deque([[1, 6, 7]])
+
+INFO:root:Set: {(16, 7), (11, 7), (17, 7), (12, 7), (18, 7), (7, 7), (13, 7), (19, 7), (14, 7), (8, 7), (20, 7), (15, 7), (10, 7), (6, 7), (9, 7), (21, 7)}
+
+INFO:root:
+Queue: deque([[2, 6, 7]])
+
+INFO:root:Set: {(16, 7), (11, 7), (17, 7), (12, 7), (18, 7), (7, 7), (13, 7), (19, 7), (14, 7), (8, 7), (20, 7), (15, 7), (10, 7), (6, 7), (9, 7), (21, 7)}
+
+INFO:root:
+Queue: deque([[2, 6, 8]])
+
+INFO:root:Set: {(16, 7), (11, 7), (17, 7), (12, 7), (18, 7), (7, 7), (13, 7), (19, 7), (14, 7), (8, 7), (20, 7), (15, 7), (10, 7), (6, 9), (6, 7), (9, 7), (21, 7)}
+
+INFO:root:
+Queue: deque([[2, 6, 9]])
+
+INFO:root:Set: {(16, 7), (11, 7), (17, 7), (12, 7), (18, 7), (7, 7), (13, 7), (19, 7), (14, 7), (8, 7), (20, 7), (15, 7), (10, 7), (6, 9), (6, 7), (6, 10), (9, 7), (21, 7)}
+
+INFO:root:
+Queue: deque([[2, 6, 10]])
+
+INFO:root:Set: {(12, 7), (14, 7), (16, 7), (18, 7), (7, 7), (6, 11), (20, 7), (9, 7), (11, 7), (13, 7), (15, 7), (6, 7), (6, 10), (17, 7), (19, 7), (8, 7), (10, 7), (6, 9), (21, 7)}
+
+INFO:root:
+Queue: deque([[2, 6, 11]])
+
+INFO:root:Set: {(6, 12), (12, 7), (14, 7), (16, 7), (18, 7), (7, 7), (6, 11), (20, 7), (9, 7), (11, 7), (13, 7), (15, 7), (6, 7), (6, 10), (17, 7), (19, 7), (8, 7), (10, 7), (6, 9), (21, 7)}
+
+INFO:root:
+Queue: deque([[2, 6, 12]])
+
+INFO:root:Set: {(6, 12), (12, 7), (14, 7), (16, 7), (18, 7), (7, 7), (6, 11), (20, 7), (9, 7), (11, 7), (13, 7), (15, 7), (6, 7), (6, 13), (6, 10), (17, 7), (19, 7), (8, 7), (10, 7), (6, 9), (21, 7)}
+
+INFO:root:
+Queue: deque([[2, 6, 13]])
+
+INFO:root:Set: {(6, 12), (12, 7), (14, 7), (16, 7), (18, 7), (7, 7), (6, 11), (20, 7), (6, 14), (9, 7), (11, 7), (13, 7), (15, 7), (6, 7), (6, 13), (6, 10), (17, 7), (19, 7), (8, 7), (10, 7), (6, 9), (21, 7)}
+
+INFO:root:
+Queue: deque([[2, 6, 14]])
+
+INFO:root:Set: {(6, 12), (12, 7), (6, 15), (14, 7), (16, 7), (18, 7), (7, 7), (6, 11), (20, 7), (6, 14), (9, 7), (11, 7), (13, 7), (15, 7), (6, 7), (6, 13), (6, 10), (17, 7), (19, 7), (8, 7), (10, 7), (6, 9), (21, 7)}
+
+INFO:root:
+Queue: deque([[2, 6, 15]])
+
+INFO:root:Set: {(6, 12), (12, 7), (6, 15), (14, 7), (16, 7), (18, 7), (7, 7), (6, 11), (20, 7), (6, 14), (9, 7), (11, 7), (13, 7), (15, 7), (6, 7), (6, 13), (6, 10), (6, 16), (17, 7), (19, 7), (8, 7), (10, 7), (6, 9), (21, 7)}
+
+INFO:root:
+Queue: deque([[2, 6, 16]])
+
+INFO:root:Set: {(6, 12), (12, 7), (6, 15), (14, 7), (16, 7), (18, 7), (7, 7), (6, 11), (20, 7), (6, 14), (6, 17), (9, 7), (11, 7), (13, 7), (15, 7), (6, 7), (6, 13), (6, 10), (6, 16), (17, 7), (19, 7), (8, 7), (10, 7), (6, 9), (21, 7)}
+
+INFO:root:
+Queue: deque([[2, 6, 17]])
+
+INFO:root:Set: {(6, 12), (6, 18), (12, 7), (6, 15), (14, 7), (16, 7), (18, 7), (7, 7), (6, 11), (20, 7), (6, 14), (6, 17), (9, 7), (11, 7), (13, 7), (15, 7), (6, 7), (6, 13), (6, 10), (6, 16), (17, 7), (19, 7), (8, 7), (10, 7), (6, 9), (21, 7)}
+
+INFO:root:
+Queue: deque([[2, 6, 18]])
+
+INFO:root:Set: {(6, 12), (6, 18), (12, 7), (6, 15), (14, 7), (16, 7), (18, 7), (7, 7), (6, 11), (20, 7), (6, 14), (6, 17), (9, 7), (11, 7), (13, 7), (15, 7), (6, 7), (6, 13), (6, 10), (6, 16), (6, 19), (17, 7), (19, 7), (8, 7), (10, 7), (6, 9), (21, 7)}
+
+INFO:root:
+Queue: deque([[2, 6, 19]])
+
+INFO:root:Set: {(6, 12), (6, 18), (12, 7), (6, 15), (14, 7), (16, 7), (18, 7), (7, 7), (6, 11), (20, 7), (6, 14), (6, 20), (6, 17), (9, 7), (11, 7), (13, 7), (15, 7), (6, 7), (6, 13), (6, 10), (6, 16), (6, 19), (17, 7), (19, 7), (8, 7), (10, 7), (6, 9), (21, 7)}
+
+INFO:root:
+Queue: deque([[2, 6, 20]])
+
+INFO:root:Set: {(6, 12), (6, 18), (12, 7), (6, 15), (6, 21), (14, 7), (16, 7), (18, 7), (7, 7), (6, 11), (20, 7), (6, 14), (6, 20), (6, 17), (9, 7), (11, 7), (13, 7), (15, 7), (6, 7), (6, 13), (6, 10), (6, 16), (6, 19), (17, 7), (19, 7), (8, 7), (10, 7), (6, 9), (21, 7)}
+
+INFO:root:
+Queue: deque([[2, 6, 21]])
+
+INFO:root:Set: {(6, 12), (6, 18), (12, 7), (6, 15), (6, 21), (14, 7), (16, 7), (18, 7), (7, 7), (6, 11), (20, 7), (6, 14), (6, 20), (6, 17), (9, 7), (11, 7), (13, 7), (15, 7), (6, 7), (6, 13), (6, 10), (6, 16), (6, 19), (6, 22), (17, 7), (19, 7), (8, 7), (10, 7), (6, 9), (21, 7)}
+
+INFO:root:
+Queue: deque([[2, 6, 22]])
+
+INFO:root:Set: {(6, 12), (6, 18), (12, 7), (6, 15), (6, 21), (14, 7), (16, 7), (18, 7), (7, 7), (6, 11), (20, 7), (6, 14), (6, 20), (6, 17), (6, 23), (9, 7), (11, 7), (13, 7), (15, 7), (6, 7), (6, 13), (6, 10), (6, 16), (6, 19), (6, 22), (17, 7), (19, 7), (8, 7), (10, 7), (6, 9), (21, 7)}
+
+INFO:root:
+Queue: deque([[2, 6, 23]])
+
+INFO:root:Set: {(6, 12), (6, 18), (12, 7), (6, 15), (6, 21), (14, 7), (6, 24), (16, 7), (18, 7), (7, 7), (6, 11), (20, 7), (6, 14), (6, 20), (6, 17), (6, 23), (9, 7), (11, 7), (13, 7), (15, 7), (6, 7), (6, 13), (6, 10), (6, 16), (6, 19), (6, 22), (17, 7), (19, 7), (8, 7), (10, 7), (6, 9), (21, 7)}
+
+INFO:root:
+Queue: deque([[2, 6, 24]])
+
+INFO:root:Set: {(6, 12), (6, 18), (12, 7), (6, 15), (6, 21), (14, 7), (6, 24), (16, 7), (18, 7), (7, 7), (6, 11), (20, 7), (6, 14), (6, 20), (6, 17), (6, 23), (9, 7), (11, 7), (13, 7), (15, 7), (6, 7), (6, 13), (6, 10), (6, 16), (6, 19), (6, 25), (6, 22), (17, 7), (19, 7), (8, 7), (10, 7), (6, 9), (21, 7)}
+
+INFO:root:
+Queue: deque([[2, 6, 25]])
+
+INFO:root:Set: {(6, 12), (6, 18), (12, 7), (6, 15), (6, 21), (14, 7), (6, 24), (16, 7), (18, 7), (7, 7), (6, 11), (20, 7), (6, 14), (6, 20), (6, 17), (6, 23), (6, 26), (9, 7), (11, 7), (13, 7), (15, 7), (6, 7), (6, 13), (6, 10), (6, 16), (6, 19), (6, 25), (6, 22), (17, 7), (19, 7), (8, 7), (10, 7), (6, 9), (21, 7)}
+
+INFO:root:
+Queue: deque([[2, 14, 8]])
+
+INFO:root:Set: {(6, 12), (6, 18), (12, 7), (6, 15), (6, 21), (14, 7), (6, 24), (16, 7), (18, 7), (7, 7), (6, 11), (20, 7), (6, 14), (6, 20), (6, 17), (6, 23), (6, 26), (9, 7), (11, 7), (13, 7), (15, 7), (6, 7), (6, 13), (6, 10), (6, 16), (6, 19), (6, 25), (6, 22), (14, 8), (17, 7), (19, 7), (8, 7), (10, 7), (6, 9), (21, 7)}
+
+INFO:root:
+Queue: deque([[3, 14, 8]])
+
+INFO:root:Set: {(6, 12), (6, 18), (12, 7), (6, 15), (6, 21), (14, 7), (6, 24), (16, 7), (18, 7), (7, 7), (6, 11), (20, 7), (6, 14), (6, 20), (6, 17), (6, 23), (6, 26), (9, 7), (11, 7), (13, 7), (15, 7), (6, 7), (6, 13), (6, 10), (6, 16), (6, 19), (6, 25), (6, 22), (14, 8), (17, 7), (19, 7), (8, 7), (10, 7), (6, 9), (21, 7)}
+
+INFO:root:
+Queue: deque([[3, 14, 7]])
+
+INFO:root:Set: {(6, 12), (6, 18), (12, 7), (6, 15), (6, 21), (14, 7), (6, 24), (16, 7), (18, 7), (7, 7), (6, 11), (20, 7), (6, 14), (6, 20), (6, 17), (6, 23), (6, 26), (9, 7), (11, 7), (13, 7), (15, 7), (6, 7), (6, 13), (6, 10), (6, 16), (6, 19), (6, 25), (6, 22), (14, 8), (17, 7), (19, 7), (8, 7), (10, 7), (6, 9), (21, 7)}
+
+INFO:root:
+Queue: deque([])
+
+INFO:root:Set: {(6, 12), (6, 18), (12, 7), (6, 15), (6, 21), (14, 7), (6, 24), (16, 7), (18, 7), (7, 7), (6, 11), (20, 7), (6, 14), (6, 20), (6, 17), (6, 23), (6, 26), (9, 7), (11, 7), (13, 7), (15, 7), (6, 7), (6, 13), (6, 10), (6, 16), (6, 19), (6, 25), (6, 22), (14, 8), (17, 7), (19, 7), (8, 7), (10, 7), (6, 9), (21, 7)}
+
+INFO:root:
+Queue: deque([[0, 15, 7]])
+
+INFO:root:Set: {(16, 7), (14, 7)}
+
+INFO:root:
+Queue: deque([[0, 16, 7]])
+
+INFO:root:Set: {(16, 7), (14, 7), (17, 7)}
+
+INFO:root:
+Queue: deque([[0, 17, 7]])
+
+INFO:root:Set: {(16, 7), (14, 7), (17, 7), (18, 7)}
+
+INFO:root:
+Queue: deque([[0, 18, 7]])
+
+INFO:root:Set: {(16, 7), (17, 7), (18, 7), (19, 7), (14, 7)}
+
+INFO:root:
+Queue: deque([[0, 19, 7]])
+
+INFO:root:Set: {(16, 7), (17, 7), (18, 7), (19, 7), (14, 7), (20, 7)}
+
+INFO:root:
+Queue: deque([[0, 20, 7]])
+
+INFO:root:Set: {(16, 7), (17, 7), (18, 7), (19, 7), (14, 7), (20, 7), (21, 7)}
+
+INFO:root:
+Queue: deque([[0, 21, 7]])
+
+INFO:root:Set: {(16, 7), (17, 7), (18, 7), (19, 7), (14, 7), (20, 7), (21, 7)}
+
+INFO:root:
+Queue: deque([])
+
+INFO:root:Set: {(16, 7), (17, 7), (18, 7), (19, 7), (14, 7), (20, 7), (21, 7)}
+
+INFO:root:
+Queue: deque([[0, 15, 7]])
+
+INFO:root:
+Queue: deque([[0, 16, 7]])
+
+INFO:root:
+Queue: deque([[0, 17, 7]])
+
+INFO:root:
+Queue: deque([[0, 18, 7]])
+
+INFO:root:
+Queue: deque([[0, 19, 7]])
+
+INFO:root:
+Queue: deque([[0, 20, 7]])
+
+INFO:root:
+Queue: deque([[0, 21, 7]])
+
+INFO:root:
+Queue: deque([])
+
+INFO:root:Set: {(16, 7), (17, 7), (18, 7), (19, 7), (14, 7), (20, 7), (21, 7)}
+
+INFO:root:
+Queue: deque([[0, 15, 7]])
+
+INFO:root:
+Queue: deque([[0, 16, 7]])
+
+INFO:root:
+Queue: deque([[0, 17, 7]])
+
+INFO:root:
+Queue: deque([[0, 18, 7]])
+
+INFO:root:
+Queue: deque([[0, 19, 7]])
+
+INFO:root:
+Queue: deque([[0, 20, 7]])
+
+INFO:root:
+Queue: deque([[0, 21, 7]])
+
+INFO:root:
+Queue: deque([[1, 21, 7]])
+
+INFO:root:
+Queue: deque([[1, 20, 7]])
+
+INFO:root:
+Queue: deque([[1, 19, 7]])
+
+INFO:root:
+Queue: deque([[1, 18, 7]])
+
+INFO:root:
+Queue: deque([[1, 17, 7]])
+
+INFO:root:
+Queue: deque([[1, 16, 7]])
+
+INFO:root:
+Queue: deque([[1, 15, 7]])
+
+INFO:root:
+Queue: deque([[1, 14, 7]])
+
+INFO:root:
+Queue: deque([[1, 13, 7]])
+
+INFO:root:
+Queue: deque([[1, 12, 7]])
+
+INFO:root:
+Queue: deque([[1, 11, 7]])
+
+INFO:root:
+Queue: deque([[1, 10, 7]])
+
+INFO:root:
+Queue: deque([[1, 9, 7]])
+
+INFO:root:
+Queue: deque([[1, 8, 7]])
+
+INFO:root:
+Queue: deque([[1, 7, 7]])
+
+INFO:root:
+Queue: deque([[1, 6, 7]])
+
+INFO:root:
+Queue: deque([[2, 6, 7]])
+
+INFO:root:
+Queue: deque([[2, 6, 8]])
+
+INFO:root:
+Queue: deque([[2, 6, 9]])
+
+INFO:root:
+Queue: deque([[2, 6, 10]])
+
+INFO:root:
+Queue: deque([[2, 6, 11]])
+
+INFO:root:
+Queue: deque([[2, 6, 12]])
+
+INFO:root:
+Queue: deque([[2, 6, 13]])
+
+INFO:root:
+Queue: deque([[2, 6, 14]])
+
+INFO:root:
+Queue: deque([[2, 6, 15]])
+
+INFO:root:
+Queue: deque([[2, 6, 16]])
+
+INFO:root:
+Queue: deque([[2, 6, 17]])
+
+INFO:root:
+Queue: deque([[2, 6, 18]])
+
+INFO:root:
+Queue: deque([[2, 6, 19]])
+
+INFO:root:
+Queue: deque([[2, 6, 20]])
+
+INFO:root:
+Queue: deque([[2, 6, 21]])
+
+INFO:root:
+Queue: deque([[2, 6, 22]])
+
+INFO:root:
+Queue: deque([[2, 6, 23]])
+
+INFO:root:
+Queue: deque([[2, 6, 24]])
+
+INFO:root:
+Queue: deque([[2, 6, 25]])
+
+INFO:root:
+Queue: deque([[2, 6, 26]])
+
+INFO:root:
+Queue: deque([[2, 6, 27]])
+
+INFO:root:
+Queue: deque([[2, 6, 28]])
+
+INFO:root:
+Queue: deque([[2, 6, 29]])
+
+INFO:root:
+Queue: deque([[3, 6, 29]])
+
+INFO:root:
+Queue: deque([[3, 6, 28]])
+
+INFO:root:
+Queue: deque([[3, 6, 27]])
+
+INFO:root:
+Queue: deque([[3, 6, 26]])
+
+INFO:root:
+Queue: deque([[3, 6, 25]])
+
+INFO:root:
+Queue: deque([[3, 6, 24]])
+
+INFO:root:
+Queue: deque([[3, 6, 23]])
+
+INFO:root:
+Queue: deque([[3, 6, 22]])
+
+INFO:root:
+Queue: deque([[3, 6, 21]])
+
+INFO:root:
+Queue: deque([[3, 6, 20]])
+
+INFO:root:
+Queue: deque([[0, 15, 7]])
+
+INFO:root:
+Queue: deque([[0, 16, 7]])
+
+INFO:root:
+Queue: deque([[0, 17, 7]])
+
+INFO:root:
+Queue: deque([[0, 18, 7]])
+
+INFO:root:
+Queue: deque([[0, 19, 7]])
+
+INFO:root:
+Queue: deque([[0, 20, 7]])
+
+INFO:root:
+Queue: deque([[0, 21, 7]])
+
+INFO:root:
+Queue: deque([[1, 21, 7]])
+
+INFO:root:
+Queue: deque([[1, 20, 7]])
+
+INFO:root:
+Queue: deque([[1, 19, 7]])
+
+INFO:root:
+Queue: deque([[1, 18, 7]])
+
+INFO:root:
+Queue: deque([[1, 17, 7]])
+
+INFO:root:
+Queue: deque([[1, 16, 7]])
+
+INFO:root:
+Queue: deque([[1, 15, 7]])
+
+INFO:root:
+Queue: deque([[1, 14, 7]])
+
+INFO:root:
+Queue: deque([[1, 13, 7]])
+
+INFO:root:
+Queue: deque([[1, 12, 7]])
+
+INFO:root:
+Queue: deque([[1, 11, 7]])
+
+INFO:root:
+Queue: deque([[1, 10, 7]])
+
+INFO:root:
+Queue: deque([[1, 9, 7]])
+
+INFO:root:
+Queue: deque([[1, 8, 7]])
+
+INFO:root:
+Queue: deque([[1, 7, 7]])
+
+INFO:root:
+Queue: deque([[1, 6, 7]])
+
+INFO:root:
+Queue: deque([[2, 6, 7]])
+
+INFO:root:
+Queue: deque([[2, 6, 8]])
+
+INFO:root:
+Queue: deque([[2, 6, 9]])
+
+INFO:root:
+Queue: deque([[2, 6, 10]])
+
+INFO:root:
+Queue: deque([[2, 6, 11]])
+
+INFO:root:
+Queue: deque([[2, 6, 12]])
+
+INFO:root:
+Queue: deque([[2, 6, 13]])
+
+INFO:root:
+Queue: deque([[2, 6, 14]])
+
+INFO:root:
+Queue: deque([[2, 6, 15]])
+
+INFO:root:
+Queue: deque([[2, 6, 16]])
+
+INFO:root:
+Queue: deque([[2, 6, 17]])
+
+INFO:root:
+Queue: deque([[2, 6, 18]])
+
+INFO:root:
+Queue: deque([[2, 6, 19]])
+
+INFO:root:
+Queue: deque([[2, 6, 20]])
+
+INFO:root:
+Queue: deque([[2, 6, 21]])
+
+INFO:root:
+Queue: deque([[2, 6, 22]])
+
+INFO:root:
+Queue: deque([[2, 6, 23]])
+
+INFO:root:
+Queue: deque([[2, 6, 24]])
+
+INFO:root:
+Queue: deque([[2, 6, 25]])
+
+INFO:root:
+Queue: deque([[2, 14, 8]])
+
+INFO:root:
+Queue: deque([[3, 14, 8]])
+
+INFO:root:
+Queue: deque([[3, 14, 7]])
+
+INFO:root:
+Queue: deque([])
+
+INFO:root:Set: {(6, 12), (6, 18), (12, 7), (6, 15), (6, 21), (14, 7), (6, 24), (16, 7), (18, 7), (7, 7), (6, 11), (20, 7), (6, 14), (6, 20), (6, 17), (6, 23), (6, 26), (9, 7), (11, 7), (13, 7), (15, 7), (6, 7), (6, 13), (6, 10), (6, 16), (6, 19), (6, 25), (6, 22), (14, 8), (17, 7), (19, 7), (8, 7), (10, 7), (6, 9), (21, 7)}
+
+INFO:root:
+Queue: deque([[0, 15, 7]])
+
+INFO:root:
+Queue: deque([[0, 16, 7]])
+
+INFO:root:
+Queue: deque([[0, 17, 7]])
+
+INFO:root:
+Queue: deque([[0, 18, 7]])
+
+INFO:root:
+Queue: deque([[0, 19, 7]])
+
+INFO:root:
+Queue: deque([[0, 20, 7]])
+
+INFO:root:
+Queue: deque([[0, 21, 7]])
+
+INFO:root:
+Queue: deque([[1, 21, 7]])
+
+INFO:root:
+Queue: deque([[1, 20, 7]])
+
+INFO:root:
+Queue: deque([[1, 19, 7]])
+
+INFO:root:
+Queue: deque([[1, 18, 7]])
+
+INFO:root:
+Queue: deque([[1, 17, 7]])
+
+INFO:root:
+Queue: deque([[1, 16, 7]])
+
+INFO:root:
+Queue: deque([[1, 15, 7]])
+
+INFO:root:
+Queue: deque([[1, 14, 7]])
+
+INFO:root:
+Queue: deque([[1, 13, 7]])
+
+INFO:root:
+Queue: deque([[1, 12, 7]])
+
+INFO:root:
+Queue: deque([[1, 11, 7]])
+
+INFO:root:
+Queue: deque([[1, 10, 7]])
+
+INFO:root:
+Queue: deque([[1, 9, 7]])
+
+INFO:root:
+Queue: deque([[1, 8, 7]])
+
+INFO:root:
+Queue: deque([[1, 7, 7]])
+
+INFO:root:
+Queue: deque([[1, 6, 7]])
+
+INFO:root:
+Queue: deque([[2, 6, 7]])
+
+INFO:root:
+Queue: deque([[2, 6, 8]])
+
+INFO:root:
+Queue: deque([[2, 6, 9]])
+
+INFO:root:
+Queue: deque([[2, 6, 10]])
+
+INFO:root:
+Queue: deque([[2, 6, 11]])
+
+INFO:root:
+Queue: deque([[2, 6, 12]])
+
+INFO:root:
+Queue: deque([[2, 6, 13]])
+
+INFO:root:
+Queue: deque([[2, 6, 14]])
+
+INFO:root:
+Queue: deque([[2, 6, 15]])
+
+INFO:root:
+Queue: deque([[2, 6, 16]])
+
+INFO:root:
+Queue: deque([[2, 6, 17]])
+
+INFO:root:
+Queue: deque([[2, 6, 18]])
+
+INFO:root:
+Queue: deque([[2, 6, 19]])
+
+INFO:root:
+Queue: deque([[2, 6, 20]])
+
+INFO:root:
+Queue: deque([[2, 6, 21]])
+
+INFO:root:
+Queue: deque([[2, 6, 22]])
+
+INFO:root:
+Queue: deque([[2, 6, 23]])
+
+INFO:root:
+Queue: deque([[2, 6, 24]])
+
+INFO:root:
+Queue: deque([[2, 6, 25]])
+
+INFO:root:
+Queue: deque([[2, 14, 8]])
+
+INFO:root:
+Queue: deque([[3, 14, 8]])
+
+INFO:root:
+Queue: deque([[3, 14, 7]])
+
+INFO:root:
+Queue: deque([])
+
+INFO:root:Set: {(6, 12), (6, 18), (12, 7), (6, 15), (6, 21), (14, 7), (6, 24), (16, 7), (18, 7), (7, 7), (6, 11), (20, 7), (6, 14), (6, 20), (6, 17), (6, 23), (6, 26), (9, 7), (11, 7), (13, 7), (15, 7), (6, 7), (6, 13), (6, 10), (6, 16), (6, 19), (6, 25), (6, 22), (14, 8), (17, 7), (19, 7), (8, 7), (10, 7), (6, 9), (21, 7)}
+
+INFO:root:
+Queue: deque([[0, 15, 7]])
+
+INFO:root:
+Queue: deque([[0, 16, 7]])
+
+INFO:root:
+Queue: deque([[0, 17, 7]])
+
+INFO:root:
+Queue: deque([[0, 18, 7]])
+
+INFO:root:
+Queue: deque([[0, 19, 7]])
+
+INFO:root:
+Queue: deque([[0, 20, 7]])
+
+INFO:root:
+Queue: deque([[0, 21, 7]])
+
+INFO:root:
+Queue: deque([])
+
+INFO:root:Set: {(16, 7), (17, 7), (18, 7), (19, 7), (14, 7), (20, 7), (21, 7)}
+
+INFO:root:
+Queue: deque([[0, 15, 7]])
+
+INFO:root:
+Queue: deque([[0, 16, 7]])
+
+INFO:root:
+Queue: deque([[0, 17, 7]])
+
+INFO:root:
+Queue: deque([[0, 18, 7]])
+
+INFO:root:
+Queue: deque([[0, 19, 7]])
+
+INFO:root:
+Queue: deque([[0, 20, 7]])
+
+INFO:root:
+Queue: deque([[0, 21, 7]])
+
+INFO:root:
+Queue: deque([])
+
+INFO:root:Set: {(16, 7), (17, 7), (18, 7), (19, 7), (14, 7), (20, 7), (21, 7)}
+
+INFO:root:
+Queue: deque([[0, 15, 7]])
+
+INFO:root:
+Queue: deque([[0, 16, 7]])
+
+INFO:root:
+Queue: deque([[0, 17, 7]])
+
+INFO:root:
+Queue: deque([[0, 18, 7]])
+
+INFO:root:
+Queue: deque([[0, 19, 7]])
+
+INFO:root:
+Queue: deque([[0, 20, 7]])
+
+INFO:root:
+Queue: deque([[0, 21, 7]])
+
+ERROR:asyncio:Exception in callback ProtoModule._internal_tick()
+handle: <TimerHandle when=8.602653625 ProtoModule._internal_tick()>
+Traceback (most recent call last):
+  File "/Users/cat/opt/anaconda3/lib/python3.9/asyncio/events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "/Users/cat/Desktop/github_repos_or_hackathons/Pacbot/src/gameEngine/robomodules/protoModule.py", line 15, in _internal_tick
+    self.tick()
+  File "/Users/cat/Desktop/github_repos_or_hackathons/Pacbot/src/gameEngine/algo.py", line 75, in tick
+    self.dfs()
+  File "/Users/cat/Desktop/github_repos_or_hackathons/Pacbot/src/gameEngine/algo.py", line 122, in dfs
+    if self._check_if_valid_dir((current[0]+i), current[1], current[2]) and self._check_next_step((current[0]+i), current[1], current[2]) in [o,O]:
+NameError: name 'i' is not defined
+INFO:root:Set: {(16, 7), (17, 7), (18, 7), (19, 7), (14, 7), (20, 7), (21, 7)}
+
+INFO:root:
+Queue: deque([[0, 15, 7]])
+
+INFO:root:
+Queue: deque([[0, 16, 7]])
+
+INFO:root:
+Queue: deque([[0, 17, 7]])
+
+INFO:root:
+Queue: deque([[0, 18, 7]])
+
+INFO:root:
+Queue: deque([[0, 19, 7]])
+
+INFO:root:
+Queue: deque([[0, 20, 7]])
+
+INFO:root:
+Queue: deque([[0, 21, 7]])
+
+ERROR:asyncio:Exception in callback ProtoModule._internal_tick()
+handle: <TimerHandle when=8.07952775 ProtoModule._internal_tick()>
+Traceback (most recent call last):
+  File "/Users/cat/opt/anaconda3/lib/python3.9/asyncio/events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "/Users/cat/Desktop/github_repos_or_hackathons/Pacbot/src/gameEngine/robomodules/protoModule.py", line 15, in _internal_tick
+    self.tick()
+  File "/Users/cat/Desktop/github_repos_or_hackathons/Pacbot/src/gameEngine/algo.py", line 75, in tick
+    self.dfs()
+  File "/Users/cat/Desktop/github_repos_or_hackathons/Pacbot/src/gameEngine/algo.py", line 122, in dfs
+    if self._check_if_valid_dir((current[0]+i), current[1], current[2]) and self._check_next_step((current[0]+i), current[1], current[2]) in [o,O]:
+NameError: name 'i' is not defined
+INFO:root:Set: {(16, 7), (17, 7), (18, 7), (19, 7), (14, 7), (20, 7), (21, 7)}
+
+INFO:root:
+Queue: deque([[0, 15, 7]])
+
+INFO:root:
+Queue: deque([[0, 16, 7]])
+
+INFO:root:
+Queue: deque([[0, 17, 7]])
+
+INFO:root:
+Queue: deque([[0, 18, 7]])
+
+INFO:root:
+Queue: deque([[0, 19, 7]])
+
+INFO:root:
+Queue: deque([[0, 20, 7]])
+
+INFO:root:
+Queue: deque([[0, 21, 7]])
+
+INFO:root:
+Queue: deque([])
+
+INFO:root:Set: {(16, 7), (17, 7), (18, 7), (19, 7), (14, 7), (20, 7), (21, 7)}
+
