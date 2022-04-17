@@ -129,7 +129,7 @@ class HighLevel(rm.ProtoModule):
     # to talk via the serial port from rpi to mcu
     def talkToSerial(self, dir, x, y):
         to_Serial = str(dir) + "X" + "{0:0=2d}".format(x) + "Y" + "{0:0=2d}".format(y) # string format for instructions
-        ser = serial.Serial('/dev/ttyUSB0')  # open serial port
+        ser = serial.Serial('/dev/ttyACM0')  # open serial port
         # print(ser.name)         # check which port was really used
         print(to_Serial)
         # ser.write(to_Serial)     # write a string
