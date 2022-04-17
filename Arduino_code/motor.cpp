@@ -37,7 +37,10 @@ void Motor::set_speed(int speed)
     }
     return;
 }
-
+/**
+ * @brief Stop running motor. Synymous to "set_speed(0)"
+ * 
+ */
 void Motor::halt()
 {
     set_speed(0);
