@@ -1,14 +1,13 @@
-#ifndef PINS
-#include "pins.h"
-#define PINS
-#endif
-#include <string.h> 
-
-#include "motor.cpp"
-// Pacbot code
+#include "arduino_code.hpp"
+#include "motor.hpp"
 
 void setup() {
   // put your setup code here, to run once:
+
+  // Setup serial port
+  COM serial(9600);
+  
+  // Setup pin directions
   pinMode(enc_1a, INPUT); pinMode(enc_1b, INPUT);
   pinMode(enc_2a, INPUT); pinMode(enc_2b, INPUT);
   pinMode(enc_3a, INPUT); pinMode(enc_3b, INPUT); 
@@ -18,8 +17,14 @@ void setup() {
   pinMode(motor_2a,OUTPUT); pinMode(motor_2b,OUTPUT);
   pinMode(motor_3a,OUTPUT); pinMode(motor_3b,OUTPUT);
   pinMode(motor_4a,OUTPUT); pinMode(motor_4b,OUTPUT);
-  Serial.begin(9600);
-  Serial.println("OK");
+  
+  // Setup interfacing objects
+  Motor m1(motor_1a,motor_1b);
+  Motor m2(motor_2a,motor_2b);
+  Motor m3(motor_3a,motor_3b);
+  Motor m4(motor_4a,motor_4b);
+
+
   
 }
 
@@ -48,23 +53,22 @@ void loop() {
     Serial.println(command_buffer);    
     
     // Parse Code
-    
+
     // Movement commands
-    if (strcmp(command_buffer,"0") == 0)
+    if (strcmp(command_buffer, DIR_DOWN) == 0)
     {
-      void motorMovement(int pinOne, int pinTwo, int pinThree, int pinFour);
+
     }
-    else if (strcmp(command_buffer,"1") == 0)
+    else if (strcmp(command_buffer, DIR_LEFT) == 0)
     {
-      void motorMovement(int pinOne, int pinTwo, int pinThree, int pinFour);
     }
-    else if (strcmp(command_buffer,"2") == 0)
+    else if (strcmp(command_buffer, DIR_UP) == 0)
     {
-      void motorMovement(int pinOne, int pinTwo, int pinThree, int pinFour);
+
     }
-    else if (strcmp(command_buffer,"3" == 0)
+    else if (strcmp(command_buffer,DIR_DOWN) == 0)
     {
-      void motorMovement(int pinOne, int pinTwo, int pinThree, int pinFour);
+
     }
 
     // Test commands
