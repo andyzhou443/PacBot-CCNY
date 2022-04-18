@@ -26,23 +26,25 @@ void setup() {
 
 
   
+    Serial.write("Teensy OK\n");
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
 
   //  Read serial
-  int i = 0;
   char command_buffer[15];
-  int temp_buffer;
-  if (Serial.available() > 0)
+    int buffer_size = 0;
+    buffer_size = 
+        Serial.readBytesUntil('\n',command_buffer,15);
+
+    //TODO: Parse Code
+
+    // Echo Input
+    if (buffer_size > 0)
   {
-    i = 0;
-    temp_buffer = Serial.read();
-    while(temp_buffer != -1 && i < 15 && temp_buffer != '\n')
-    {
-      command_buffer[i++] = temp_buffer;
-      temp_buffer = Serial.read();
+        Serial.write(command_buffer,buffer_size);
+        Serial.write('\n');
     }
     command_buffer[++i] = '\0';
     
