@@ -13,7 +13,7 @@ from collections import deque
 from queue import PriorityQueue, Queue
 from bfs import bfs
 import copy
-# import serial
+import serial
 
 DANGER = 10
 PELLET_WEIGHT = 0.65
@@ -40,7 +40,7 @@ FREQUENCY = SPEED * game_frequency
 
 class HighLevel(rm.ProtoModule):
     def __init__(self, addr, port):
-        self.subscriptions = [MsgType.FULL_STATE]
+        self.subscriptions = [MsgType.FULL_STATE, MsgType.LIGHT_STATE]
         super().__init__(addr, port, message_buffers, MsgType, FREQUENCY, self.subscriptions)
 
         # self.loop.add_reader(sys.stdin, self.move_stuff)
@@ -48,6 +48,7 @@ class HighLevel(rm.ProtoModule):
         self.cur_dir = right
         self.next_dir = right
         self.state = PacmanState()
+        self.cherry = None
         self.state.mode = PacmanState.PAUSED
         self.lives = starting_lives
         self.clicks = 0
@@ -57,24 +58,23 @@ class HighLevel(rm.ProtoModule):
         self.grid = copy.deepcopy(grid)
         self.path = None
         self.ghost_states = []
-        # self.temp = [(0, 14, 7), (0, 15, 7), (0, 16, 7), (0, 17, 7), (0, 18, 7), (0, 19, 7), (0, 20, 7), (0, 21, 7), (2, 21, 8), (2, 21, 9), (2, 21, 10), (0, 22, 10), (0, 23, 10), (0, 24, 10), (0, 25, 10), (0, 26, 10), (3, 26, 9), (3, 26, 8), (3, 26, 7)]
         # self.p_queue.put((0, [self.cur_dir, self.pacbot_pos[0], self.pacbot_pos[1]]))      
         
 
     def _move_if_valid_dir(self, direction, x, y):
-        if direction == right and grid[x + 1][y] not in [I, n]:
+        if direction == right and grid[x][y] not in [I, n]:
             self.pacbot_pos[0] += 1
             self.cur_dir = direction
             return True
-        elif direction == left and grid[x - 1][y] not in [I, n]:
+        elif direction == left and grid[x][y] not in [I, n]:
             self.pacbot_pos[0] -= 1
             self.cur_dir = direction
             return True
-        elif direction == up and grid[x][y + 1] not in [I, n]:
+        elif direction == up and grid[x][y] not in [I, n]:
             self.pacbot_pos[1] += 1
             self.cur_dir = direction
             return True
-        elif direction == down and grid[x][y - 1] not in [I, n]:
+        elif direction == down and grid[x][y] not in [I, n]:
             self.pacbot_pos[1] -= 1
             self.cur_dir = direction
             return True
@@ -90,6 +90,9 @@ class HighLevel(rm.ProtoModule):
             if self.state.lives != self.lives:
                 self.lives = self.state.lives
                 self.pacbot_pos = [pacbot_starting_pos[0], pacbot_starting_pos[1]]
+        if msg_type == MsgType.LIGHT_STATE:
+            self.light_state = msg
+            self.cherry = self.light_state.cherry
 
     
 
@@ -118,10 +121,10 @@ class HighLevel(rm.ProtoModule):
             return False
 
     def getPath_to_powerPellet(self, starting):
-        self.i = 1
+        self.i = 0
         return bfs(self.grid,starting, [O])
     def getPath_to_Pellet(self, starting):
-        self.i = 1
+        self.i = 0
         return bfs(self.grid,starting, [o])
         # return
 
@@ -159,7 +162,7 @@ class HighLevel(rm.ProtoModule):
         y = self.pacbot_pos[1]
         if self.grid[x][y] in [o, O]:
             self.grid[x][y] = e
-            print(self.grid[x][y])
+            # print(self.grid[x][y])
 
 
           
@@ -181,35 +184,64 @@ class HighLevel(rm.ProtoModule):
         res = bfs(self.grid, starting, (orange_ghost_pos[1], orange_ghost_pos[2]), 25)
         path_orange = original_path if (res is None) else copy.deepcopy(res)
         # print(red_ghost_pos)
-
+    
         
-        # self.path = copy.deepcopy(min(path_red, path_blue, path_pink, path_orange, key = len))
-        self.i = 1        
+        self.path = copy.deepcopy(min(path_red, path_blue, path_pink, path_orange, key = len))
+        self.i = 0        
         return [path_red, path_blue, path_pink, path_orange]
-       
+    
+    
+    def ghostsStates(self):
+        red_ghost_state = 0 if self.state.red_ghost.frightened_counter == 0 else 1 # 0 if the ghost is normal 1 if scared
+            # print("red ghost: ", red_ghost_state)
+        blue_ghost_state = 0 if self.state.blue_ghost.frightened_counter == 0 else 1 # 0 if the ghost is normal 1 if scared
+        pink_ghost_state = 0 if self.state.pink_ghost.frightened_counter == 0 else 1 # 0 if the ghost is normal 1 if scared
+        orange_ghost_state = 0 if self.state.orange_ghost.frightened_counter == 0 else 1 # 0 if the ghost is normal 1 if scared
+        self.ghost_states = [red_ghost_state, blue_ghost_state, pink_ghost_state, orange_ghost_state]
+        return 1 in self.ghost_states
+    
+    def ManhattanDist(self, pointA, pointB):
+        return abs(pointB[0] - pointA[0]) + abs(pointB[1] - pointA[1])
+
+
     # to talk via the serial port from rpi to mcu
     def talkToSerial(self, dir, x, y):
         to_Serial = str(dir) + "X" + "{0:0=2d}".format(x) + "Y" + "{0:0=2d}".format(y) # string format for instructions
         # ser = serial.Serial('/dev/ttyUSB0')  # open serial port
         # print(ser.name)         # check which port was really used
-        print(to_Serial)
+        # print(to_Serial)
         # ser.write(to_Serial)     # write a string
         # ser.close()       # close port
-
-    def gameRun(self):
+    def printNicely(self):
+        sys.stdout.write("\033[F") #back to previous line
+        sys.stdout.write("\033[K")
+        print("\n"*5)
     
 
+
+    def gameRun(self):
+        self.printNicely()
         if self.path is None:
             print("new path")
             self.path = copy.deepcopy(self.getPath_to_powerPellet((self.cur_dir, self.pacbot_pos[0], self.pacbot_pos[1])))
-            print(self.path)
-            self.i=0
 
-        if(self.path is not None):
+            print(self.path)
+            self.i=1
+        elif(self.path is not None):
             # print(self.path[self.i])
+            # print("state: {}".format(self.cherry))
+
+            # self.path = copy.deepcopy(self.getPath_to_powerPellet((self.cur_dir, self.pacbot_pos[0], self.pacbot_pos[1])))
             dir = self.path[self.i][0]
             x = self.pacbot_pos[0]
             y = self.pacbot_pos[1]
+            if(self.cherry and self.ManhattanDist((x,y), (13,13))<float("inf")):
+                self.path = copy.deepcopy(bfs(self.grid, (dir,x,y), (13,13)))
+                self.i = 1
+                dir = self.path[self.i][0]
+                x = self.pacbot_pos[0]
+                y = self.pacbot_pos[1]
+            
             # if self._check_if_valid_dir(dir, x, y):
             self.talkToSerial(dir, x, y)
             self._move_if_valid_dir(dir , x, y)
@@ -218,48 +250,21 @@ class HighLevel(rm.ProtoModule):
             #     self._move_if_valid_dir(self.cur_dir, x,y)
 
             self.i+=1
-            red_ghost_state = 0 if self.state.red_ghost.frightened_counter == 0 else 1 # 0 if the ghost is normal 1 if scared
-            # print("red ghost: ", red_ghost_state)
-            blue_ghost_state = 0 if self.state.blue_ghost.frightened_counter == 0 else 1 # 0 if the ghost is normal 1 if scared
-            pink_ghost_state = 0 if self.state.pink_ghost.frightened_counter == 0 else 1 # 0 if the ghost is normal 1 if scared
-            orange_ghost_state = 0 if self.state.orange_ghost.frightened_counter == 0 else 1 # 0 if the ghost is normal 1 if scared
-            self.ghost_states = [red_ghost_state, blue_ghost_state, pink_ghost_state, orange_ghost_state]
+            
 
-            if(red_ghost_state or blue_ghost_state or pink_ghost_state or orange_ghost_state):
+            # if(self.ghost_states): # 1 if they are scared
                 # self.hunting = 1 
-                self.getPath_To_Ghost((dir, x, y), self.path)
+                # self.getPath_To_Ghost((dir, x, y), self.path)
             
             if(self.i >= len(self.path)):
                 # if self._check_if_valid_dir(self.cur_dir, x, y):
                     # self._move_if_valid_dir(self.cur_dir, x,y)
                 self.path = None
             #     # return
-            
-            
-        
-        
-    def gameTests(self):
-        if(self.i<len(self.temp)):
-            dir = self.temp[self.i][0]
-            x = self.pacbot_pos[0]
-            y = self.pacbot_pos[1]
-            self._move_if_valid_dir(dir, x, y)
-            self.i+=1
-            self.talkToSerial(dir, x, y)
+    def 
+             
 
-        
-    # def _next_move(self, direction, x, y):
-    #     if direction == right and grid[x + 1][y] not in [I, n]:
-    #         return [x+1, y]
-    #     elif direction == left and grid[x - 1][y] not in [I, n]:
-    #         return [x-1, y]
-    #     elif direction == up and grid[x][y + 1] not in [I, n]:
-    #         return [x, y+1]
-    #     elif direction == down and grid[x][y - 1] not in [I, n]:
-    #         return [x, y-1]
-    #     else:
-    #         return [x,y]
-            
+
            
 
         
