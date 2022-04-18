@@ -6,10 +6,10 @@
 #include "motor.hpp"
 
 // // Global Encoder objects
-// extern Encoder* enc1;
-// extern Encoder* enc2;
-// extern Encoder* enc3;
-// extern Encoder* enc4;
+extern Encoder* enc1;
+extern Encoder* enc2;
+extern Encoder* enc3;
+extern Encoder* enc4;
 
 // Global Motor objects
 extern Motor* m1;
