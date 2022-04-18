@@ -13,8 +13,13 @@ from collections import deque
 from queue import PriorityQueue, Queue
 from bfs import bfs
 import copy
-import serial
+# import serial
 
+DANGER = 10
+PELLET_WEIGHT = 0.65
+POWER_PELLET_WEIGHT = 0.15
+GHOST_WEIGHT = 0.35
+FRIGENED_GHOST_WEIGHT = GHOST_WEIGHT**2
 
 
 # while(i<len(path)):
@@ -51,6 +56,7 @@ class HighLevel(rm.ProtoModule):
         self.i = 1
         self.grid = copy.deepcopy(grid)
         self.path = None
+        self.ghost_states = []
         # self.temp = [(0, 14, 7), (0, 15, 7), (0, 16, 7), (0, 17, 7), (0, 18, 7), (0, 19, 7), (0, 20, 7), (0, 21, 7), (2, 21, 8), (2, 21, 9), (2, 21, 10), (0, 22, 10), (0, 23, 10), (0, 24, 10), (0, 25, 10), (0, 26, 10), (3, 26, 9), (3, 26, 8), (3, 26, 7)]
         # self.p_queue.put((0, [self.cur_dir, self.pacbot_pos[0], self.pacbot_pos[1]]))      
         
@@ -119,6 +125,34 @@ class HighLevel(rm.ProtoModule):
         return bfs(self.grid,starting, [o])
         # return
 
+    def get_heuristic(self):
+
+        pellet_path = self.getPath_to_Pellet((self.cur_dir, self.pacbot_pos[0], self.pacbot_pos[1]))
+        pellet_dist = len(pellet_path) - 1
+        pellet_heuristic = pellet_dist * PELLET_WEIGHT
+        
+        power_path = self.getPath_to_powerPellet((self.cur_dir, self.pacbot_pos[0], self.pacbot_pos[1]))
+        power_dist = len(power_path)
+        power_heuristic = power_dist * POWER_PELLET_WEIGHT
+        
+        min_ghost_dist = float("inf")
+        min_ghost_path = []
+        ghosts_path = self.getPath_To_Ghost((self.pacbot_pos[0], self.pacbot_pos[1]), self.path)
+        for i in range(len(ghosts_path)):
+            if len(ghosts_path[i]) < min_ghost_dist:
+                min_ghost_dist = len(ghosts_path[i])
+                min_ghost_path = copy.deepcopy(ghosts_path[i])
+
+        if DANGER < min_ghost_dist:
+            
+            if self.ghost_states[0] == 1:
+                ghost_heuristic = min_ghost_dist * GHOST_WEIGHT
+            else:
+                ghost_heuristic = min_ghost_dist * FRIGENED_GHOST_WEIGHT
+        
+        return pellet_heuristic + power_heuristic + ghost_heuristic 
+
+
     def updateGrid(self):
              # updates grid if pellet is ate 
         x = self.pacbot_pos[0]
@@ -147,17 +181,12 @@ class HighLevel(rm.ProtoModule):
         res = bfs(self.grid, starting, (orange_ghost_pos[1], orange_ghost_pos[2]), 25)
         path_orange = original_path if (res is None) else copy.deepcopy(res)
         # print(red_ghost_pos)
-        
 
         
-        self.path = copy.deepcopy(min(path_red, path_blue, path_pink, path_orange, key = len))
+        # self.path = copy.deepcopy(min(path_red, path_blue, path_pink, path_orange, key = len))
         self.i = 1        
-
-    def getManhattanDist(self, start, end):
-        return (abs(end[0] - start[0]) + abs(end[1] - start[1]))  
-        
-        
-        
+        return [path_red, path_blue, path_pink, path_orange]
+       
     # to talk via the serial port from rpi to mcu
     def talkToSerial(self, dir, x, y):
         to_Serial = str(dir) + "X" + "{0:0=2d}".format(x) + "Y" + "{0:0=2d}".format(y) # string format for instructions
@@ -174,8 +203,7 @@ class HighLevel(rm.ProtoModule):
             print("new path")
             self.path = copy.deepcopy(self.getPath_to_powerPellet((self.cur_dir, self.pacbot_pos[0], self.pacbot_pos[1])))
             print(self.path)
-            # self.i=0
-            # return
+            self.i=0
 
         if(self.path is not None):
             # print(self.path[self.i])
@@ -195,6 +223,8 @@ class HighLevel(rm.ProtoModule):
             blue_ghost_state = 0 if self.state.blue_ghost.frightened_counter == 0 else 1 # 0 if the ghost is normal 1 if scared
             pink_ghost_state = 0 if self.state.pink_ghost.frightened_counter == 0 else 1 # 0 if the ghost is normal 1 if scared
             orange_ghost_state = 0 if self.state.orange_ghost.frightened_counter == 0 else 1 # 0 if the ghost is normal 1 if scared
+            self.ghost_states = [red_ghost_state, blue_ghost_state, pink_ghost_state, orange_ghost_state]
+
             if(red_ghost_state or blue_ghost_state or pink_ghost_state or orange_ghost_state):
                 # self.hunting = 1 
                 self.getPath_To_Ghost((dir, x, y), self.path)
