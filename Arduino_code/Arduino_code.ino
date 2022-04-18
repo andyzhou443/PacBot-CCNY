@@ -62,16 +62,16 @@ void loop() {
         if(isdigit(command_buffer[0]))
         {
             // Movement code
-            if(strcmp(command_buffer[0],"0") == 0)
+            if(command_buffer[0] == '0')
                 Serial.write("0 MOVE FORWARD\n");
-            else if(strcmp(command_buffer[0],"1") == 0)
+            else if(command_buffer[0] == '1')
                 Serial.write("1 MOVE BACKWARD\n");
-            else if(strcmp(command_buffer[0],"2") == 0)
+            else if(command_buffer[0] == '2')
                 Serial.write("2 MOVE LEFT\n");
-            else if(strcmp(command_buffer[0],"3") == 0)
+            else if(command_buffer[0] == '3')
                 Serial.write("3 MOVE RIGHT\n");
             else
-                Serial.write("Invalid Movement Command\n");
+                Serial.write("? INVALID COMMAND\n");
             
 
             char temp_x[2];
