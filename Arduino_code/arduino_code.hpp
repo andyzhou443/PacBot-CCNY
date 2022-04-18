@@ -4,7 +4,6 @@
 #ifndef H_PINS
 #define H_PINS
 #include "motor.hpp"
-#include "serial.hpp"
 
 // // Global Encoder objects
 // extern Encoder* enc1;
@@ -12,15 +11,11 @@
 // extern Encoder* enc3;
 // extern Encoder* enc4;
 
-// // Global Motor objects
-// extern Motor* m1;
-// extern Motor* m2;
-// extern Motor* m3;
-// extern Motor* m4;
-
-// Common Serial object
-extern COM* serial;
-
+// Global Motor objects
+extern Motor* m1;
+extern Motor* m2;
+extern Motor* m3;
+extern Motor* m4;
 
 
 // Pin mappings
@@ -57,6 +52,13 @@ const char* DIR_DOWN = "3";
 
 // PWM Resolution
 const int ANALOG_RES = 8;
+
+// Current coordinates
+struct Coordinates
+{
+    int x; int y;
+};
+Coordinates coord;
 
 #endif // H_PINS
 
