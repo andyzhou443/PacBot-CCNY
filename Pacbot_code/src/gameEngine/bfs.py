@@ -99,11 +99,12 @@ def bfs(grid, start, target, max_dist=float('inf')):
     return None
 
 
-# start = (right,14, 7)
-# target = [O]
+# start = (down,26, 7)
+# # target = [O]
+# target = (6,25)
 # result = bfs(grid, start, target)
 # print(f"path = {result}")
-# start = result[-1]
+# # start = result[-1]
 # result  = bfs(grid, start, target)
 # print(f"path = {result}")
 # start = result[-1]
