@@ -74,15 +74,13 @@ void loop() {
                 Serial.write("? INVALID COMMAND\n");
             
 
-            char temp_x[2];
-            char temp_y[2];
-            strncpy(temp_x, command_buffer+2, 2);
-            strncpy(temp_y, command_buffer+5, 2);
+            char temp_x[3]; strncpy(temp_x, command_buffer+2, 2); temp_x[3] = '\0';
+            char temp_y[3]; strncpy(temp_y, command_buffer+5, 2); temp_y[3] = '\0';
             coord.x = atoi(temp_x);
             coord.y = atoi(temp_y);
 
             Serial.write("Current coordinates: ");
-            Serial.print(temp_x); Serial.print(temp_y);
+            Serial.print(coord.x); Serial.print(coord.y);
             Serial.write("\n");
 
 
