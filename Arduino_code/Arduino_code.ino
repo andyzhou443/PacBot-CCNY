@@ -28,18 +28,6 @@ void setup() {
     pinMode(motor_3a,OUTPUT); pinMode(motor_3b,OUTPUT);
     pinMode(motor_4a,OUTPUT); pinMode(motor_4b,OUTPUT);
 
-    // Setup interfacing objects
-    Motor m1(motor_1a,motor_1b);
-    Motor m2(motor_2a,motor_2b);
-    Motor m3(motor_3a,motor_3b);
-    Motor m4(motor_4a,motor_4b);
-
-    // Setup encoder objects
-    enc1 = new Encoder(enc_1a,enc_1b);
-    enc2 = new Encoder(enc_2a,enc_2b);
-    enc3 = new Encoder(enc_3a,enc_3b);
-    enc4 = new Encoder(enc_4a,enc_4b);
-    
 
     // Setup global coordinate object
     coord = {13,7};
