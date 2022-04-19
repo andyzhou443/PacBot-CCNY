@@ -3,7 +3,9 @@
 
 #ifndef H_PINS
 #define H_PINS
+
 #include "motor.hpp"
+#include "encoder_funcs.hpp"
 
 
 // Pin mappings
@@ -47,6 +49,9 @@ struct Coordinates
     int x; int y;
 };
 Coordinates coord;
+
+// Wheel Radius
+const int WHEEL_RADIUS = 8;
 
 #endif // H_PINS
 
