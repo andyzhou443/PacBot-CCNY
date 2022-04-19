@@ -1,5 +1,15 @@
 #include "arduino_code.hpp"
-#include "motor.hpp"
+// Setup interfacing objects
+Motor m1(motor_1a,motor_1b);
+Motor m2(motor_2a,motor_2b);
+Motor m3(motor_3a,motor_3b);
+Motor m4(motor_4a,motor_4b);
+
+// Setup encoder objects
+Encoder enc1(enc_1a,enc_1b);
+Encoder enc2(enc_2a,enc_2b);
+Encoder enc3(enc_3a,enc_3b);
+Encoder enc4(enc_4a,enc_4b);
 
 void setup() {
     // put your setup code here, to run once:

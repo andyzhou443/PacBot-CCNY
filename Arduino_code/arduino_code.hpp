@@ -5,18 +5,6 @@
 #define H_PINS
 #include "motor.hpp"
 
-// // Global Encoder objects
-extern Encoder* enc1;
-extern Encoder* enc2;
-extern Encoder* enc3;
-extern Encoder* enc4;
-
-// Global Motor objects
-extern Motor* m1;
-extern Motor* m2;
-extern Motor* m3;
-extern Motor* m4;
-
 
 // Pin mappings
 // Encoders
