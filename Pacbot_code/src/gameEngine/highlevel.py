@@ -207,17 +207,10 @@ class HighLevel(rm.ProtoModule):
     # to talk via the serial port from rpi to mcu
     def talkToSerial(self, dir, x, y):
         to_Serial = str(dir) + "X" + "{0:0=2d}".format(x) + "Y" + "{0:0=2d}".format(y) # string format for instructions
-<<<<<<< HEAD
         # ser = serial.Serial('/dev/ttyUSB0')  # open serial port
         # print(ser.name)         # check which port was really used
         # print(to_Serial)
         # ser.write(to_Serial)     # write a string
-=======
-        ser = serial.Serial('/dev/ttyACM0')  # open serial port
-        # print(ser.name)         # check which port was really used
-        print(to_Serial)
-        ser.write(str.encode(to_Serial))     # write a string
->>>>>>> main
         # ser.close()       # close port
     def printNicely(self):
         sys.stdout.write("\033[F") #back to previous line
@@ -268,7 +261,7 @@ class HighLevel(rm.ProtoModule):
                     # self._move_if_valid_dir(self.cur_dir, x,y)
                 self.path = None
             #     # return
-    def 
+    # def 
              
 
 
