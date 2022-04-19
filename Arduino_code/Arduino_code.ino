@@ -1,4 +1,5 @@
 #include "arduino_code.hpp"
+
 // Setup interfacing objects
 Motor m1(motor_1a,motor_1b);
 Motor m2(motor_2a,motor_2b);
@@ -61,14 +62,27 @@ void loop() {
         {
             // Movement code
             if(command_buffer[0] == '0')
-                Serial.write("0 MOVE FORWARD\n");
+            {
+                Serial.write("0 MOVE RIGHT\n");
+                m1.set_speed(50);
+            }
             else if(command_buffer[0] == '1')
-                Serial.write("1 MOVE BACKWARD\n");
+            {
+                Serial.write("1 MOVE LEFT\n");
+                m2.set_speed(100);
+            }
             else if(command_buffer[0] == '2')
-                Serial.write("2 MOVE LEFT\n");
+            {
+                Serial.write("2 MOVE UP\n");
+                m3.set_speed(100);
+            }
             else if(command_buffer[0] == '3')
+            {
                 Serial.write("3 MOVE RIGHT\n");
+                m4.set_speed(100);
+            }
             else
+            {
                 Serial.write("? INVALID COMMAND\n");
                 return;
             }
