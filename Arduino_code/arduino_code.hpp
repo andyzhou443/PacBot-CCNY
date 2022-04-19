@@ -20,28 +20,28 @@ extern Motor* m4;
 
 // Pin mappings
 // Encoders
-const int enc_1a = 4;
-const int enc_1b = 5;
-const int enc_2a = 6;
-const int enc_2b = 7;
-const int enc_3a = 9;
-const int enc_3b = 10;
-const int enc_4a = 20;
-const int enc_4b = 21;
+const int enc_1a = 33;
+const int enc_1b = 34;
+const int enc_2a = 35;
+const int enc_2b = 36;
+const int enc_3a = 37;
+const int enc_3b = 38;
+const int enc_4a = 39;
+const int enc_4b = 40;
 
 // Motors
-const int motor_1a =  25;
-const int motor_1b =  26;
-const int motor_2a =  27;
-const int motor_2b =  28;
-const int motor_3a =  29;
-const int motor_3b =  30;
-const int motor_4a =  31;
-const int motor_4b =  32;
+const int motor_1a =  2;
+const int motor_1b =  3;
+const int motor_2a =  4;
+const int motor_2b =  5;
+const int motor_3a =  7;
+const int motor_3b =  8;
+const int motor_4a =  28;
+const int motor_4b =  29;
 
 //I2C:
-const int mux_sda =  39;
-const int mux_scl =  38;
+const int mux_sda =  17;
+const int mux_scl =  16;
 
 // P-Code commands
 const char* DIR_RIGHT = "0";
