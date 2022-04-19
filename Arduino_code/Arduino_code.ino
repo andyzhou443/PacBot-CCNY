@@ -86,6 +86,13 @@ void loop() {
 
             return;
         }
+        // Halt
+        else if(command_buffer[0] == 'S')
+        {
+            Serial.write("S HALT");
+            m1.halt(); m2.halt(); m3.halt(); m4.halt();
+            return;
+        }
         
     }
 }
