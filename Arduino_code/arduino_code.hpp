@@ -1,5 +1,5 @@
-#include <Encoder.h>
 #include <Arduino.h>
+#include <Encoder.h>
 
 #ifndef H_PINS
 #define H_PINS
