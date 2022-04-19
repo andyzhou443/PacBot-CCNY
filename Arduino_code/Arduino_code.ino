@@ -70,6 +70,9 @@ void loop() {
                 Serial.write("3 MOVE RIGHT\n");
             else
                 Serial.write("? INVALID COMMAND\n");
+                return;
+            }
+                
             
 
             char temp_x[3]; strncpy(temp_x, command_buffer+2, 2); temp_x[2] = '\0';
@@ -81,8 +84,8 @@ void loop() {
             Serial.print(coord.x); Serial.print(coord.y);
             Serial.write("\n");
 
-
-        };
+            return;
+        }
         
     }
 }
