@@ -22,13 +22,17 @@ void Motor::set_speed(int speed)
 {
     if (speed > 0) // CW
     {
-        analogWrite(pinA, speed / 100 * pow(2,ANALOG_RES));
+        int result = floor( ((float) speed / 100) * 255);
+        analogWrite(pinA, result);
         analogWrite(pinB,0);
+        Serial.println(result);
     }
     else if (speed < 0) // CCW
     {
+        int result = floor(( (float) abs(speed) / 100) * 255);
         analogWrite(pinA,0);
-        analogWrite(pinB, speed / 100 * pow(2,ANALOG_RES));
+        analogWrite(pinB, result);
+        Serial.println(result);
     }
     else
     {
