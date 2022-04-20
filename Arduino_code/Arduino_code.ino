@@ -29,7 +29,6 @@ void setup() {
     pinMode(motor_3a,OUTPUT); pinMode(motor_3b,OUTPUT);
     pinMode(motor_4a,OUTPUT); pinMode(motor_4b,OUTPUT);
 
-
     // Setup global coordinate object
     coord = {13,7};
 
