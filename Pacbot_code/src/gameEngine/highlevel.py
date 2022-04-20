@@ -155,6 +155,57 @@ class HighLevel(rm.ProtoModule):
         
         return pellet_heuristic + power_heuristic + ghost_heuristic 
 
+    def get_move(self):
+        x = self.pacbot_pos[0]
+        y = self.pacbot_pos[1]
+        #self, left, right, down, up
+        targets = [(x-1, y), (x+1, y), (x, y-1), (x, y+1)]
+        heuristics = []
+        for target in targets: 
+            if(self.grid[target[0]][target[1]] in [I, n]):
+                heuristics.append(None)
+                continue
+            else: 
+                dir = self.get_direction(target,(x,y))
+                # pellet_dist = len(self.getPath_to_Pellet((dir, target[0], target[1])))
+                # powerP_dist = len(self.getPath_to_powerPellet((dir, target[0], target[1])))
+                # pellet_heuristic = pellet_dist*PELLET_WEIGHT
+                # powerP_heuristic = powerP_dist * POWER_PELLET_WEIGHT
+                pellet_path = self.getPath_to_Pellet((dir, x, y))
+                pellet_dist = len(pellet_path)
+                pellet_heuristic = pellet_dist * PELLET_WEIGHT
+                
+                power_path = self.getPath_to_powerPellet((dir, x, y))
+                power_dist = len(power_path)
+                power_heuristic = power_dist * POWER_PELLET_WEIGHT
+                print("dist",pellet_heuristic+power_heuristic)
+                heuristics.append(pellet_heuristic+power_heuristic)
+        
+        min_heuristic = float('inf')
+        min_target = (0,0)
+        for i in range(len(heuristics)):
+            if heuristics[i]!=None and (heuristics[i]<= min_heuristic):
+                min_heuristic = heuristics[i]
+                min_target = targets[i]
+        
+        return min_target
+
+
+    def get_direction(self, next_loc, prev_loc):
+    #computes direction based on current position and new position
+        direction = -1  
+        if next_loc[1] == prev_loc[1]:
+            if next_loc[0] > prev_loc[0]:
+                direction = right
+            elif next_loc[0] < prev_loc[0]:
+                direction = left
+        elif next_loc[0] == prev_loc[0]:
+            if next_loc[1] > prev_loc[1]:
+                direction = up
+            elif next_loc[1] < prev_loc[1]:
+                direction = down
+        print('direction', direction)
+        return direction
 
     def updateGrid(self):
              # updates grid if pellet is ate 
@@ -220,6 +271,7 @@ class HighLevel(rm.ProtoModule):
 
 
     def gameRun(self):
+        self.get_move()
         self.printNicely()
         if self.path is None:
             print("new path")
