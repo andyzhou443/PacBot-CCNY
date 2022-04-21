@@ -16,7 +16,7 @@ Motor::Motor(int p1, int p2)
 /**
  * @brief Drive motor at a certain speed
  * 
- * @param speed integer percentage for speed (-100-+100)
+ * @param speed integer percentage for speed (-100 <-> +100)
  */
 void Motor::set_speed(int speed)
 {
@@ -42,7 +42,7 @@ void Motor::set_speed(int speed)
     return;
 }
 /**
- * @brief Stop running motor. Synymous to "set_speed(0)"
+ * @brief Stop running motor. Synonomous to "set_speed(0)"
  * 
  */
 void Motor::halt()
