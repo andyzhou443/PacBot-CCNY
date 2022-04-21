@@ -1,12 +1,11 @@
 #include <Arduino.h>
 
-#ifndef H_PINS
-#define H_PINS
+#ifndef HEADRS
+#define HEADRS
 
-#include "motor.hpp"
 #include "encoder_funcs.hpp"
+#include "motor.hpp"
 #include "motor_coordinator.hpp"
-
 
 // Pin mappings
 // Encoders
@@ -53,8 +52,8 @@ Coordinates coord;
 // Wheel Radius
 const int WHEEL_RADIUS = 8;
 
-#endif // H_PINS
-
 void setup();
 
 void loop();
+
+#endif // HEADRS

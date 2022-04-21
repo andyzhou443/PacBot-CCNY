@@ -4,7 +4,7 @@
 
 namespace m_coord
 {
-    void move(float distance, float angle)
+    void set_angle(Motor& m1, Motor& m2, Motor& m3, Motor& m4, float speed = 100, float angle = 0)
     {
         //functions takes in angle and distance and give the rotation to each motor
         //angle is 0 to 360
