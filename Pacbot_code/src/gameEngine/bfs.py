@@ -84,7 +84,7 @@ def bfs(grid, start, target, max_dist=float('inf')):
             if target == loc:
                 shortest_path = copy.deepcopy(new_path)
                 print(new_path)
-                return new_path
+                return new_path[1:]
         # if we are looking just for a certain point(like a power pellets) ?
         elif (loc_value in target) and (len(new_path) <= min_length) and (len(new_path) > 0):
             print(f"path length: {len(new_path)}")

@@ -290,16 +290,22 @@ class HighLevel(rm.ProtoModule):
         self.printNicely()
         path = copy.deepcopy(self.getPath_to_Pellet((self.cur_dir, self.pacbot_pos[0], self.pacbot_pos[1])))
         print(f"path:{path}")
+        x = self.pacbot_pos[0]
+        y = self.pacbot_pos[1]
 
-        if path is not None:
+        if(self.cherry and self.ManhattanDist((x,y), (13,13))<float("inf")):
+            path = copy.deepcopy(bfs(self.grid, (self.cur_dir,x,y), (13,13)))
             next_loc = (path[0][1],path[0][2])
-            x = self.pacbot_pos[0]
-            y = self.pacbot_pos[1]
-            # dir = get_direction(next_loc, (x,y)) 
             dir = self.get_direction(next_loc, (x,y))
-            if (x,y) != next_loc:
-                self.talkToSerial(dir, x, y)
-                self._move_if_valid_dir(dir , x, y)
+            
+        elif path is not None:
+            next_loc = (path[0][1],path[0][2])
+            dir = self.get_direction(next_loc, (x,y))
+            
+
+        if (x,y) != next_loc:
+            self.talkToSerial(dir, x, y)
+            self._move_if_valid_dir(dir , x, y)
         
         self.updateGrid()
 
