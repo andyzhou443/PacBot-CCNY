@@ -9,8 +9,8 @@ namespace enc_f
     extern const int WHEEL_RADIUS;
 
     long get_ticks(Encoder& e,float d);
-    double get_speed_inch(Encoder& e, float d);
-    double get_speed_mm(Encoder& e, float d);
+    int get_speed_inch(Encoder& e, float d);
+    int get_speed_mm(Encoder& e, float d);
 } // enc_f namespace
 
 #endif //ENC_FUNC
