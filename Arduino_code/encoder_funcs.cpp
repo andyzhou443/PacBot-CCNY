@@ -1,9 +1,9 @@
 #include "encoder_funcs.hpp"
 #include <Arduino.h>
-#include <numbers>
 namespace enc_f
 {
-    const int PI = numbers::pi_v;
+    // Teensy has its own version of pi in its libraries.
+    // const int PI = numbers::pi_v;
     /**
      * @brief Get ticks elapsed from an encoder read
      * 
@@ -28,7 +28,7 @@ namespace enc_f
     int get_speed_inch(Encoder& e, int d = 50)
     {
         long ticks = get_ticks(e,d);
-        int speed = floor( ((float) ticks / delay) * (float) (25/3) * 1.49606 * PI);
+        int speed = floor( ((float) ticks / d) * (float) (25/3) * 1.49606 * PI);
         return speed;
     }
 
@@ -42,7 +42,7 @@ namespace enc_f
     int get_speed_mm(Encoder& e, int d = 50)
     {
         long ticks = get_ticks(e,d);
-        int speed = floor( ((float) ticks / delay) * (float) (25/3) * 38.0 * PI);
+        int speed = floor( ((float) ticks / d) * (float) (25/3) * 38.0 * PI);
         return speed;
     }
 
