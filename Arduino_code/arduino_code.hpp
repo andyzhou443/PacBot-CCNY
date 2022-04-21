@@ -6,6 +6,7 @@
 
 #include "motor.hpp"
 #include "encoder_funcs.hpp"
+#include "motor_coordinator.hpp"
 
 
 // Pin mappings
