@@ -1,7 +1,9 @@
 #include "encoder_funcs.hpp"
 #include <Arduino.h>
+#include <numbers>
 namespace enc_f
 {
+    const int PI = numbers::pi_v;
     /**
      * @brief Get ticks elapsed from an encoder read
      * 
@@ -9,7 +11,7 @@ namespace enc_f
      * @param d Time to read encoder
      * @return long number of ticks per CPU cycle
      */
-    long get_ticks(Encoder& e,float d = 0.0)
+    long get_ticks(Encoder& e, int d = 0)
     {
         e.write(0);
         delay(d);
@@ -23,10 +25,11 @@ namespace enc_f
      * @param d Time to read encoder
      * @return float 
      */
-    double get_speed_inch(Encoder& e, float d = 0.0)
+    int get_speed_inch(Encoder& e, int d = 50)
     {
         long ticks = get_ticks(e,d);
-        return 0; // TODO: Figure out the conversion formula
+        int speed = floor( ((float) ticks / delay) * (float) (25/3) * 1.49606 * PI);
+        return speed;
     }
 
     /**
@@ -36,10 +39,11 @@ namespace enc_f
      * @param d Time to read encoder
      * @return float 
      */
-    double get_speed_mm(Encoder& e, float d = 0.0)
+    int get_speed_mm(Encoder& e, int d = 50)
     {
         long ticks = get_ticks(e,d);
-        return 0; // TODO: Figure out conversion formula
+        int speed = floor( ((float) ticks / delay) * (float) (25/3) * 38.0 * PI);
+        return speed;
     }
 
 } // enc_f namespace
