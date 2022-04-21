@@ -214,6 +214,7 @@ class HighLevel(rm.ProtoModule):
         # print(to_Serial)
         # ser.write(to_Serial)     # write a string
         # ser.close()       # close port
+    
     def printNicely(self):
         sys.stdout.write("\033[F") #back to previous line
         sys.stdout.write("\033[K")

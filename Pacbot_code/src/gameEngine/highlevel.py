@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+from base64 import encode
 from cmath import sqrt
 import logging
 from netrc import netrc
@@ -21,22 +22,10 @@ POWER_PELLET_WEIGHT = 0.15
 GHOST_WEIGHT = 0.35
 FRIGENED_GHOST_WEIGHT = GHOST_WEIGHT**2
 
-
-# while(i<len(path)):
-#     print(path[i][-1])
-#     i+=1
-
-
-
-
-
 SPEED = 2.0
 FREQUENCY = SPEED * game_frequency 
 
-# file = open("road.txt", "r")
-# i = 0 
-# lines= file.read()
-# path = ast.literal_eval(lines)
+
 
 class HighLevel(rm.ProtoModule):
     def __init__(self, addr, port):
@@ -58,6 +47,7 @@ class HighLevel(rm.ProtoModule):
         self.grid = copy.deepcopy(grid)
         self.path = None
         self.ghost_states = []
+        self.isClose = False
         # self.p_queue.put((0, [self.cur_dir, self.pacbot_pos[0], self.pacbot_pos[1]]))      
         
 
@@ -120,10 +110,11 @@ class HighLevel(rm.ProtoModule):
         else:
             return False
 
-    def getPath_to_powerPellet(self, starting):
+    def getPathToPowerPellet(self, starting):
         self.i = 0
         return bfs(self.grid,starting, [O])
-    def getPath_to_Pellet(self, starting):
+    
+    def getPathToPellet(self, starting):
         self.i = 0
         return bfs(self.grid,starting, [o,O])
 
@@ -138,16 +129,16 @@ class HighLevel(rm.ProtoModule):
                 heuristics.append(None)
                 continue
             else: 
-                dir = self.get_direction(target,(x,y))
+                dir = self.getDirection(target,(x,y))
                 # pellet_dist = len(self.getPath_to_Pellet((dir, target[0], target[1])))
                 # powerP_dist = len(self.getPath_to_powerPellet((dir, target[0], target[1])))
                 # pellet_heuristic = pellet_dist*PELLET_WEIGHT
                 # powerP_heuristic = powerP_dist * POWER_PELLET_WEIGHT
-                pellet_path = self.getPath_to_Pellet((dir, x, y))
+                pellet_path = self.getPathToPellet((dir, x, y))
                 pellet_dist = pellet_path
                 pellet_heuristic = pellet_dist * PELLET_WEIGHT
                 
-                power_path = self.getPath_to_powerPellet((dir, x, y))
+                power_path = self.getPathToPowerPellet((dir, x, y))
                 power_dist = power_path
                 power_heuristic = power_dist * POWER_PELLET_WEIGHT
                 print("dist",pellet_heuristic+power_heuristic)
@@ -216,29 +207,27 @@ class HighLevel(rm.ProtoModule):
 
 
           
-    def getPath_To_Ghost(self, starting, original_path):
-        print("quick hurry ghosts are running!")
-        red_ghost_pos = [self.state.red_ghost.direction, self.state.red_ghost.x, self.state.red_ghost.y]
-        res = bfs(self.grid, starting, (red_ghost_pos[1], red_ghost_pos[2]), 25)
-        path_red = original_path if (res is None) else copy.deepcopy(res)
+    def isNearbyGhost(self, location):
+        keys = {}
+        ghost_red = self.ManhattanDist(location, (self.state.red_ghost.x, self.state.red_ghost.y))
+        red_ghost_state = 0 if self.state.red_ghost.frightened_counter == 0 else 1
+        keys[ghost_red] = (red, red_ghost_state, (self.state.red_ghost.x, self.state.red_ghost.y))
         
-        blue_ghost_pos = [self.state.blue_ghost.direction, self.state.blue_ghost.x, self.state.blue_ghost.y]
-        res = bfs(self.grid, starting, (blue_ghost_pos[1], blue_ghost_pos[2]), 25)
-        path_blue = original_path if (res is None) else copy.deepcopy(res)
+        ghost_pink = self.ManhattanDist(location, (self.state.pink_ghost.x, self.state.pink_ghost.y))
+        pink_ghost_state = 0 if self.state.pink_ghost.frightened_counter == 0 else 1
+        keys[ghost_pink] = (pink, pink_ghost_state, (self.state.pink_ghost.x, self.state.pink_ghost.y))
         
-        pink_ghost_pos = [self.state.pink_ghost.direction, self.state.pink_ghost.x, self.state.pink_ghost.y]
-        res = bfs(self.grid, starting, (pink_ghost_pos[1], pink_ghost_pos[2]), 25)
-        path_pink = original_path if (res is None) else copy.deepcopy(res)
+        ghost_blue = self.ManhattanDist(location, (self.state.blue_ghost.x, self.state.blue_ghost.y))   
+        blue_ghost_state = 0 if self.state.blue_ghost.frightened_counter == 0 else 1
+        keys[ghost_blue] = (blue, blue_ghost_state, (self.state.blue_ghost.x, self.state.blue_ghost.y))
         
-        orange_ghost_pos = [self.state.orange_ghost.direction, self.state.orange_ghost.x, self.state.orange_ghost.y]
-        res = bfs(self.grid, starting, (orange_ghost_pos[1], orange_ghost_pos[2]), 25)
-        path_orange = original_path if (res is None) else copy.deepcopy(res)
-        # print(red_ghost_pos)
-    
+        ghost_orange = self.ManhattanDist(location, (self.state.orange_ghost.x, self.state.orange_ghost.y))
+        orange_ghost_state = 0 if self.state.blue_ghost.frightened_counter == 0 else 1
+        keys[ghost_orange] = (orange, orange_ghost_state, (self.state.orange_ghost.x, self.state.orange_ghost.y))
         
-        self.path = copy.deepcopy(min(path_red, path_blue, path_pink, path_orange, key = len))
-        self.i = 0        
-        return [path_red, path_blue, path_pink, path_orange]
+        shortest_dist = min(ghost_red, ghost_pink, ghost_blue, ghost_orange)
+        self.isClose = True if (shortest_dist < 6) else False
+        return keys[shortest_dist]
     
     
     def ghostsStates(self):
@@ -250,6 +239,28 @@ class HighLevel(rm.ProtoModule):
         self.ghost_states = [red_ghost_state, blue_ghost_state, pink_ghost_state, orange_ghost_state]
         return 1 in self.ghost_states
     
+    def avoidGhost(self, location, ghostdetails):
+        if ghostdetails[0] == red:
+            direction = self.state.red_ghost.direction
+            x = self.state.red_ghost.x
+            y = self.state.red_ghost.y
+        
+        elif ghostdetails[0] == orange:
+            direction = self.state.orange_ghost.direction
+            x = self.state.orange_ghost.x
+            y = self.state.orange_ghost.y
+
+        elif ghostdetails[0] == blue:
+            direction = self.state.blue_ghost.direction
+            x = self.state.blue_ghost.x
+            y = self.state.blue_ghost.y
+
+        else:
+            direction = self.state.pink_ghost.direction
+            x = self.state.pink_ghost.x
+            y = self.state.pink_ghost.y
+
+
     def ManhattanDist(self, pointA, pointB):
         return abs(pointB[0] - pointA[0]) + abs(pointB[1] - pointA[1])
 
@@ -257,18 +268,20 @@ class HighLevel(rm.ProtoModule):
     # to talk via the serial port from rpi to mcu
     def talkToSerial(self, dir, x, y):
         to_Serial = str(dir) + "X" + "{0:0=2d}".format(x) + "Y" + "{0:0=2d}".format(y) # string format for instructions
+        to_Serial = to_Serial.encode()
         # ser = serial.Serial('/dev/ttyUSB0')  # open serial port
         # print(ser.name)         # check which port was really used
-        # print(to_Serial)
+        print(to_Serial)
         # ser.write(to_Serial)     # write a string
         # ser.close()       # close port
+    
     def printNicely(self):
         sys.stdout.write("\033[F") #back to previous line
         sys.stdout.write("\033[K")
         print("\n"*5)
     
 
-    def get_direction(self, next_loc, prev_loc):
+    def getDirection(self, next_loc, prev_loc):
     #computes direction based on current position and new position
         direction = -1  
         if next_loc[1] == prev_loc[1]:
@@ -288,7 +301,7 @@ class HighLevel(rm.ProtoModule):
 
     def gameRun(self):
         self.printNicely()
-        path = copy.deepcopy(self.getPath_to_Pellet((self.cur_dir, self.pacbot_pos[0], self.pacbot_pos[1])))
+        path = copy.deepcopy(self.getPathToPellet((self.cur_dir, self.pacbot_pos[0], self.pacbot_pos[1])))
         print(f"path:{path}")
         x = self.pacbot_pos[0]
         y = self.pacbot_pos[1]
@@ -296,13 +309,31 @@ class HighLevel(rm.ProtoModule):
         if(self.cherry and self.ManhattanDist((x,y), (13,13))<float("inf")):
             path = copy.deepcopy(bfs(self.grid, (self.cur_dir,x,y), (13,13)))
             next_loc = (path[0][1],path[0][2])
-            dir = self.get_direction(next_loc, (x,y))
-            
+            dir = self.getDirection(next_loc, (x,y))
+
+        
+        ghost = self.isNearbyGhost((x, y))
+        ghost_state, ghost_x, ghost_y = ghost[1], ghost[2][0], ghost[2][1]
+        print("close to ghost: ", self.isClose, "ghost: ", ghost)
+        # if we are near a ghost
+        if(self.isClose):
+            print("chase or be chased")
+            # ghost is scared
+            if(ghost_state):
+                path = copy.deepcopy(bfs(self.grid, (self.cur_dir,x,y), (ghost_x,ghost_y)))
+                next_loc = (path[0][1],path[0][2])
+                dir = self.getDirection(next_loc, (x,y))
+            # we are scared
+            else:
+                to_Go = self.avoidGhost((x,y), ghost)
+                
+        
+        
         elif path is not None:
             next_loc = (path[0][1],path[0][2])
-            dir = self.get_direction(next_loc, (x,y))
+            dir = self.getDirection(next_loc, (x,y))
             
-
+        
         if (x,y) != next_loc:
             self.talkToSerial(dir, x, y)
             self._move_if_valid_dir(dir , x, y)
@@ -310,46 +341,7 @@ class HighLevel(rm.ProtoModule):
         self.updateGrid()
 
 
-        # if self.path is None:
-        #     print("new path")
-        #     self.path = copy.deepcopy(self.getPath_to_powerPellet((self.cur_dir, self.pacbot_pos[0], self.pacbot_pos[1])))
 
-        #     print(self.path)
-        #     # self.i=1
-        # elif(self.path is not None):
-        #     # print(self.path[self.i])
-        #     # print("state: {}".format(self.cherry))
-
-        #     # self.path = copy.deepcopy(self.getPath_to_powerPellet((self.cur_dir, self.pacbot_pos[0], self.pacbot_pos[1])))
-        #     dir = self.path[self.i][0]
-        #     x = self.pacbot_pos[0]
-        #     y = self.pacbot_pos[1]
-        #     if(self.cherry and self.ManhattanDist((x,y), (13,13))<float("inf")):
-        #         self.path = copy.deepcopy(bfs(self.grid, (dir,x,y), (13,13)))
-        #         self.i = 1
-        #         dir = self.path[self.i][0]
-        #         x = self.pacbot_pos[0]
-        #         y = self.pacbot_pos[1]
-        #     # if self._check_if_valid_dir(dir, x, y):
-        #     self.talkToSerial(dir, x, y)
-        #     if self._check_if_valid_dir(dir, x, y):
-        #         self._move_if_valid_dir(dir , x, y)
-        #         self.updateGrid()
-        #     # else:
-        #     #     self._move_if_valid_dir(self.cur_dir, x,y)
-
-        #     self.i+=1
-            
-
-        #     if(self.ghost_states): # 1 if they are scared
-        #         self.hunting = 1 
-        #         self.getPath_To_Ghost((dir, x, y), self.path)
-            
-        #     if(self.i >= len(self.path)):
-        #         # if self._check_if_valid_dir(self.cur_dir, x, y):
-        #             # self._move_if_valid_dir(self.cur_dir, x,y)
-        #         self.path = None
-        #     #     # return '''      
 
          
 
