@@ -1,6 +1,8 @@
 from collections import deque
 import copy
+from importlib.resources import path
 import grid
+from math import floor
 # Direction enums
 right = 0
 left = 1
@@ -53,66 +55,58 @@ f.write(str(grid).replace('],','],\n'))
 f.close() 
 
 def bfs(grid, start, target, max_dist=float('inf')):
+    min_length = 9999
+    shortest_path = []
     visited = set()
-    # in queue current node-ish and the path leading to it
     queue = [(start, [])]
-    # print(f"current: {start}\ntarget: {target}")
     loc = (start[1], start[2])
+
     while len(queue) != 0:
-        # 
         next = queue.pop(0)
-        # print(f"next: {next}")
         # add the current node to the visited set
         visited.add(next[0][1:])
         # grid[next[0][1]][next[0][2]] = e
-        grid[loc[0]][loc[1]] = e
-        # f = open("aftergrid.txt", "w")
-        # f.write(str(grid).replace('],','],\n'))
-        # f.close() 
-        # print(f"visited: {visited}")
         # copy the path that lead to our current location
         new_path = copy.deepcopy(next[1])
-        # print(f"new path: {new_path}")
         # append the current node to it
         new_path.append(next[0])
         # update the location
         loc = next[0][1:]
-        # print(f"loc: {loc}")
+        # grid[loc[0]][loc[1]] = e
+        loc_value = grid[loc[0]][loc[1]]
+        print(f"loc:{loc}")
+        print(f"new_Path:{new_path}")
+        print(f"path_length:{len(new_path)}\tmin_length:{min_length}")
+        print(f"grid:{loc_value} \t{target}\t e:{e} ")
+
         # if we are at the tuple, which denotes the end point
-        if type(target) is tuple:
+        if type(target) is tuple and len(new_path) <= min_length:
             if target == loc:
+                shortest_path = copy.deepcopy(new_path)
+                print(new_path)
                 return new_path
         # if we are looking just for a certain point(like a power pellets) ?
-        elif grid[loc[0]][loc[1]] in target:
-            grid[loc[0]][loc[1]] = e
-            return new_path
+        elif (loc_value in target) and (len(new_path) <= min_length) and (len(new_path) > 0):
+            print(f"path length: {len(new_path)}")
+            # grid[loc[0]][loc[1]] = e
+            min_length = len(new_path)
+            shortest_path = copy.deepcopy(new_path)
+            # return new_path
         
         # for each neighbor we append, add the path that leads to it
-        if grid[loc[0] + 1][loc[1]] in [o, e, O] and (loc[0] + 1, loc[1]) not in visited and len(new_path) <= max_dist:
+        if grid[loc[0] + 1][loc[1]] not in [I, n] and (loc[0] + 1, loc[1]) not in visited and len(new_path) <= max_dist:
             queue.append(((right ,loc[0] + 1, loc[1]),new_path))
-        if grid[loc[0] - 1][loc[1]] in [o, e, O] and (loc[0] - 1, loc[1]) not in visited and len(new_path) <= max_dist:
+        if grid[loc[0] - 1][loc[1]] not in [I, n] and (loc[0] - 1, loc[1]) not in visited and len(new_path) <= max_dist:
             queue.append(((left, loc[0] - 1, loc[1]),new_path))
-        if grid[loc[0]][loc[1] + 1] in [o, e, O] and (loc[0], loc[1] + 1) not in visited and len(new_path) <= max_dist:
+        if grid[loc[0]][loc[1] + 1] not in [I, n] and (loc[0], loc[1] + 1) not in visited and len(new_path) <= max_dist:
             queue.append(((up, loc[0], loc[1] + 1),new_path))
-        if grid[loc[0]][loc[1] - 1] in [o, e, O] and (loc[0], loc[1] - 1) not in visited and len(new_path) <= max_dist:
+        if grid[loc[0]][loc[1] - 1] not in [I, n] and (loc[0], loc[1] - 1) not in visited and len(new_path) <= max_dist:
             queue.append(((down, loc[0], loc[1] - 1),new_path))
-    return None
+
+    if len(shortest_path) >= 1:
+        return shortest_path[1:]
+    else: 
+        print(f"start {start}\t target: {target}")
+        return None
 
 
-# start = (down,26, 7)
-# # target = [O]
-# target = (6,25)
-# result = bfs(grid, start, target)
-# print(f"path = {result}")
-# # start = result[-1]
-# result  = bfs(grid, start, target)
-# print(f"path = {result}")
-# start = result[-1]
-# result  = bfs(grid, start, target)
-# print(f"path = {result}")
-# start = result[-1]
-# result  = bfs(grid, start, target)
-# print(f"path = {result}")
-# start = result[-1]
-# result  = bfs(grid, start, target)
-# print(f"path = {result}")

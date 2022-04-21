@@ -30,7 +30,7 @@ FRIGENED_GHOST_WEIGHT = GHOST_WEIGHT**2
 
 
 
-SPEED = 1.0
+SPEED = 2.0
 FREQUENCY = SPEED * game_frequency 
 
 # file = open("road.txt", "r")
@@ -125,8 +125,58 @@ class HighLevel(rm.ProtoModule):
         return bfs(self.grid,starting, [O])
     def getPath_to_Pellet(self, starting):
         self.i = 0
-        return bfs(self.grid,starting, [o])
-        # return
+        return bfs(self.grid,starting, [o,O])
+
+    def get_move(self):
+        x = self.pacbot_pos[0]
+        y = self.pacbot_pos[1]
+        #self, left, right, down, up
+        targets = [(x-1, y), (x+1, y), (x, y-1), (x, y+1)]
+        heuristics = []
+        for target in targets: 
+            if(self.grid[target[0]][target[1]] in [I, n]):
+                heuristics.append(None)
+                continue
+            else: 
+                dir = self.get_direction(target,(x,y))
+                # pellet_dist = len(self.getPath_to_Pellet((dir, target[0], target[1])))
+                # powerP_dist = len(self.getPath_to_powerPellet((dir, target[0], target[1])))
+                # pellet_heuristic = pellet_dist*PELLET_WEIGHT
+                # powerP_heuristic = powerP_dist * POWER_PELLET_WEIGHT
+                pellet_path = self.getPath_to_Pellet((dir, x, y))
+                pellet_dist = pellet_path
+                pellet_heuristic = pellet_dist * PELLET_WEIGHT
+                
+                power_path = self.getPath_to_powerPellet((dir, x, y))
+                power_dist = power_path
+                power_heuristic = power_dist * POWER_PELLET_WEIGHT
+                print("dist",pellet_heuristic+power_heuristic)
+                heuristics.append(pellet_heuristic+power_heuristic)
+        
+        min_heuristic = float('inf')
+        min_target = (0,0)
+        for i in range(len(heuristics)):
+            if heuristics[i]!=None and (heuristics[i]<= min_heuristic):
+                min_heuristic = heuristics[i]
+                min_target = targets[i]
+        
+        return min_target 
+        # neighbors = getNeighbors((self.pacbot_pos[0], self.pacbot_pos[1]))
+        # ghosts_path = self.getPath_To_Ghost((self.cur_dir,self.pacbot_pos[0], self.pacbot_pos[1]),self.path)
+        # min_ghost_dist = float('inf')
+
+        # ghost_heuristic = 0
+        # for i in range(len(ghosts_path)):
+        #     if min_ghost_dist > len(ghosts_path[i]):
+        #         min_ghost_dist = len(ghosts_path[i])
+        #         min_ghost_path = ghosts_path
+                
+        # if DANGER > min_ghost_dist:
+        #     if self.ghostsStates() == 1:    #ghost is scared
+        #         return min_ghost_path
+        #     else: 
+        #         ghost_heuristic += pow((DANGER - min_ghost_dist[1]), 2) * GHOST_WEIGHT
+    
 
     def get_heuristic(self):
 
@@ -155,57 +205,6 @@ class HighLevel(rm.ProtoModule):
         
         return pellet_heuristic + power_heuristic + ghost_heuristic 
 
-    def get_move(self):
-        x = self.pacbot_pos[0]
-        y = self.pacbot_pos[1]
-        #self, left, right, down, up
-        targets = [(x-1, y), (x+1, y), (x, y-1), (x, y+1)]
-        heuristics = []
-        for target in targets: 
-            if(self.grid[target[0]][target[1]] in [I, n]):
-                heuristics.append(None)
-                continue
-            else: 
-                dir = self.get_direction(target,(x,y))
-                # pellet_dist = len(self.getPath_to_Pellet((dir, target[0], target[1])))
-                # powerP_dist = len(self.getPath_to_powerPellet((dir, target[0], target[1])))
-                # pellet_heuristic = pellet_dist*PELLET_WEIGHT
-                # powerP_heuristic = powerP_dist * POWER_PELLET_WEIGHT
-                pellet_path = self.getPath_to_Pellet((dir, x, y))
-                pellet_dist = len(pellet_path)
-                pellet_heuristic = pellet_dist * PELLET_WEIGHT
-                
-                power_path = self.getPath_to_powerPellet((dir, x, y))
-                power_dist = len(power_path)
-                power_heuristic = power_dist * POWER_PELLET_WEIGHT
-                print("dist",pellet_heuristic+power_heuristic)
-                heuristics.append(pellet_heuristic+power_heuristic)
-        
-        min_heuristic = float('inf')
-        min_target = (0,0)
-        for i in range(len(heuristics)):
-            if heuristics[i]!=None and (heuristics[i]<= min_heuristic):
-                min_heuristic = heuristics[i]
-                min_target = targets[i]
-        
-        return min_target
-
-
-    def get_direction(self, next_loc, prev_loc):
-    #computes direction based on current position and new position
-        direction = -1  
-        if next_loc[1] == prev_loc[1]:
-            if next_loc[0] > prev_loc[0]:
-                direction = right
-            elif next_loc[0] < prev_loc[0]:
-                direction = left
-        elif next_loc[0] == prev_loc[0]:
-            if next_loc[1] > prev_loc[1]:
-                direction = up
-            elif next_loc[1] < prev_loc[1]:
-                direction = down
-        print('direction', direction)
-        return direction
 
     def updateGrid(self):
              # updates grid if pellet is ate 
@@ -269,55 +268,84 @@ class HighLevel(rm.ProtoModule):
         print("\n"*5)
     
 
+    def get_direction(self, next_loc, prev_loc):
+    #computes direction based on current position and new position
+        direction = -1  
+        if next_loc[1] == prev_loc[1]:
+            if next_loc[0] > prev_loc[0]:
+                direction = right
+            elif next_loc[0] < prev_loc[0]:
+                direction = left
+        elif next_loc[0] == prev_loc[0]:
+            if next_loc[1] > prev_loc[1]:
+                direction = up
+            elif next_loc[1] < prev_loc[1]:
+                direction = down
+        print('direction', direction)
+        
+        return direction
+
 
     def gameRun(self):
-        self.get_move()
         self.printNicely()
-        if self.path is None:
-            print("new path")
-            self.path = copy.deepcopy(self.getPath_to_powerPellet((self.cur_dir, self.pacbot_pos[0], self.pacbot_pos[1])))
+        path = copy.deepcopy(self.getPath_to_Pellet((self.cur_dir, self.pacbot_pos[0], self.pacbot_pos[1])))
+        print(f"path:{path}")
 
-            print(self.path)
-            self.i=1
-        elif(self.path is not None):
-            # print(self.path[self.i])
-            # print("state: {}".format(self.cherry))
-
-            # self.path = copy.deepcopy(self.getPath_to_powerPellet((self.cur_dir, self.pacbot_pos[0], self.pacbot_pos[1])))
-            dir = self.path[self.i][0]
+        if path is not None:
+            next_loc = (path[0][1],path[0][2])
             x = self.pacbot_pos[0]
             y = self.pacbot_pos[1]
-            if(self.cherry and self.ManhattanDist((x,y), (13,13))<float("inf")):
-                self.path = copy.deepcopy(bfs(self.grid, (dir,x,y), (13,13)))
-                self.i = 1
-                dir = self.path[self.i][0]
-                x = self.pacbot_pos[0]
-                y = self.pacbot_pos[1]
+            # dir = get_direction(next_loc, (x,y)) 
+            dir = self.get_direction(next_loc, (x,y))
+            if (x,y) != next_loc:
+                self.talkToSerial(dir, x, y)
+                self._move_if_valid_dir(dir , x, y)
+        
+        self.updateGrid()
+
+
+        # if self.path is None:
+        #     print("new path")
+        #     self.path = copy.deepcopy(self.getPath_to_powerPellet((self.cur_dir, self.pacbot_pos[0], self.pacbot_pos[1])))
+
+        #     print(self.path)
+        #     # self.i=1
+        # elif(self.path is not None):
+        #     # print(self.path[self.i])
+        #     # print("state: {}".format(self.cherry))
+
+        #     # self.path = copy.deepcopy(self.getPath_to_powerPellet((self.cur_dir, self.pacbot_pos[0], self.pacbot_pos[1])))
+        #     dir = self.path[self.i][0]
+        #     x = self.pacbot_pos[0]
+        #     y = self.pacbot_pos[1]
+        #     if(self.cherry and self.ManhattanDist((x,y), (13,13))<float("inf")):
+        #         self.path = copy.deepcopy(bfs(self.grid, (dir,x,y), (13,13)))
+        #         self.i = 1
+        #         dir = self.path[self.i][0]
+        #         x = self.pacbot_pos[0]
+        #         y = self.pacbot_pos[1]
+        #     # if self._check_if_valid_dir(dir, x, y):
+        #     self.talkToSerial(dir, x, y)
+        #     if self._check_if_valid_dir(dir, x, y):
+        #         self._move_if_valid_dir(dir , x, y)
+        #         self.updateGrid()
+        #     # else:
+        #     #     self._move_if_valid_dir(self.cur_dir, x,y)
+
+        #     self.i+=1
             
-            # if self._check_if_valid_dir(dir, x, y):
-            self.talkToSerial(dir, x, y)
-            self._move_if_valid_dir(dir , x, y)
-            self.updateGrid()
-            # else:
-            #     self._move_if_valid_dir(self.cur_dir, x,y)
 
-            self.i+=1
+        #     if(self.ghost_states): # 1 if they are scared
+        #         self.hunting = 1 
+        #         self.getPath_To_Ghost((dir, x, y), self.path)
             
+        #     if(self.i >= len(self.path)):
+        #         # if self._check_if_valid_dir(self.cur_dir, x, y):
+        #             # self._move_if_valid_dir(self.cur_dir, x,y)
+        #         self.path = None
+        #     #     # return '''      
 
-            # if(self.ghost_states): # 1 if they are scared
-                # self.hunting = 1 
-                # self.getPath_To_Ghost((dir, x, y), self.path)
-            
-            if(self.i >= len(self.path)):
-                # if self._check_if_valid_dir(self.cur_dir, x, y):
-                    # self._move_if_valid_dir(self.cur_dir, x,y)
-                self.path = None
-            #     # return
-    # def 
-             
-
-
-           
+         
 
         
 
