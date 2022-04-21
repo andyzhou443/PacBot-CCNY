@@ -99,7 +99,7 @@ class InputModule(rm.ProtoModule):
             # if not self._move_if_valid_dir(self.next_dir, self.pacbot_pos[0], self.pacbot_pos[1]):
                 # self._move_if_valid_dir(self.cur_dir, self.pacbot_pos[0], self.pacbot_pos[1])
                 # self.dfs()
-                # self.a_star()
+                self.a_star()
                 print(grid[goal[0]][goal[1]])
                 # if self.goalFound == True and goal not in [o, O]:
                 #     self.bfs((self.pacbot_pos[0], self.pacbot_pos[1]))
