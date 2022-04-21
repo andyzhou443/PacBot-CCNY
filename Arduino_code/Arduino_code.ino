@@ -106,6 +106,58 @@ void loop() {
             m1.halt(); m2.halt(); m3.halt(); m4.halt();
             return;
         }
-        
+
+        else if (strcmp(command_buffer,"E0") == 0)
+        {
+            Serial.write("E0 Encoder 1 TEST: ");
+            for(int i = 0; i < 10; i++)
+            {
+                Serial.print(enc_f::get_ticks(enc1,500));
+                Serial.write(' ');
+                Serial.print(enc_f::get_speed_mm(enc1,500));
+                Serial.write(' ');
+                Serial.print(enc_f::get_speed_inch(enc1,500));
+            }
+                Serial.write("\nDONE\n");
+        }
+        else if (strcmp(command_buffer,"E1") == 0)
+        {
+            Serial.write("E1 Encoder 2 TEST: ");
+            for(int i = 0; i < 10; i++)
+            {
+                Serial.print(enc_f::get_ticks(enc2,500));
+                Serial.write(' ');
+                Serial.print(enc_f::get_speed_mm(enc2,500));
+                Serial.write(' ');
+                Serial.print(enc_f::get_speed_inch(enc2,500));
+            }
+                Serial.write("\nDONE\n");
+        }
+        else if (strcmp(command_buffer,"E2") == 0)
+        {
+            Serial.write("E2 Encoder 3 TEST: ");
+            for(int i = 0; i < 10; i++)
+            {
+                Serial.print(enc_f::get_ticks(enc3,500));
+                Serial.write(' ');
+                Serial.print(enc_f::get_speed_mm(enc3,500));
+                Serial.write(' ');
+                Serial.print(enc_f::get_speed_inch(enc3,500));
+            }
+                Serial.write("\nDONE\n");
+        }
+        else if (strcmp(command_buffer,"E3") == 0)
+        {
+            Serial.write("E0 Encoder 4 TEST: ");
+            {
+            for(int i = 0; i < 10; i++)
+                Serial.print(enc_f::get_ticks(enc4,500));
+                Serial.write(' ');
+                Serial.print(enc_f::get_speed_mm(enc4,500));
+                Serial.write(' ');
+                Serial.print(enc_f::get_speed_inch(enc4,500));
+            }
+                Serial.write("\nDONE\n");
+        }
     }
 }
