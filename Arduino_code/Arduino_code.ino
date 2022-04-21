@@ -1,4 +1,5 @@
 #include "arduino_code.hpp"
+#include <Encoder.h>
 
 // Setup interfacing objects
 Motor m1(motor_1a,motor_1b);
@@ -158,6 +159,16 @@ void loop() {
                 Serial.print(enc_f::get_speed_inch(enc4,500));
             }
                 Serial.write("\nDONE\n");
+        }
+
+        else if(strcmp(command_buffer,"M0") == 0)
+        {
+            Serial.write("M COORD TEST 1\n");
+            for(int i = 0; i < 45; i++)
+            {
+                m_coord::set_angle(m1, m2, m3, m4, 100,i);
+                delay(1000);
+            }
         }
     }
 }
