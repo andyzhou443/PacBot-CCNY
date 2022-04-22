@@ -12,7 +12,7 @@ from pacbot.grid import *
 from collections import deque
 from queue import PriorityQueue, Queue
 from bfs import bfs
-from helper_functions import *
+from helperfunctions import *
 import copy
 import serial
 
@@ -95,13 +95,19 @@ class HighLevel(rm.ProtoModule):
             self.light_state = msg
             self.cherry = self.light_state.cherry
 
-    
-
     def tick(self):
         # this function will get called in a loop with FREQUENCY frequency
 
         if self.state and self.state.mode != PacmanState.PAUSED:
                 self.gameRun()
+        if self.state.mode == PacmanState.PAUSED:
+            stop_signal = "S".encode() # string format for instructions
+            
+            # ser = serial.Serial('/dev/ttyUSB0')  # open serial port
+            # print(ser.name)         # check which port was really used
+            print(stop_signal)
+            # ser.write(to_Serial)     # write a string
+            # ser.close()       # close port
         pos_buf = PacmanState.AgentState()
         # fil.close()
         pos_buf.x = self.pacbot_pos[0]
@@ -265,6 +271,7 @@ class HighLevel(rm.ProtoModule):
     # to talk via the serial port from rpi to mcu
     def talkToSerial(self, dir, x, y):
         to_Serial = str(dir) + "X" + "{0:0=2d}".format(x) + "Y" + "{0:0=2d}".format(y) # string format for instructions
+        to_Serial = to_Serial.encode()
         # ser = serial.Serial('/dev/ttyUSB0')  # open serial port
         # print(ser.name)         # check which port was really used
         # print(to_Serial)
