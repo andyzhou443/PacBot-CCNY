@@ -1,5 +1,7 @@
 #include "arduino_code.hpp"
 #include <Encoder.h>
+#include <Adafruit_Sensor.h>
+#include <Adafruit_BNO055.h>
 
 // Setup interfacing objects
 Motor m1(motor_1a,motor_1b);
@@ -13,11 +15,21 @@ Encoder enc2(enc_2a,enc_2b);
 Encoder enc3(enc_3a,enc_3b);
 Encoder enc4(enc_4a,enc_4b);
 
+//create IMU object
+Adafruit_BNO055 IMU = Adafruit_BNO055(); 
+
 void setup() {
     // put your setup code here, to run once:
 
     // Setup serial port
     Serial.begin(115200);
+
+    //Setup for IMU
+    if(!IMU.begin()){
+        Serial.print("IMU not detected");
+    }
+    delay(1000);
+    IMU.setExtCrystalUse(true);  //uses time reference crystal on board
 
     // Setup pin directions
     pinMode(enc_1a, INPUT); pinMode(enc_1b, INPUT);
