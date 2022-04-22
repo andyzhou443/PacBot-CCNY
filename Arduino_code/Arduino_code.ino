@@ -176,11 +176,16 @@ void loop() {
         else if(strcmp(command_buffer,"M0") == 0)
         {
             Serial.write("M COORD TEST 1\n");
-            for(int i = 0; i < 45; i++)
+            int j = 0;
+            while (j < 20)
             {
-                m_coord::set_angle(m1, m2, m3, m4, 100,i);
-                delay(1000);
-            }
+                for(int i = 0; i <= 360; i+= 10)
+                {
+                    m_coord::set_angle(m1, m2, m3, m4, 100,i,-20);
+                    delay(100);
+                }
+                j++;
+            } 
         }
     }
 }
