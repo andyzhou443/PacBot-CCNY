@@ -328,7 +328,6 @@ class HighLevel(rm.ProtoModule):
                 to_Go = self.avoidGhost((x,y), ghost)
                 
         
-        
         elif path is not None:
             next_loc = (path[0][1],path[0][2])
             dir = self.getDirection(next_loc, (x,y))

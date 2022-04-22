@@ -16,10 +16,10 @@ from helper_functions import *
 import copy
 import serial
 
-DANGER = 7
+DANGER = 10
 PELLET_WEIGHT = 0.65
 POWER_PELLET_WEIGHT = 0.15
-GHOST_WEIGHT = 0.35
+GHOST_WEIGHT = 0.30
 FRIGENED_GHOST_WEIGHT = GHOST_WEIGHT**2
 
 
@@ -225,28 +225,6 @@ class HighLevel(rm.ProtoModule):
         
         return min_dist
 
-    def isNearbyGhost(self, location):
-        keys = {}
-        ghost_red = self.ManhattanDist(location, (self.state.red_ghost.x, self.state.red_ghost.y))
-        red_ghost_state = 0 if self.state.red_ghost.frightened_counter == 0 else 1
-        keys[ghost_red] = (red, red_ghost_state, (self.state.red_ghost.x, self.state.red_ghost.y))
-        
-        ghost_pink = self.ManhattanDist(location, (self.state.pink_ghost.x, self.state.pink_ghost.y))
-        pink_ghost_state = 0 if self.state.pink_ghost.frightened_counter == 0 else 1
-        keys[ghost_pink] = (pink, pink_ghost_state, (self.state.pink_ghost.x, self.state.pink_ghost.y))
-        
-        ghost_blue = self.ManhattanDist(location, (self.state.blue_ghost.x, self.state.blue_ghost.y))   
-        blue_ghost_state = 0 if self.state.blue_ghost.frightened_counter == 0 else 1
-        keys[ghost_blue] = (blue, blue_ghost_state, (self.state.blue_ghost.x, self.state.blue_ghost.y))
-        
-        ghost_orange = self.ManhattanDist(location, (self.state.orange_ghost.x, self.state.orange_ghost.y))
-        orange_ghost_state = 0 if self.state.blue_ghost.frightened_counter == 0 else 1
-        keys[ghost_orange] = (orange, orange_ghost_state, (self.state.orange_ghost.x, self.state.orange_ghost.y))
-        
-        shortest_dist = min(ghost_red, ghost_pink, ghost_blue, ghost_orange)
-        self.isClose = True if (shortest_dist < 6) else False
-        return keys[shortest_dist]
-
     def updateGrid(self):
              # updates grid if pellet is ate 
         x = self.pacbot_pos[0]
@@ -320,7 +298,7 @@ class HighLevel(rm.ProtoModule):
         self.printNicely()
         x = self.pacbot_pos[0]
         y = self.pacbot_pos[1]
-        if(self.cherry and self.ManhattanDist((x,y), (13,13))<float("13")):
+        if(self.cherry and self.ManhattanDist((x,y), (13,13))<float("5")):
             path = copy.deepcopy(bfs(self.grid, (self.cur_dir,x,y), (13,13)))
             next_loc = (path[0][1],path[0][2])
             dir = self.get_direction(next_loc, (x,y))
