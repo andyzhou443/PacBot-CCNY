@@ -99,7 +99,7 @@ class HighLevel(rm.ProtoModule):
             
             # ser = serial.Serial('/dev/ttyUSB0')  # open serial port
             # print(ser.name)         # check which port was really used
-            print(stop_signal)
+            # print(stop_signal)
             # ser.write(to_Serial)     # write a string
             # ser.close()       # close port
         pos_buf = PacmanState.AgentState()
@@ -145,6 +145,7 @@ class HighLevel(rm.ProtoModule):
                 
                 power_heuristic = power_dist * POWER_PELLET_WEIGHT
 
+            
                          
             ghosts_info = self.get_ghostsInfo(target)
             # ghost_dist = self.closest_ghost_dist(ghosts_info)
@@ -154,10 +155,10 @@ class HighLevel(rm.ProtoModule):
             ghostNear_num = 0
             for ghost_dist, counter in ghosts_info.values():
                 if counter <= 1: 
-                    if ghost_dist < DANGER+3:
+                    if ghost_dist < DANGER+1:
                         ghostNear_num += 1
                         #ghosts are not frightened
-                        ghost_heuristic += pow(((DANGER+3) - ghost_dist), 2) * GHOST_WEIGHT    
+                        ghost_heuristic += pow(((DANGER+1) - ghost_dist), 2) * GHOST_WEIGHT    
                 else:
                     frightened_num += 1
                     if ghost_dist < DANGER:
@@ -209,7 +210,7 @@ class HighLevel(rm.ProtoModule):
         orange_ghost_state = 0 if self.state.orange_ghost.frightened_counter == 0 else 1
         keys[orange] = [orange_dist, self.state.orange_ghost.frightened_counter]
         
-
+  
         return keys
         
 
@@ -229,11 +230,19 @@ class HighLevel(rm.ProtoModule):
         if self.grid[x][y] in [o, O]:
             self.grid[x][y] = e
             # print(self.grid[x][y])
+    
+    def ManhattanDist(self, pointA, pointB):
+        if pointB == (13,13):
+            return abs(pointB[0] - pointA[0]) + abs(pointB[1] - pointA[1])
+        if self.grid[pointB[0]][pointB[1]] not in [e, o, O]:
+            return None
+        else:
+            return abs(pointB[0] - pointA[0]) + abs(pointB[1] - pointA[1])
+
 
     # to talk via the serial port from rpi to mcu
     def talkToSerial(self, dir, x, y):
         to_Serial = str(dir) + "X" + "{0:0=2d}".format(x) + "Y" + "{0:0=2d}".format(y) # string format for instructions
-        to_Serial = to_Serial.encode()
         # ser = serial.Serial('/dev/ttyUSB0')  # open serial port
         # print(ser.name)         # check which port was really used
         # print(to_Serial)
@@ -267,7 +276,7 @@ class HighLevel(rm.ProtoModule):
         self.printNicely()
         x = self.pacbot_pos[0]
         y = self.pacbot_pos[1]
-        if(self.cherry and self.ManhattanDist((x,y), (13,13))<float("11")):
+        if(self.cherry and self.ManhattanDist((x,y), (13,13))<float("13")):
             path = copy.deepcopy(bfs(self.grid, (self.cur_dir,x,y), (13,13)))
             next_loc = (path[0][1],path[0][2])
             dir = self.get_direction(next_loc, (x,y))
