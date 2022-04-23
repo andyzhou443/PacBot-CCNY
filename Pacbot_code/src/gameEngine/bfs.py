@@ -74,10 +74,10 @@ def bfs(grid, start, target, max_dist=float('inf')):
         loc = next[0][1:]
         # grid[loc[0]][loc[1]] = e
         loc_value = grid[loc[0]][loc[1]]
-        print(f"loc:{loc}")
-        print(f"new_Path:{new_path}")
-        print(f"path_length:{len(new_path)}\tmin_length:{min_length}")
-        print(f"grid:{loc_value} \t{target}\t e:{e} ")
+        # print(f"loc:{loc}")
+        # print(f"new_Path:{new_path}")
+        # print(f"path_length:{len(new_path)}\tmin_length:{min_length}")
+        # print(f"grid:{loc_value} \t{target}\t e:{e} ")
 
         # if we are at the tuple, which denotes the end point
         if type(target) is tuple and len(new_path) <= min_length:
@@ -86,12 +86,13 @@ def bfs(grid, start, target, max_dist=float('inf')):
                 print(new_path)
                 return new_path[1:]
         # if we are looking just for a certain point(like a power pellets) ?
-        elif (loc_value in target) and (len(new_path) <= min_length) and (len(new_path) > 0):
+        elif (loc_value in target) and (len(new_path) > 0):
+        # elif (loc_value in target) and (len(new_path) <= min_length) and (len(new_path) > 0):
             print(f"path length: {len(new_path)}")
             # grid[loc[0]][loc[1]] = e
             min_length = len(new_path)
             shortest_path = copy.deepcopy(new_path)
-            # return new_path
+            return shortest_path
         
         # for each neighbor we append, add the path that leads to it
         if grid[loc[0] + 1][loc[1]] not in [I, n] and (loc[0] + 1, loc[1]) not in visited and len(new_path) <= max_dist:
