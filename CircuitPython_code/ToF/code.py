@@ -36,7 +36,7 @@ tca = adafruit_tca9548a.TCA9548A(i2c)
 
 # CONTINUE SENSOR SETUP
 # Create sensor instance.
-sensor = None
+sensor = [None] * 5
 sensor[0] = adafruit_vl6180x.VL6180X(tca[0])
 sensor[1] = adafruit_vl6180x.VL6180X(tca[1])
 sensor[2] = adafruit_vl6180x.VL6180X(tca[2])
@@ -48,7 +48,7 @@ sensor[3] = adafruit_vl6180x.VL6180X(tca[3])
 # Main loop prints the range and lux every second:
 while True:
     # Read the range in millimeters and print it.
-    for i in range(4):
+    for i in sensor:
         range_mm = i.range
         print("S{1}: {0}mm".format(range_mm,i))
         # Read the light, note this requires specifying a gain value:
