@@ -1,5 +1,7 @@
 #include <math.h>
 #include "motor_coordinator.hpp"
+#include "TOF.hpp"
+#include <Adafruit_VL6180X.h>
 
 namespace m_coord
 {
@@ -96,27 +98,94 @@ namespace m_coord
     }
 
 
-    int centering_correction(int original_direction)
+    int centering_correction(Adafruit_VL6180X& sensor1, Adafruit_VL6180X& sensor2, Adafruit_VL6180X& sensor3, Adafruit_VL6180X& sensor4, int original_direction)
     {
-        int new_direction;
-        switch (original_direction)
+        const int dist_threshold = 45;
+
+        int new_direction = original_direction;
+        bool tc_north = 0; //t1
+        bool tc_west = 0; //t2
+        bool tc_south = 0; //t3
+        bool tc_east = 0; //t4
+
+        tc_north = (TOF_f::readDistance(sensor1, 1) < dist_threshold);
+        tc_west = (TOF_f::readDistance(sensor2, 2) < dist_threshold);
+        tc_south = (TOF_f::readDistance(sensor3, 3) < dist_threshold);
+        tc_east = (TOF_f::readDistance(sensor4, 4) < dist_threshold);
+
+        
+        /*
+        Serial.print("Sensors: ");
+        Serial.print(too_close_t1);
+        Serial.print(", ");
+        Serial.print(too_close_t2);
+        Serial.print(", ");
+        Serial.print(too_close_t3);
+        Serial.print(", ");
+        Serial.print(too_close_t4);
+        Serial.println(" ");
+        */
+        
+        //north: 0
+        //west: 270
+        //east: 90
+        //south: 180
+
+        //cardinal directions:
+        if(tc_north == 1 && tc_west == 0 && tc_south == 0 && tc_east == 0)
         {
-            case 0:
-                //code
-                break;
-
-            case 90:
-                //code
-                break;
-
-            case 180:
-                //code
-                break;
-            
-            case 270:
-                //code
-                break;
+            new_direction = 180;
         }
+        else if(tc_north == 0 && tc_west == 1 && tc_south == 0 && tc_east == 0)
+        {
+            new_direction = 90;
+        }
+        else if(tc_north == 0 && tc_west == 0 && tc_south == 1 && tc_east == 0)
+        {
+            new_direction = 0;
+        }
+        else if(tc_north == 0 && tc_west == 0 && tc_south == 0 && tc_east == 1)
+        {
+            new_direction = 270;
+        }
+
+        //angle:
+        else if(tc_north == 1 && tc_west == 1 && tc_south == 0 && tc_east == 0)
+        {
+            new_direction = 135;
+        }
+        else if(tc_north == 0 && tc_west == 1 && tc_south == 1 && tc_east == 0)
+        {
+            new_direction = 45;
+        }
+        else if(tc_north == 0 && tc_west == 0 && tc_south == 1 && tc_east == 1)
+        {
+            new_direction = 315;
+        }
+        else if(tc_north == 1 && tc_west == 0 && tc_south == 0 && tc_east == 1)
+        {
+            new_direction = 225;
+        }
+
+        //3 sensors triggered:
+        else if(tc_north == 0 && tc_west == 1 && tc_south == 1 && tc_east == 1)
+        {
+            new_direction = 0;
+        }
+        else if(tc_north == 1 && tc_west == 0 && tc_south == 1 && tc_east == 1)
+        {
+            new_direction = 270;
+        }
+        else if(tc_north == 1 && tc_west == 1 && tc_south == 0 && tc_east == 1)
+        {
+            new_direction = 180;
+        }
+        else if(tc_north == 1 && tc_west == 1 && tc_south == 1 && tc_east == 0)
+        {
+            new_direction = 90;
+        }
+
+        return new_direction;
         
     }
 

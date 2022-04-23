@@ -284,48 +284,24 @@ void loop() {
                 Serial.println(" ");
                 delay(1000);
             }
-            // mux_h::tcaselect(1);
-            // int range = tof1.readRangeStatus();
-            // Serial.println(range);
-            // {
-            //     Serial.write("T1 OK: ");
-            //     mux_h::tcaselect(0);
-            //     int result = tof1.readRange();
-            //     Serial.print(result);
-            //     Serial.write("\n");
-            // }
-            // mux_h::tcaselect(1);
-            // if(tof2.readRangeStatus() == 0)
-            // {
-            //     Serial.write("T2 OK: ");
-            //     mux_h::tcaselect(1);
-            //     int result = tof2.readRange();
-            //     Serial.print(result);
-            //     Serial.write("\n");
-            // }
-            // mux_h::tcaselect(2);
-            // if(tof3.readRangeStatus() == 0)
-            // {
-            //     Serial.write("T3 OK: ");
-            //     int result = tof2.readRange();
-            //     Serial.print(result);
-            //     Serial.write("\n");
-            // }
-            // mux_h::tcaselect(3);
-            // if(tof4.readRangeStatus() == 0)
-            // {
-            //     Serial.write("T4 OK: ");
-            //     int result = tof4.readRange();
-            //     Serial.print(result);
-            //     Serial.write("\n");
-            // }
 
+        }
+        else if(strcmp(command_buffer, "T2") == 0)
+        {
+            Serial.write("Centering code test\n");
+            for(int i = 0; i < 10000; i++)
+            {
+                m_coord::centering_correction(tof1, tof2, tof3, tof4, 0);
+                delay(10);
+            }
         }
 
     }
 
-    movement_direction = target_direction;
+    //movement_direction = target_direction;
     //Self correction goes here in place of ^^
+    movement_direction = m_coord::centering_correction(tof1, tof2, tof3, tof4, target_direction);
+
 
     m_coord::set_angle(m1, m2, m3, m4, movement_speed,movement_direction,movement_rotation);
 }
