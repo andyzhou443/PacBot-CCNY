@@ -281,7 +281,22 @@ void loop() {
                 Serial.print(result);
                 Serial.write("\n");
             }
-
+            mux_h::tcaselect(2);
+            if(tof3.readRangeStatus() == 0)
+            {
+                Serial.write("T3 OK: ");
+                int result = tof2.readRange();
+                Serial.print(result);
+                Serial.write("\n");
+            }
+            mux_h::tcaselect(3);
+            if(tof4.readRangeStatus() == 0)
+            {
+                Serial.write("T4 OK: ");
+                int result = tof4.readRange();
+                Serial.print(result);
+                Serial.write("\n");
+            }
 
         }
 
