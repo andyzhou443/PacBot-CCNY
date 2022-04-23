@@ -13,7 +13,7 @@ namespace m_coord
     void set_angle(Motor& m1, Motor& m2, Motor& m3, Motor& m4,
         float speed, float angle, int rotation_offset);
     int centering_correction(Adafruit_VL6180X& sensor1, Adafruit_VL6180X& sensor2, Adafruit_VL6180X& sensor3, Adafruit_VL6180X& sensor4, int original_direction);
-    void orientation_correction();
+    int orientation_correction();
 } // namespace m_coord
 
 #endif //M_COORD
