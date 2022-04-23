@@ -53,10 +53,10 @@ void setup() {
     Wire1.begin();
 
     // Setup MUX
-    mux_h::tcaselect(0); tof1.begin();
-    mux_h::tcaselect(1); tof2.begin();
-    mux_h::tcaselect(2); tof3.begin();
-    mux_h::tcaselect(3); tof4.begin();
+    mux_h::tcaselect(0); tof1.begin(&Wire1);
+    mux_h::tcaselect(1); tof2.begin(&Wire1);
+    mux_h::tcaselect(2); tof3.begin(&Wire1);
+    mux_h::tcaselect(3); tof4.begin(&Wire1);
 
     //Setup for IMU
     if(!imu1.begin()){
@@ -286,10 +286,7 @@ void loop() {
                 Serial.print(result);
                 Serial.write("\n");
             }
-
-
         }
-
     }
 
     movement_direction = target_direction;
