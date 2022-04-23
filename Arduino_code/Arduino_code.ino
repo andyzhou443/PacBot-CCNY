@@ -97,205 +97,208 @@ void setup() {
 }
 
 void loop() {
-    //  Read serial
-    char command_buffer[15];
-    int buffer_size = 0;
-    buffer_size = 
-        Serial.readBytesUntil('\n',command_buffer,15);
-
-
-    // Echo Input
-    if (buffer_size > 0)
+    if (Serial.available())
     {
-        Serial.write(command_buffer,buffer_size);
-        Serial.write('\n');
-    }
+        //  Read serial
+        char command_buffer[15];
+        int buffer_size = 0;
+        buffer_size = 
+            Serial.readBytesUntil('\n',command_buffer,15);
 
-    // Parse P-Code
-    {
-        if(isdigit(command_buffer[0]))
+
+        // Echo Input
+        if (buffer_size > 0)
         {
-            // Movement code
-            if(command_buffer[0] == '0')
-            {
-                Serial.write("0 RIGHT\n");
-                target_direction = 90;
-                movement_speed = 100;
-                // goto execute;
-            }
-            else if(command_buffer[0] == '1')
-            {
-                Serial.write("1 LEFT\n");
-                target_direction = 270;
-                movement_speed = 100;
-                // goto execute;
-            }
-            else if(command_buffer[0] == '2')
-            {
-                Serial.write("2 UP\n");
-                target_direction = 0;
-                movement_speed = 100;
-            }
-            else if(command_buffer[0] == '3')
-            {
-                Serial.write("3 DOWN\n");
-                target_direction = 180;
-                movement_speed = 100;
-            }
-            else
-            {
-                Serial.write("? INVALID COMMAND\n");
-                return;
-            }
-                
-            // char temp_x[3]; strncpy(temp_x, command_buffer+2, 2); temp_x[2] = '\0';
-            // char temp_y[3]; strncpy(temp_y, command_buffer+5, 2); temp_y[2] = '\0';
-            // coord.x = atoi(temp_x);
-            // coord.y = atoi(temp_y);
-
-            // Serial.write("Current coordinates: ");
-            // Serial.print(coord.x); Serial.print(coord.y);
-            // Serial.write("\n");
-
-        }
-        // Halt
-        else if(command_buffer[0] == 'S')
-        {
-            Serial.write("S HALT");
-            //m1.halt(); m2.halt(); m3.halt(); m4.halt();
-            movement_speed = 0;
+            Serial.write(command_buffer,buffer_size);
+            Serial.write('\n');
         }
 
-        else if (strcmp(command_buffer,"E0") == 0)
+        // Parse P-Code
         {
-            Serial.write("E0 Encoder 1 TEST: ");
-            for(int i = 0; i < 10; i++)
+            if(isdigit(command_buffer[0]))
             {
-                Serial.print(enc_f::get_ticks(enc1,500));
-                Serial.write(' ');
-                Serial.print(enc_f::get_speed_mm(enc1,500));
-                Serial.write(' ');
-                Serial.print(enc_f::get_speed_inch(enc1,500));
-            }
-                Serial.write("\nDONE\n");
-        }
-        else if (strcmp(command_buffer,"E1") == 0)
-        {
-            Serial.write("E1 Encoder 2 TEST: ");
-            for(int i = 0; i < 10; i++)
-            {
-                Serial.print(enc_f::get_ticks(enc2,500));
-                Serial.write(' ');
-                Serial.print(enc_f::get_speed_mm(enc2,500));
-                Serial.write(' ');
-                Serial.print(enc_f::get_speed_inch(enc2,500));
-            }
-                Serial.write("\nDONE\n");
-        }
-        else if (strcmp(command_buffer,"E2") == 0)
-        {
-            Serial.write("E2 Encoder 3 TEST: ");
-            for(int i = 0; i < 10; i++)
-            {
-                Serial.print(enc_f::get_ticks(enc3,500));
-                Serial.write(' ');
-                Serial.print(enc_f::get_speed_mm(enc3,500));
-                Serial.write(' ');
-                Serial.print(enc_f::get_speed_inch(enc3,500));
-            }
-                Serial.write("\nDONE\n");
-        }
-        else if (strcmp(command_buffer,"E3") == 0)
-        {
-            Serial.write("E0 Encoder 4 TEST: ");
-            {
-            for(int i = 0; i < 10; i++)
-                Serial.print(enc_f::get_ticks(enc4,500));
-                Serial.write(' ');
-                Serial.print(enc_f::get_speed_mm(enc4,500));
-                Serial.write(' ');
-                Serial.print(enc_f::get_speed_inch(enc4,500));
-            }
-                Serial.write("\nDONE\n");
-        }
-
-        else if(strcmp(command_buffer,"M0") == 0)
-        {
-            Serial.write("M0 COORD TEST 1\n");
-            int j = 0;
-            while (j < 20)
-            {
-                for(int i = 0; i <= 360; i+= 10)
+                // Movement code
+                if(command_buffer[0] == '0')
                 {
-                    m_coord::set_angle(m1, m2, m3, m4, 100,i,-20);
-                    delay(100);
+                    Serial.write("0 RIGHT\n");
+                    target_direction = 90;
+                    movement_speed = 100;
+                    // goto execute;
                 }
-                j++;
-            } 
-        }
-        else if (strcmp(command_buffer,"M1") == 0)
-        {
-            Serial.write("M1 MOTOR STRENGTH TEST \n");
-            for(int i = 0; i < 150; i+= 5)
-            {
-                int e1_ticks, e2_ticks, e3_ticks, e4_ticks;
-                m1.set_speed(i); m2.set_speed(i); m3.set_speed(i); m4.set_speed(i);
-                Serial.print(i); Serial.write(": "); 
-                delay(100); 
-                e1_ticks = enc_f::get_ticks(enc1,50); Serial.print(e1_ticks); Serial.write(": ");
-                e2_ticks = enc_f::get_ticks(enc2,50); Serial.print(e2_ticks); Serial.write(": ");
-                e3_ticks = enc_f::get_ticks(enc3,50); Serial.print(e3_ticks); Serial.write(": ");
-                e4_ticks = enc_f::get_ticks(enc4,50); Serial.print(e4_ticks); Serial.write(": ");
-                Serial.write("\n");
-                delay(1000);
+                else if(command_buffer[0] == '1')
+                {
+                    Serial.write("1 LEFT\n");
+                    target_direction = 270;
+                    movement_speed = 100;
+                    // goto execute;
+                }
+                else if(command_buffer[0] == '2')
+                {
+                    Serial.write("2 UP\n");
+                    target_direction = 0;
+                    movement_speed = 100;
+                }
+                else if(command_buffer[0] == '3')
+                {
+                    Serial.write("3 DOWN\n");
+                    target_direction = 180;
+                    movement_speed = 100;
+                }
+                else
+                {
+                    Serial.write("? INVALID COMMAND\n");
+                    return;
+                }
+                    
+                // char temp_x[3]; strncpy(temp_x, command_buffer+2, 2); temp_x[2] = '\0';
+                // char temp_y[3]; strncpy(temp_y, command_buffer+5, 2); temp_y[2] = '\0';
+                // coord.x = atoi(temp_x);
+                // coord.y = atoi(temp_y);
+
+                // Serial.write("Current coordinates: ");
+                // Serial.print(coord.x); Serial.print(coord.y);
+                // Serial.write("\n");
+
             }
-        }
-        else if(strcmp(command_buffer, "I1") == 0)
-        {
-            Serial.write("I1 IMU TEST");
-            for(int i = 0; i < 10; i++)
+            // Halt
+            else if(command_buffer[0] == 'S')
             {
-                Serial.print(IMU_f::get_angle(imu1));
-                Serial.write(' ');
-            }
-            Serial.write("Done.\n");
-        }
-
-        else if(strcmp(command_buffer, "T1") == 0)
-        {
-            for(int i = 0; i < 100; i++)
-            {
-                Serial.write("T1 ToF Sensor Test\n");
-                Serial.print("TOF1 reading: ");
-                int resulting_val = TOF_f::readDistance(tof1, 1);
-                Serial.println(resulting_val);
-
-                Serial.print("TOF2 reading: ");
-                resulting_val = TOF_f::readDistance(tof2, 2);
-                Serial.println(resulting_val);
-
-                Serial.print("TOF3 reading: ");
-                resulting_val = TOF_f::readDistance(tof3, 3);
-                Serial.println(resulting_val);
-
-                Serial.print("TOF4 reading: ");
-                resulting_val = TOF_f::readDistance(tof4, 4);
-                Serial.println(resulting_val);
-                Serial.println(" ");
-                delay(1000);
+                Serial.write("S HALT");
+                //m1.halt(); m2.halt(); m3.halt(); m4.halt();
+                movement_speed = 0;
             }
 
-        }
-        else if(strcmp(command_buffer, "T2") == 0)
-        {
-            Serial.write("Centering code test\n");
-            for(int i = 0; i < 10000; i++)
+            else if (strcmp(command_buffer,"E0") == 0)
             {
-                m_coord::centering_correction(tof1, tof2, tof3, tof4, 0);
-                delay(10);
+                Serial.write("E0 Encoder 1 TEST: ");
+                for(int i = 0; i < 10; i++)
+                {
+                    Serial.print(enc_f::get_ticks(enc1,500));
+                    Serial.write(' ');
+                    Serial.print(enc_f::get_speed_mm(enc1,500));
+                    Serial.write(' ');
+                    Serial.print(enc_f::get_speed_inch(enc1,500));
+                }
+                    Serial.write("\nDONE\n");
             }
-        }
+            else if (strcmp(command_buffer,"E1") == 0)
+            {
+                Serial.write("E1 Encoder 2 TEST: ");
+                for(int i = 0; i < 10; i++)
+                {
+                    Serial.print(enc_f::get_ticks(enc2,500));
+                    Serial.write(' ');
+                    Serial.print(enc_f::get_speed_mm(enc2,500));
+                    Serial.write(' ');
+                    Serial.print(enc_f::get_speed_inch(enc2,500));
+                }
+                    Serial.write("\nDONE\n");
+            }
+            else if (strcmp(command_buffer,"E2") == 0)
+            {
+                Serial.write("E2 Encoder 3 TEST: ");
+                for(int i = 0; i < 10; i++)
+                {
+                    Serial.print(enc_f::get_ticks(enc3,500));
+                    Serial.write(' ');
+                    Serial.print(enc_f::get_speed_mm(enc3,500));
+                    Serial.write(' ');
+                    Serial.print(enc_f::get_speed_inch(enc3,500));
+                }
+                    Serial.write("\nDONE\n");
+            }
+            else if (strcmp(command_buffer,"E3") == 0)
+            {
+                Serial.write("E0 Encoder 4 TEST: ");
+                {
+                for(int i = 0; i < 10; i++)
+                    Serial.print(enc_f::get_ticks(enc4,500));
+                    Serial.write(' ');
+                    Serial.print(enc_f::get_speed_mm(enc4,500));
+                    Serial.write(' ');
+                    Serial.print(enc_f::get_speed_inch(enc4,500));
+                }
+                    Serial.write("\nDONE\n");
+            }
 
+            else if(strcmp(command_buffer,"M0") == 0)
+            {
+                Serial.write("M0 COORD TEST 1\n");
+                int j = 0;
+                while (j < 20)
+                {
+                    for(int i = 0; i <= 360; i+= 10)
+                    {
+                        m_coord::set_angle(m1, m2, m3, m4, 100,i,-20);
+                        delay(100);
+                    }
+                    j++;
+                } 
+            }
+            else if (strcmp(command_buffer,"M1") == 0)
+            {
+                Serial.write("M1 MOTOR STRENGTH TEST \n");
+                for(int i = 0; i < 150; i+= 5)
+                {
+                    int e1_ticks, e2_ticks, e3_ticks, e4_ticks;
+                    m1.set_speed(i); m2.set_speed(i); m3.set_speed(i); m4.set_speed(i);
+                    Serial.print(i); Serial.write(": "); 
+                    delay(100); 
+                    e1_ticks = enc_f::get_ticks(enc1,50); Serial.print(e1_ticks); Serial.write(": ");
+                    e2_ticks = enc_f::get_ticks(enc2,50); Serial.print(e2_ticks); Serial.write(": ");
+                    e3_ticks = enc_f::get_ticks(enc3,50); Serial.print(e3_ticks); Serial.write(": ");
+                    e4_ticks = enc_f::get_ticks(enc4,50); Serial.print(e4_ticks); Serial.write(": ");
+                    Serial.write("\n");
+                    delay(1000);
+                }
+            }
+            else if(strcmp(command_buffer, "I1") == 0)
+            {
+                Serial.write("I1 IMU TEST");
+                for(int i = 0; i < 10; i++)
+                {
+                    Serial.print(IMU_f::get_angle(imu1));
+                    Serial.write(' ');
+                }
+                Serial.write("Done.\n");
+            }
+
+            else if(strcmp(command_buffer, "T1") == 0)
+            {
+                for(int i = 0; i < 100; i++)
+                {
+                    Serial.write("T1 ToF Sensor Test\n");
+                    Serial.print("TOF1 reading: ");
+                    int resulting_val = TOF_f::readDistance(tof1, 1);
+                    Serial.println(resulting_val);
+
+                    Serial.print("TOF2 reading: ");
+                    resulting_val = TOF_f::readDistance(tof2, 2);
+                    Serial.println(resulting_val);
+
+                    Serial.print("TOF3 reading: ");
+                    resulting_val = TOF_f::readDistance(tof3, 3);
+                    Serial.println(resulting_val);
+
+                    Serial.print("TOF4 reading: ");
+                    resulting_val = TOF_f::readDistance(tof4, 4);
+                    Serial.println(resulting_val);
+                    Serial.println(" ");
+                    delay(1000);
+                }
+
+            }
+            else if(strcmp(command_buffer, "T2") == 0)
+            {
+                Serial.write("Centering code test\n");
+                for(int i = 0; i < 10000; i++)
+                {
+                    m_coord::centering_correction(tof1, tof2, tof3, tof4, 0);
+                    delay(10);
+                }
+            }
+
+        }
     }
 
     //movement_direction = target_direction;
