@@ -77,6 +77,7 @@ void setup() {
 
     while (!Serial);
 
+/*
     for (uint8_t t=0; t<8; t++) {
       mux_h::tcaselect(t);
       Serial.print("TCA Port #"); Serial.println(t);
@@ -90,6 +91,7 @@ void setup() {
         }
       }
     }
+*/
 
     Serial.write("Teensy OK\n");
 }
@@ -261,70 +263,62 @@ void loop() {
 
         else if(strcmp(command_buffer, "T1") == 0)
         {
-            Serial.write("T1 ToF Sensor Test\n");
-            mux_h::tcaselect(1);
-            int range = tof1.readRangeStatus();
-            Serial.println(range);
+            for(int i = 0; i < 100; i++)
             {
-                Serial.write("T1 OK: ");
-                mux_h::tcaselect(0);
-                int result = tof1.readRange();
-				int status = tof1.readRangeStatus();
-				if  ((status >= VL6180X_ERROR_SYSERR_1) && (status <= VL6180X_ERROR_SYSERR_5)) {
-				  Serial.println("System error");
-			  	}
-				else if (status == VL6180X_ERROR_ECEFAIL) {
-				  Serial.println("ECE failure");
-				}
-				else if (status == VL6180X_ERROR_NOCONVERGE) {
-				  Serial.println("No convergence");
-				}
-				else if (status == VL6180X_ERROR_RANGEIGNORE) {
-				  Serial.println("Ignoring range");
-				}
-				else if (status == VL6180X_ERROR_SNR) {
-				  Serial.println("Signal/Noise error");
-				}
-				else if (status == VL6180X_ERROR_RAWUFLOW) {
-				  Serial.println("Raw reading underflow");
-				}
-				else if (status == VL6180X_ERROR_RAWOFLOW) {
-				  Serial.println("Raw reading overflow");
-				}
-				else if (status == VL6180X_ERROR_RANGEUFLOW) {
-				  Serial.println("Range reading underflow");
-				}
-				else if (status == VL6180X_ERROR_RANGEOFLOW) {
-				  Serial.println("Range reading overflow");
-			  	}
-                Serial.print(result);
-                Serial.write("\n");
+                Serial.write("T1 ToF Sensor Test\n");
+                Serial.print("TOF1 reading: ");
+                int resulting_val = TOF_f::readDistance(tof1, 1);
+                Serial.println(resulting_val);
+
+                Serial.print("TOF2 reading: ");
+                resulting_val = TOF_f::readDistance(tof2, 2);
+                Serial.println(resulting_val);
+
+                Serial.print("TOF3 reading: ");
+                resulting_val = TOF_f::readDistance(tof3, 3);
+                Serial.println(resulting_val);
+
+                Serial.print("TOF4 reading: ");
+                resulting_val = TOF_f::readDistance(tof4, 4);
+                Serial.println(resulting_val);
+                Serial.println(" ");
+                delay(1000);
             }
-            mux_h::tcaselect(1);
-            if(tof2.readRangeStatus() == 0)
-            {
-                Serial.write("T2 OK: ");
-                mux_h::tcaselect(1);
-                int result = tof2.readRange();
-                Serial.print(result);
-                Serial.write("\n");
-            }
-            mux_h::tcaselect(2);
-            if(tof3.readRangeStatus() == 0)
-            {
-                Serial.write("T3 OK: ");
-                int result = tof2.readRange();
-                Serial.print(result);
-                Serial.write("\n");
-            }
-            mux_h::tcaselect(3);
-            if(tof4.readRangeStatus() == 0)
-            {
-                Serial.write("T4 OK: ");
-                int result = tof4.readRange();
-                Serial.print(result);
-                Serial.write("\n");
-            }
+            // mux_h::tcaselect(1);
+            // int range = tof1.readRangeStatus();
+            // Serial.println(range);
+            // {
+            //     Serial.write("T1 OK: ");
+            //     mux_h::tcaselect(0);
+            //     int result = tof1.readRange();
+            //     Serial.print(result);
+            //     Serial.write("\n");
+            // }
+            // mux_h::tcaselect(1);
+            // if(tof2.readRangeStatus() == 0)
+            // {
+            //     Serial.write("T2 OK: ");
+            //     mux_h::tcaselect(1);
+            //     int result = tof2.readRange();
+            //     Serial.print(result);
+            //     Serial.write("\n");
+            // }
+            // mux_h::tcaselect(2);
+            // if(tof3.readRangeStatus() == 0)
+            // {
+            //     Serial.write("T3 OK: ");
+            //     int result = tof2.readRange();
+            //     Serial.print(result);
+            //     Serial.write("\n");
+            // }
+            // mux_h::tcaselect(3);
+            // if(tof4.readRangeStatus() == 0)
+            // {
+            //     Serial.write("T4 OK: ");
+            //     int result = tof4.readRange();
+            //     Serial.print(result);
+            //     Serial.write("\n");
+            // }
 
         }
 

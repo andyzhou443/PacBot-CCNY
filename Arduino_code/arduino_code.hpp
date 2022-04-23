@@ -15,6 +15,7 @@
 #include "motor_coordinator.hpp"
 #include "IMU_funcs.hpp"
 #include "mux.hpp"
+#include "TOF.hpp"
 
 // Pin mappings
 // Encoders
