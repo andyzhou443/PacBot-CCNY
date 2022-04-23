@@ -90,11 +90,6 @@ void setup() {
         }
       }
     }
-    
-    tof1.begin();
-    tof2.begin();
-    tof3.begin();
-    tof4.begin();
 
     Serial.write("Teensy OK\n");
 }
