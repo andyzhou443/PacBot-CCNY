@@ -7,6 +7,9 @@ namespace enc_f
 {
     // Wheel radius (in mm)
     extern const int WHEEL_RADIUS;
+    // long ticks;
+    // int in_speed;
+    // int mm_speed;
 
     long get_ticks(Encoder& e,int d);
     int get_speed_inch(Encoder& e, int d);

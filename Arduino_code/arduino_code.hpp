@@ -1,4 +1,11 @@
 #include <Arduino.h>
+#include <Encoder.h>
+#include <Adafruit_Sensor.h>
+#include <Adafruit_BNO055.h>
+#include <Wire.h>
+#include <SparkFun_I2C_Mux_Arduino_Library.h>
+#include <Adafruit_VL6180X.h>
+
 
 #ifndef HEADRS
 #define HEADRS
@@ -6,6 +13,8 @@
 #include "encoder_funcs.hpp"
 #include "motor.hpp"
 #include "motor_coordinator.hpp"
+#include "IMU_funcs.hpp"
+#include "mux.hpp"
 
 // Pin mappings
 // Encoders
@@ -51,6 +60,13 @@ Coordinates coord;
 
 // Wheel Radius
 const int WHEEL_RADIUS = 8;
+
+//Variable that keeps track of direction from high level
+int target_direction = 0;
+
+int movement_direction = 0;
+int movement_speed = 0;
+int movement_rotation = 0;
 
 void setup();
 

@@ -17,6 +17,12 @@ namespace m_coord
         //angle is 0 to 360
         //For rotation offset: Positive is counter-clockwise, negative is clockwise
         //For clockwise rotation, slow down the positive speeds, for ccw, slow down the negative speeds
+
+        angle += 315;
+
+        while(angle < 0) angle += 360;
+        while(angle >= 360) angle += -360;
+
         int cw_offset = 0;
         int ccw_offset = 0;
 
@@ -90,9 +96,31 @@ namespace m_coord
     }
 
 
-    void distanceCorrection(){}
+    int centering_correction(int original_direction)
+    {
+        int new_direction;
+        switch (original_direction)
+        {
+            case 0:
+                //code
+                break;
+
+            case 90:
+                //code
+                break;
+
+            case 180:
+                //code
+                break;
+            
+            case 270:
+                //code
+                break;
+        }
+        
+    }
 
 
-    void angleCorrection(){}
+    void orientation_correction(){}
 
 }

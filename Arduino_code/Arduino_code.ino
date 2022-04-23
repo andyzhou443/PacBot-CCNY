@@ -1,7 +1,5 @@
 #include "arduino_code.hpp"
-#include <Encoder.h>
-#include <Adafruit_Sensor.h>
-#include <Adafruit_BNO055.h>
+
 
 // Setup interfacing objects
 Motor m1(motor_1a,motor_1b);
@@ -15,22 +13,21 @@ Encoder enc2(enc_2a,enc_2b);
 Encoder enc3(enc_3a,enc_3b);
 Encoder enc4(enc_4a,enc_4b);
 
-//create IMU object
-Adafruit_BNO055 IMU = Adafruit_BNO055(); 
+
+// create IMU object
+Adafruit_BNO055 imu1 = Adafruit_BNO055();
+
+// create ToF objects
+Adafruit_VL6180X tof1 = Adafruit_VL6180X();
+Adafruit_VL6180X tof2 = Adafruit_VL6180X();
+Adafruit_VL6180X tof3 = Adafruit_VL6180X();
+Adafruit_VL6180X tof4 = Adafruit_VL6180X();
+
+
+
 
 void setup() {
     // put your setup code here, to run once:
-
-    // Setup serial port
-    Serial.begin(115200);
-
-    //Setup for IMU
-    if(!IMU.begin()){
-        Serial.print("IMU not detected");
-    }
-    delay(1000);
-    IMU.setExtCrystalUse(true);  //uses time reference crystal on board
-
     // Setup pin directions
     pinMode(enc_1a, INPUT); pinMode(enc_1b, INPUT);
     pinMode(enc_2a, INPUT); pinMode(enc_2b, INPUT);
@@ -42,24 +39,73 @@ void setup() {
     pinMode(motor_3a,OUTPUT); pinMode(motor_3b,OUTPUT);
     pinMode(motor_4a,OUTPUT); pinMode(motor_4b,OUTPUT);
 
-    // Setup global coordinate object
-    coord = {13,7};
+    // Inital PWM
+    analogWriteFrequency(motor_1a,90); analogWriteFrequency(motor_1b,90);
+    analogWriteFrequency(motor_2a,90); analogWriteFrequency(motor_2b,90);
+    analogWriteFrequency(motor_3a,90); analogWriteFrequency(motor_3b,90);
+    analogWriteFrequency(motor_4a,90); analogWriteFrequency(motor_4b,90);
 
+    // Setup serial port
+    Serial.begin(115200);
+
+    
+    // Setup I2C
+    Wire1.begin();
+
+    // Setup MUX
+    mux_h::tcaselect(0); tof1.begin();
+    mux_h::tcaselect(1); tof2.begin();
+    mux_h::tcaselect(2); tof3.begin();
+    mux_h::tcaselect(3); tof4.begin();
+
+    //Setup for IMU
+    if(!imu1.begin()){
+        Serial.println("IMU not detected");
+    }
+    Serial.println("IMU Detected");
+    delay(1000);
+    imu1.setExtCrystalUse(true);  //uses time reference crystal on board
+
+
+
+
+    // Calibrate IMU
+    IMU_f::IMU_Calibration(imu1);
+
+    // // Setup global coordinate object
+    // coord = {13,7};
 
     while (!Serial);
+
+    for (uint8_t t=0; t<8; t++) {
+      mux_h::tcaselect(t);
+      Serial.print("TCA Port #"); Serial.println(t);
+
+      for (uint8_t addr = 0; addr<=127; addr++) {
+        //if (addr == TCAADDR) continue;
+
+        Wire1.beginTransmission(addr);
+        if (!Wire1.endTransmission()) {
+          Serial.print("Found I2C 0x");  Serial.println(addr,HEX);
+        }
+      }
+    }
+    
+    tof1.begin();
+    tof2.begin();
+    tof3.begin();
+    tof4.begin();
+
     Serial.write("Teensy OK\n");
 }
 
 void loop() {
-    // put your main code here, to run repeatedly:
-
     //  Read serial
     char command_buffer[15];
     int buffer_size = 0;
     buffer_size = 
         Serial.readBytesUntil('\n',command_buffer,15);
 
-    //TODO: Parse Code
 
     // Echo Input
     if (buffer_size > 0)
@@ -75,23 +121,29 @@ void loop() {
             // Movement code
             if(command_buffer[0] == '0')
             {
-                Serial.write("0 MOVE RIGHT\n");
-                m1.set_speed(50);
+                Serial.write("0 RIGHT\n");
+                target_direction = 90;
+                movement_speed = 100;
+                // goto execute;
             }
             else if(command_buffer[0] == '1')
             {
-                Serial.write("1 MOVE LEFT\n");
-                m2.set_speed(100);
+                Serial.write("1 LEFT\n");
+                target_direction = 270;
+                movement_speed = 100;
+                // goto execute;
             }
             else if(command_buffer[0] == '2')
             {
-                Serial.write("2 MOVE UP\n");
-                m3.set_speed(100);
+                Serial.write("2 UP\n");
+                target_direction = 0;
+                movement_speed = 100;
             }
             else if(command_buffer[0] == '3')
             {
-                Serial.write("3 MOVE RIGHT\n");
-                m4.set_speed(100);
+                Serial.write("3 DOWN\n");
+                target_direction = 180;
+                movement_speed = 100;
             }
             else
             {
@@ -99,25 +151,22 @@ void loop() {
                 return;
             }
                 
-            
+            // char temp_x[3]; strncpy(temp_x, command_buffer+2, 2); temp_x[2] = '\0';
+            // char temp_y[3]; strncpy(temp_y, command_buffer+5, 2); temp_y[2] = '\0';
+            // coord.x = atoi(temp_x);
+            // coord.y = atoi(temp_y);
 
-            char temp_x[3]; strncpy(temp_x, command_buffer+2, 2); temp_x[2] = '\0';
-            char temp_y[3]; strncpy(temp_y, command_buffer+5, 2); temp_y[2] = '\0';
-            coord.x = atoi(temp_x);
-            coord.y = atoi(temp_y);
+            // Serial.write("Current coordinates: ");
+            // Serial.print(coord.x); Serial.print(coord.y);
+            // Serial.write("\n");
 
-            Serial.write("Current coordinates: ");
-            Serial.print(coord.x); Serial.print(coord.y);
-            Serial.write("\n");
-
-            return;
         }
         // Halt
         else if(command_buffer[0] == 'S')
         {
             Serial.write("S HALT");
-            m1.halt(); m2.halt(); m3.halt(); m4.halt();
-            return;
+            //m1.halt(); m2.halt(); m3.halt(); m4.halt();
+            movement_speed = 0;
         }
 
         else if (strcmp(command_buffer,"E0") == 0)
@@ -175,7 +224,7 @@ void loop() {
 
         else if(strcmp(command_buffer,"M0") == 0)
         {
-            Serial.write("M COORD TEST 1\n");
+            Serial.write("M0 COORD TEST 1\n");
             int j = 0;
             while (j < 20)
             {
@@ -187,5 +236,64 @@ void loop() {
                 j++;
             } 
         }
+        else if (strcmp(command_buffer,"M1") == 0)
+        {
+            Serial.write("M1 MOTOR STRENGTH TEST \n");
+            for(int i = 0; i < 150; i+= 5)
+            {
+                int e1_ticks, e2_ticks, e3_ticks, e4_ticks;
+                m1.set_speed(i); m2.set_speed(i); m3.set_speed(i); m4.set_speed(i);
+                Serial.print(i); Serial.write(": "); 
+                delay(100); 
+                e1_ticks = enc_f::get_ticks(enc1,50); Serial.print(e1_ticks); Serial.write(": ");
+                e2_ticks = enc_f::get_ticks(enc2,50); Serial.print(e2_ticks); Serial.write(": ");
+                e3_ticks = enc_f::get_ticks(enc3,50); Serial.print(e3_ticks); Serial.write(": ");
+                e4_ticks = enc_f::get_ticks(enc4,50); Serial.print(e4_ticks); Serial.write(": ");
+                Serial.write("\n");
+                delay(1000);
+            }
+        }
+        else if(strcmp(command_buffer, "I1") == 0)
+        {
+            Serial.write("I1 IMU TEST");
+            for(int i = 0; i < 10; i++)
+            {
+                Serial.print(IMU_f::get_angle(imu1));
+                Serial.write(' ');
+            }
+            Serial.write("Done.\n");
+        }
+
+        else if(strcmp(command_buffer, "T1") == 0)
+        {
+            Serial.write("T1 ToF Sensor Test\n");
+            mux_h::tcaselect(1);
+            int range = tof1.readRangeStatus();
+            Serial.println(range);
+            {
+                Serial.write("T1 OK: ");
+                mux_h::tcaselect(0);
+                int result = tof1.readRange();
+                Serial.print(result);
+                Serial.write("\n");
+            }
+            mux_h::tcaselect(1);
+            if(tof2.readRangeStatus() == 0)
+            {
+                Serial.write("T2 OK: ");
+                mux_h::tcaselect(1);
+                int result = tof2.readRange();
+                Serial.print(result);
+                Serial.write("\n");
+            }
+
+
+        }
+
     }
+
+    movement_direction = target_direction;
+    //Self correction goes here in place of ^^
+
+    m_coord::set_angle(m1, m2, m3, m4, movement_speed,movement_direction,movement_rotation);
 }

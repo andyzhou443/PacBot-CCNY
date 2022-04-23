@@ -1,4 +1,13 @@
+#ifndef MUX_H
+#define MUX_H
+#include <Arduino.h>
 #include <Wire.h>
-#include <SparkFun_I2C_Mux_Arduino_Library.h>
 
-QWIICMUX mux;
+#define TCAADDR 0x70
+
+// namespace mux_h
+// {
+//     void tcaselect(uint8_t i);
+// }
+
+#endif // MUX_H

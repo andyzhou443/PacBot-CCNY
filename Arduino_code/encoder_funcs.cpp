@@ -22,28 +22,28 @@ namespace enc_f
      * @brief Report speed of encoder (in in/s)
      * 
      * @param e Encoder object to report
-     * @param d Time to read encoder
+     * @param d Time taken to read encoder (ms)
      * @return float 
      */
     int get_speed_inch(Encoder& e, int d = 50)
     {
         long ticks = get_ticks(e,d);
-        int speed = floor( ((float) ticks / d) * (float) (25/3) * 1.49606 * PI);
-        return speed;
+        int in_speed = floor( ((float) ticks / d) * (float) (25/3) * 1.49606 * PI);
+        return in_speed;
     }
 
     /**
      * @brief Report speed of encoder (in mm/s)
      * 
      * @param e Encoder object
-     * @param d Time to read encoder
+     * @param d Time taken to read encoder (in ms)
      * @return float 
      */
     int get_speed_mm(Encoder& e, int d = 50)
     {
         long ticks = get_ticks(e,d);
-        int speed = floor( ((float) ticks / d) * (float) (25/3) * 38.0 * PI);
-        return speed;
+        int mm_speed = floor( ((float) ticks / d) * (float) (25/3) * 38.0 * PI);
+        return mm_speed;
     }
 
 } // enc_f namespace
